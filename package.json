@@ -1,11 +1,12 @@
 {
   "name": "corgi",
   "version": "0.0.0",
+  "private": true,
   "description": "Toolkit for creating statically-generated web apps via Next JS.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "workspaces": [
+    "packages/*",
+    "docs"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wethegit/corgi.git"
