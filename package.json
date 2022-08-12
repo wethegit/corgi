@@ -1,0 +1,23 @@
+{
+  "name": "corgi",
+  "version": "0.0.0",
+  "description": "Toolkit for creating statically-generated web apps via Next JS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wethegit/corgi.git"
+  },
+  "contributors": [
+    "Andrew Rubin <andrew@wethecollective.com> (https://github.com/orgs/wethegit/people/andrewrubin)",
+    "Liam Egan <liam@wethecollective.com> (https://github.com/orgs/wethegit/people/liamegan)",
+    "Steve Gardner <steve@wethecollective.com> (https://github.com/orgs/wethegit/people/ste-vg)"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wethegit/corgi/issues"
+  },
+  "homepage": "https://github.com/wethegit/corgi#readme"
+}
