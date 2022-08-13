@@ -1,0 +1,6 @@
+{
+  "projectName": "tester!",
+  "pages": ["home", "about", "contact"],
+  "locales": ["en-US", "fr-CA", "es-MX", "pt-BR"],
+  "components": ["card", "confetti", "something-else"]
+}
