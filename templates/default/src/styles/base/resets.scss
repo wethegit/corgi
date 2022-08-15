@@ -1,0 +1,78 @@
+@use "../helpers/helpers-typography" as *;
+
+// Most of this is taken from the normalize.css package:
+// https://necolas.github.io/normalize.css/8.0.1/normalize.css
+
+// This is just a stripped-back version of that.
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  @include font-smoothing("on");
+
+  margin: 0;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+ul,
+ol,
+menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border-style: none;
+  height: auto;
+  max-width: 100%;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button {
+  appearance: none;
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  font: inherit;
+  padding: 0;
+}
+
+figure {
+  margin: 0;
+}

@@ -1,0 +1,16 @@
+/* stylelint-disable property-no-unknown */
+@import "./settings/settings-breakpoints";
+@import "./settings/settings-layout";
+
+:export {
+  breakpoint-large: $large;
+  breakpoint-medium: $medium;
+  breakpoint-small: $small;
+  breakpoint-xlarge: $xlarge;
+  breakpoint-xxlarge: $xxlarge;
+  layout-base_space: $base-space;
+  layout-columns: $columns;
+  layout-gutter_width: $gutter-width;
+  layout-gutter_width_medium: $gutter-width-medium-up;
+  layout-total_width: $total-width;
+}

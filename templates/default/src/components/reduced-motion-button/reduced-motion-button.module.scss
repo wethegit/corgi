@@ -1,0 +1,43 @@
+@use "../../styles/helpers/helpers-layout" as *;
+
+.rmButton {
+  align-items: center;
+  display: inline-flex;
+  line-height: 1;
+  padding: space-by(1.5) space-by(2);
+}
+
+.rmButtonIcon {
+  --dimension: 13px;
+
+  border: 1px solid currentcolor;
+  border-radius: 50%;
+  height: var(--dimension);
+  margin-inline-end: 10px;
+  position: relative;
+  width: var(--dimension);
+
+  &::before {
+    --inner-dimension: calc(var(--dimension) - 4px);
+
+    background-color: currentcolor;
+    border-radius: 50%;
+    content: "";
+    display: none;
+    height: var(--inner-dimension);
+    left: 50%;
+    margin-block-start: calc(var(--inner-dimension) * -0.5);
+    margin-inline-start: calc(var(--inner-dimension) * -0.5);
+    position: absolute;
+    top: 50%;
+    width: var(--inner-dimension);
+  }
+}
+
+.rmButtonSelected {
+  .rmButtonIcon {
+    &::before {
+      display: block;
+    }
+  }
+}

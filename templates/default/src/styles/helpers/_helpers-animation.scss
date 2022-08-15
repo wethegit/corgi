@@ -1,0 +1,9 @@
+// Eases the burden of managing durations and delays when animating
+// different elements as part of a sequence.
+@function duration($value) {
+  @return calc(var(--duration-factor) * #{$value});
+}
+
+@function delay($value) {
+  @return calc(var(--duration-factor) * #{$value});
+}

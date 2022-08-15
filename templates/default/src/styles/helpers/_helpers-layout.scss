@@ -1,0 +1,87 @@
+@use "./helpers-math";
+
+// Absolutely positions an element, with an optional inset.
+@mixin full-absolute($inset: 0) {
+  position: absolute;
+
+  @if $inset != 0 {
+    bottom: $inset;
+    left: $inset;
+    right: $inset;
+    top: $inset;
+  } @else {
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+// Creates a value which is a multiple of the --base-space property.
+@function space-by($multiplier: false) {
+  @if not $multiplier {
+    @return var(--base-space, 8px);
+  } @else if $multiplier == 1 {
+    @return var(--base-space, 8px);
+  } @else {
+    @return calc(var(--base-space, 8px) * #{$multiplier});
+  }
+}
+
+// calculates the percentage value of n columns given
+@function grid-calc($colNumber) {
+  @return calc(100 / var(--number-of-columns) * #{$colNumber} * 1%);
+}
+
+// Generates a CSS class name for use in flex layout helpers below
+@function get-grid-class($base, $size: null) {
+  $klass: $base;
+
+  @if $size != null {
+    $klass: $klass + "-" + $size;
+  }
+
+  @return $klass;
+}
+
+// Generates column class names (flex layout) for the given breakpoint
+@mixin add-grid-columns($size: null) {
+  $klass: get-grid-class(column, $size);
+  $total-columns: 12;
+
+  // $total-columns is hard-coded, as we can't parse a CSS custom property
+  // such as var(--number-of-columns)
+
+  @for $i from 1 through 12 {
+    .#{$klass}--#{$i} {
+      flex-basis: grid-calc($i);
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
+}
+
+// Generates row class names for flex layout
+@mixin add-grid-row($size: null) {
+  $klass: get-grid-class(row, $size);
+
+  .#{$klass} {
+    display: flex;
+  }
+
+  .#{$klass}--nowrap {
+    flex-wrap: nowrap;
+  }
+
+  .#{$klass}--vertical-center {
+    align-items: center;
+  }
+
+  .#{$klass}--vertical-baseline {
+    align-items: baseline;
+  }
+
+  .#{$klass}--horizontal-uncenter {
+    justify-content: flex-start;
+  }
+}

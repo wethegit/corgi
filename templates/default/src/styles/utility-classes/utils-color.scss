@@ -1,0 +1,10 @@
+// define utility classes:
+@each $color, $hex in $colors {
+  .bg-#{$color} {
+    background-color: var(--color-#{$color});
+  }
+
+  .color-#{$color} {
+    color: var(--color-#{$color});
+  }
+}

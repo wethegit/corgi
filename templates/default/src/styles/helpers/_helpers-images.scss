@@ -1,0 +1,19 @@
+// Responsively positions a child element relative to its parent container.
+// Expects unitless values as input.
+@mixin image-positioning($top, $left, $width, $containerWidth, $containerHeight) {
+  --top: #{$top};
+  --left: #{$left};
+  --width: #{$width};
+
+  left: percent-ratio-css-vars(--left, $containerWidth);
+  top: percent-ratio-css-vars(--top, $containerHeight);
+  width: percent-ratio-css-vars(--width, $containerWidth);
+}
+
+// Accepts two strings — one for 1x and one for 2x — and returns
+// an image-set with a fallback.
+@mixin image-set($source1x, $source2x) {
+  background-image: url(#{$source1x});
+  background-image: image-set(url(#{$source1x}) 1x, url(#{$source2x}) 2x);
+  background-image: image-set(url(#{$source1x}) 1x, url(#{$source2x}) 2x);
+}

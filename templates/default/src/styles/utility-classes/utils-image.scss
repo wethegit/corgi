@@ -1,0 +1,35 @@
+@use "../helpers/helpers-images" as *;
+@use "../helpers/helpers-math" as *;
+
+.image-group {
+  --parent-width: 0;
+  --parent-height: 0;
+  --parent-max: 100%;
+
+  margin: 0 auto;
+  max-width: var(--parent-max);
+  pointer-events: none;
+  position: relative;
+  width: 100%;
+
+  &::before {
+    content: "";
+    display: block;
+    padding-bottom: percent-ratio-css-vars(--parent-height, --parent-width);
+  }
+}
+
+.image-group__item {
+  --left: 0;
+  --top: 0;
+  --width: 0;
+
+  @include image-positioning(--top, --left, --width, --parent-width, --parent-height);
+
+  position: absolute;
+
+  // in case the item isn't an image, but it's child is:
+  img {
+    width: 100%;
+  }
+}

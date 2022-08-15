@@ -1,0 +1,15 @@
+$colors: (
+  "black": #000000,
+  "grey-100": #cccccc,
+  "grey-200": #888888,
+  "grey-300": #555555,
+  "grey-400": #222222,
+  "white": #ffffff,
+);
+
+// generate custom properties:
+:root {
+  @each $label, $hex in $colors {
+    --color-#{$label}: #{$hex};
+  }
+}

@@ -1,0 +1,34 @@
+// Applies :focus styles. Can be used in with `outline: none`
+// to provide a contrast-safe focus ring.
+@mixin focus-style {
+  box-shadow: 0 0 0 2px var(--color-white), 0 0 0 4px var(--color-black);
+}
+
+@mixin focus-style-reverse {
+  box-shadow: 0 0 0 2px var(--color-black), 0 0 0 4px var(--color-white);
+}
+
+// Reduced motion helpers
+$reduced-motion-query: "(prefers-reduced-motion: reduce)";
+
+@mixin reduced-motion {
+  @include reduced-motion-query {
+    @content;
+  }
+
+  @include reduced-motion-class {
+    @content;
+  }
+}
+
+@mixin reduced-motion-query {
+  @media #{$reduced-motion-query} {
+    @content;
+  }
+}
+
+@mixin reduced-motion-class {
+  .is-reduced-motion {
+    @content;
+  }
+}

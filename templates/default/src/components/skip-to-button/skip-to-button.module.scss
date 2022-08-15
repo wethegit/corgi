@@ -1,0 +1,15 @@
+@use "../../styles/helpers/helpers-a11y" as *;
+@use "../../styles/helpers/helpers-layout" as *;
+
+.skipTo {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  width: 0;
+
+  &:focus {
+    height: auto;
+    padding: space-by(1.5) space-by(2);
+    width: auto;
+  }
+}

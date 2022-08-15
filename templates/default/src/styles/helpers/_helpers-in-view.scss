@@ -1,0 +1,35 @@
+@function get-delay($i) {
+  @return calc(#{$i / 10} * 1s * var(--duration-factor));
+}
+
+@function get-stagger-delay($i) {
+  @return calc(
+    (#{$i - 1} * var(--in-view-stagger-amount) + var(--in-view-stagger-delay)) *
+      var(--duration-factor)
+  );
+}
+
+@mixin is-in-view {
+  .in-view & {
+    @content;
+  }
+}
+
+@mixin in-view-start {
+  opacity: var(--start-alpha, 0);
+  transform: translate(var(--start-x, 0), var(--start-y, 0)) scale(var(--start-scale, 1))
+    rotate(var(--start-rotate, 0deg));
+  transition-delay: 0s;
+  transition-duration: var(--duration-hide, 0.4s);
+  transition-property: transform, opacity;
+  transition-timing-function: var(--easing-fn-hide, ease);
+}
+
+@mixin in-view-end {
+  opacity: var(--end-alpha, 1);
+  transform: translate(var(--end-x, 0), var(--end-y, 0)) scale(var(--end-scale, 1))
+    rotate(var(--end-rotate, 0deg));
+  transition-delay: var(--in-view-delay);
+  transition-duration: var(--duration-show, 0.4s);
+  transition-timing-function: var(--easing-fn-show);
+}

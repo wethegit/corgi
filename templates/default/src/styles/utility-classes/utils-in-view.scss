@@ -1,0 +1,129 @@
+@use "../helpers/helpers-a11y" as *;
+@use "../helpers/helpers-in-view" as *;
+
+// All in-view animations are based around a handful of CSS
+// custom properties, so you can easily create your own custom
+// utility classes. Available animation properties are:
+
+// --start-x, --start-y, --start-scale, --start-alpha, --start-rotate
+// --end-x, --end-y, --end-scale, --end-alpha, end-rotate
+// --duration-show, --duration-hide
+// --easing-fn-show, --easing-fn-hide
+
+.in-view__anim {
+  @include in-view-start;
+
+  @include is-in-view {
+    @include in-view-end;
+  }
+}
+
+.in-view__anim--left {
+  --start-x: 50%;
+  --start-y: 0;
+  --start-scale: 1;
+}
+
+.in-view__anim--right {
+  --start-x: -50%;
+  --start-y: 0;
+  --start-scale: 1;
+}
+
+.in-view__anim--up {
+  --start-x: 0;
+  --start-y: 50%;
+  --start-scale: 1;
+}
+
+.in-view__anim--up-min {
+  // ideal for animating smaller elements, like text
+  --start-x: 0;
+  --start-y: 30px;
+  --start-scale: 1;
+}
+
+.in-view__anim--down {
+  --start-x: 0;
+  --start-y: -50%;
+  --start-scale: 1;
+}
+
+.in-view__anim--pop {
+  --start-x: 0;
+  --start-y: 0;
+  --start-scale: 0.5;
+  --easing-fn-show: var(--ease-back-out);
+  --easing-fn-hide: var(--ease-back-in);
+}
+
+// ----------------
+// generate the delay classnames!
+@for $i from 1 through 20 {
+  .in-view__anim--delay-#{$i} {
+    @include is-in-view {
+      --in-view-delay: #{get-delay($i)};
+    }
+  }
+}
+
+// ----------------
+// You can also use these automated stagger classes on any child of `.in-view`.
+// This is useful if you have deeply-nested child elements which you want to
+// _automatically_ stagger in sequence with the higher-level items — rather than
+// having to manually type out the `delay` class names. Example:
+
+// <InView>
+//   <h1 class="in-view__anim in-view__anim--pop">Top-level animated element</h1>
+//   <ul class="in-view__pop-stagger in-view__anim--delay-2">
+//     <li>These items will be automatically staggered in</li>
+//     <li>using the "pop" animation</li>
+//     <li>starting at the parent's delay time of 0.2 seconds</li>
+//     <li>🎉</li>
+//   </ul>
+// </InView>
+
+.in-view__stagger {
+  --in-view-stagger-delay: var(--in-view-delay);
+
+  > * {
+    @include in-view-start;
+  }
+
+  @include is-in-view {
+    > * {
+      @include in-view-end;
+
+      @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+          --in-view-delay: #{get-stagger-delay($i)};
+        }
+      }
+    }
+  }
+}
+
+.in-view__stagger--up-min {
+  --start-x: 0;
+  --start-y: 30px;
+  --start-scale: 1;
+}
+
+.in-view__stagger--pop {
+  --start-x: 0;
+  --start-y: 0;
+  --start-scale: 0.5;
+  --easing-fn-show: var(--ease-back-out);
+  --easing-fn-hide: var(--ease-back-in);
+}
+
+// ----------------
+// For reduced motion on these utilities, we'll revert to a "no animation" state:
+@include reduced-motion {
+  .in-view__anim,
+  .in-view__stagger > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

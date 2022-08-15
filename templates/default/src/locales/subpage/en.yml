@@ -1,0 +1,9 @@
+# selectedNav should match the appropriate nav item's ID:
+selectedNav: subpage
+
+meta:
+  title: Subpage
+  description: Subpage-specific meta description.
+
+title: Not the homepage
+subtitle: In English!

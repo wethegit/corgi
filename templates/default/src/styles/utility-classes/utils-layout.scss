@@ -1,0 +1,149 @@
+@use "../helpers/helpers-layout" as *;
+
+// Breakpoint corner tag
+body::after {
+  background: #fff;
+  bottom: 0;
+  content: "S";
+  display: none;
+  font-size: 1.6rem;
+  padding: 10px;
+  position: fixed;
+  right: 0;
+  z-index: 1;
+}
+
+body[data-env="development"]::after {
+  display: block;
+}
+
+// Flex layout utils
+// note that "row" and "column" flex layouts only kick in at Medium and up
+.flex {
+  display: flex;
+}
+
+.flex--center {
+  place-content: center;
+}
+
+.flex--wrap {
+  flex-wrap: wrap;
+}
+
+.wrapper,
+.row {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--row-width);
+  width: 100%;
+}
+
+.wrapper {
+  padding-left: var(--gutter-width);
+  padding-right: var(--gutter-width);
+}
+
+.row,
+.column {
+  padding-left: calc(var(--gutter-width) / 2);
+  padding-right: calc(var(--gutter-width) / 2);
+}
+
+.column--deep {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// vertical spacing utils
+.content-spacing {
+  --vertical-space: #{space-by(2)};
+
+  > * + * {
+    margin-top: var(--vertical-space);
+  }
+}
+
+.content-spacing--less {
+  --vertical-space: #{space-by()};
+}
+
+.content-spacing--more {
+  --vertical-space: #{space-by(3)};
+}
+
+// misc. layout utils
+.block {
+  display: block;
+}
+
+.fit {
+  width: 100%;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.relative {
+  position: relative;
+}
+
+@media #{$medium-up} {
+  body::after {
+    content: "M";
+  }
+
+  // flex layout begins at Medium
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .row {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  .column {
+    flex: 1 1 auto;
+  }
+
+  @include add-grid-row;
+  @include add-grid-columns;
+
+  .content-spacing--small-only {
+    > * + * {
+      margin-top: 0;
+    }
+  }
+}
+
+@media #{$large-up} {
+  body::after {
+    content: "L";
+  }
+
+  @include add-grid-row(large);
+  @include add-grid-columns(large);
+}
+
+@media #{$xlarge-up} {
+  body::after {
+    content: "XL";
+  }
+
+  @include add-grid-row(xlarge);
+  @include add-grid-columns(xlarge);
+}
+
+@media #{$xxlarge-up} {
+  body::after {
+    content: "XXL";
+  }
+
+  @include add-grid-row(xxlarge);
+  @include add-grid-columns(xxlarge);
+}
