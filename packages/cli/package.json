@@ -1,0 +1,16 @@
+{
+  "name": "@corgi/cli",
+  "version": "0.0.0",
+  "description": "",
+  "type": "module",
+  "main": "bin/index.js",
+  "bin": {
+    "corgi": "bin/index.js"
+  },
+  "contributors": [],
+  "license": "MIT",
+  "dependencies": {
+    "commander": "~9.4.0",
+    "fs-extra": "~10.1.0"
+  }
+}
