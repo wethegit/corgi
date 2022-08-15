@@ -4,7 +4,7 @@
   "private": true,
   "description": "Toolkit for creating statically-generated web apps via Next JS.",
   "workspaces": [
-    "packages/cli",
+    "cli",
     "docs"
   ],
   "repository": {
