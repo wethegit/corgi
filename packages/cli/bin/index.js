@@ -8,7 +8,7 @@ program
   .description("Welcome to the corgi CLI. Here's the description.");
 
 program
-  .command("new-project")
+  .command("project")
   .description(
     "Scaffold a new project, based either on the default template or on a Github template of your choosing."
   )
@@ -21,7 +21,7 @@ program
   .action(newProject);
 
 program
-  .command("new-page")
+  .command("page")
   .description(
     "Generate one or many new pages, for each locale in your config."
   );

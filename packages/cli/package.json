@@ -11,6 +11,6 @@
   "license": "MIT",
   "dependencies": {
     "commander": "~9.4.0",
-    "shelljs": "~0.8.5"
+    "fs-extra": "~10.1.0"
   }
 }

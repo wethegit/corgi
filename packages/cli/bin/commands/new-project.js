@@ -1,10 +1,10 @@
 import { readFile } from "fs/promises";
+import { existsSync } from "fs";
 import path from "path";
 
 import CONSTS from "../../consts.js";
 
 import cloneRepo from "../../lib/clone-repo.js";
-import fileExists from "../../lib/file-exists.js";
 import prompt from "../../lib/prompt.js";
 
 let projectConfig = { ...CONSTS.CONFIG_DEFAULTS };
@@ -23,14 +23,12 @@ const newProject = async (directory, options) => {
 
   // If there's a preexisting config file, we ensure those settings take priority.
   if (options.useConfig) {
-    const configFilePath = path.resolve(
-      process.cwd(),
-      directory,
-      CONSTS.CONFIG_FILENAME
-    );
+    const configFilePath = path.resolve(directory, CONSTS.CONFIG_FILENAME);
+
+    console.log(configFilePath);
 
     try {
-      await fileExists(configFilePath);
+      await existsSync(configFilePath);
       const parsed = JSON.parse(await readFile(configFilePath));
       projectConfig = { ...CONSTS.CONFIG_DEFAULTS, ...parsed };
     } catch {
