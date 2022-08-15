@@ -4,6 +4,7 @@ const CONSTS = {
     templateURL: "https://github.com/wethegit/corgi/tree/dev/templates/default",
     projectName: "corgi-project",
     dependencies: {},
+    devDependencies: {},
     scripts: {},
   },
   QUESTIONS: [
