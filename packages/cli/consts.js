@@ -1,9 +1,10 @@
 const CONSTS = {
   CONFIG_FILENAME: "corgi-project.config.json",
   CONFIG_DEFAULTS: {
-    templateURL: "https://github.com/wethegit/wtc-next-starter/tree/dev",
-    pages: ["home"],
-    locales: ["en-US"],
+    templateURL: "https://github.com/wethegit/corgi/tree/dev/templates/default",
+    projectName: "corgi-project",
+    dependencies: {},
+    scripts: {},
   },
   QUESTIONS: [
     {
