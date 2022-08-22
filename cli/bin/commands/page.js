@@ -2,9 +2,8 @@
 
 const createPage = ({ slug, locale }) => {
   // STEPS:
-  // - create pages and locales directories if they doesn't exist.
-  // - write data to a page file from some page boilerplate template
-  // - do the same for the locale file
+  // - create sub-directories for the page in src/pages and src/locales.
+  // - write data to the page and locale files from some page boilerplate template.
 };
 
 const page = ({ pages }) => {

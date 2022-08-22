@@ -1,9 +1,8 @@
-import { readdir, readFile } from "fs/promises";
+import { readFile } from "fs/promises";
 import fse from "fs-extra";
 import path from "path";
 import * as url from "url";
 
-const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 import CONSTS from "../../consts.js";
@@ -43,16 +42,16 @@ const project = async (directory, options) => {
 
   // Grab the default, barebones template.
   // Any external templates should _extend_ this, not replace it.
-  // const defaultTemplate = path.join(__dirname, "../../template")
-  // copy(defaultTemplate, directory)
+  const defaultTemplate = path.join(__dirname, "../../template");
+  copy(defaultTemplate, directory);
 
-  // Grab optional custom template from the config
-  // if (projectConfig.templateURL) {
-  //   mergeTemplateRepo({
-  //     templateURL: projectConfig.templateURL,
-  //     destination: path.resolve(process.cwd(), directory),
-  //   });
-  // }
+  // Grab optional custom template
+  if (projectConfig.templateURL) {
+    mergeTemplateRepo({
+      templateURL: projectConfig.templateURL,
+      destination: path.resolve(process.cwd(), directory),
+    });
+  }
 };
 
 export default project;
