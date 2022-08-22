@@ -1,7 +1,7 @@
 const CONSTS = {
   CONFIG_FILENAME: "corgi-project.config.json",
   CONFIG_DEFAULTS: {
-    templateURL: "https://github.com/wethegit/corgi/tree/dev/templates/default",
+    templateURL: "https://github.com/wethegit/wtc-next-starter/tree/test/corgi-template",
     projectName: "corgi-project",
     dependencies: {},
     devDependencies: {},
@@ -11,10 +11,6 @@ const CONSTS = {
     {
       id: "directory",
       text: "Enter a directory path for the project: ",
-    },
-    {
-      id: "something",
-      text: "Another question? ",
     },
   ],
 };

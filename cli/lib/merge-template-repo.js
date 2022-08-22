@@ -1,11 +1,11 @@
 import { copy } from "fs-extra";
-import { mkdir, rm } from "fs/promises";
+import { mkdir, readdir, rm } from "fs/promises";
 import { existsSync } from "fs";
 import { exec } from "child_process";
 
 const TEMP_FOLDER = "corgi-temp";
 
-const runCommand = (command) => {
+const runShellCommand = (command) => {
   return new Promise((resolve, reject) => {
     exec(command, (err) => {
       if (err) reject(err);
@@ -14,7 +14,7 @@ const runCommand = (command) => {
   });
 };
 
-const cloneRepo = async ({ templateURL, destination }) => {
+const mergeTemplateRepo = async ({ templateURL, destination }) => {
   const dirExists = await existsSync(destination);
   if (!dirExists) await mkdir(destination);
   await mkdir(TEMP_FOLDER);
@@ -27,17 +27,21 @@ const cloneRepo = async ({ templateURL, destination }) => {
       "Invalid templateURL. Must be a URL pointing to a branch of a Github repo."
     );
 
-  const [user, repo, _, branch] = url.toString().split("/").slice(3);
+  // branch name uses rest operator here since branch names may contain slashes
+  const [user, repo, _, ...branch] = url.toString().split("/").slice(3);
 
-  await runCommand(
-    `git clone git@github.com:${user}/${repo}.git --branch ${branch} ${TEMP_FOLDER}`
+  await runShellCommand(
+    `git clone git@github.com:${user}/${repo}.git --branch ${branch.join("/")} ${TEMP_FOLDER}`
   );
 
-  // move contens of `TEMP_FOLDER` into `destination`
+  // // move contens of `TEMP_FOLDER` into `destination`
+  const contents = await readdir(TEMP_FOLDER)
+  console.log(contents)
+
   await copy(TEMP_FOLDER, destination);
   rm(TEMP_FOLDER, { recursive: true, force: true });
 
   console.log("done!");
 };
 
-export default cloneRepo;
+export default mergeTemplateRepo;

@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import newProject from "./commands/new-project.js";
+import project from "./commands/project.js";
 
 const program = new Command();
 
@@ -18,13 +18,13 @@ program
     "Use an existing corgi.config.json file from within destination directory.",
     false
   )
-  .action(newProject);
+  .action(project);
 
 program
   .command("page")
   .description(
     "Generate one or many new pages, for each locale in your config."
   );
-// .action(newPage);
+// .action(page);
 
 program.parse();

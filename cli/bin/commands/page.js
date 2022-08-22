@@ -7,7 +7,7 @@ const createPage = ({ slug, locale }) => {
   // - do the same for the locale file
 };
 
-const newPage = ({ pages }) => {
+const page = ({ pages }) => {
   let items = [];
   if (!Array.isArray(pages) && typeof pages === "string") items.push(pages);
   else items = [...pages];
@@ -15,4 +15,4 @@ const newPage = ({ pages }) => {
   // items.forEach((slug) => createPage({ slug, locale }));
 };
 
-export default newPage;
+export default page;
