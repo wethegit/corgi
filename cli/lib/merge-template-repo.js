@@ -29,6 +29,7 @@ const mergeTemplateRepo = async ({ templateURL, destination }) => {
   // branch name uses "rest" here since branch names may contain slashes
   const [user, repo, _, ...branch] = url.toString().split("/").slice(3);
 
+  console.log("cloning template repo…");
   await runShellCommand(
     `git clone git@github.com:${user}/${repo}.git --branch ${branch.join(
       "/"
@@ -41,11 +42,12 @@ const mergeTemplateRepo = async ({ templateURL, destination }) => {
   });
 
   // merge template into project
+  console.log("merging template…");
   mergedirs.default(TEMP_FOLDER_PATH, destination, "overwrite");
 
   // Clean up
+  console.log("cleaning up…");
   await rm(TEMP_FOLDER_PATH, { recursive: true });
-  console.log("Done!");
 };
 
 export default mergeTemplateRepo;
