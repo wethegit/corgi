@@ -11,7 +11,7 @@ import mergeTemplateRepo from "../../lib/merge-template-repo.js";
 import mergePkgProperties from "../../lib/merge-package-properties.js";
 import prompt from "../../lib/prompt.js";
 
-const { pathExistsSync, copy } = fse;
+const { pathExistsSync, copySync } = fse;
 
 let projectConfig = { ...CONSTS.CONFIG_DEFAULTS };
 
@@ -47,7 +47,7 @@ const project = async (directory, options) => {
   // Grab the default, barebones template.
   // Any external templates should _extend_ this, not replace it.
   const defaultTemplate = path.join(__dirname, "../../template");
-  copy(defaultTemplate, directory);
+  await copySync(defaultTemplate, directory);
 
   // Grab optional custom template
   if (projectConfig.templateURL) {
@@ -60,12 +60,16 @@ const project = async (directory, options) => {
   // Append config-specific NPM scripts and dependencies
   console.log("adding custom NPM dependencies and scripts…");
   const pkgFilePath = `${directory}/package.json`;
-  const pkgFileParsed = JSON.parse(await readFile(pkgFilePath));
-  const pkgContentsMerged = await mergePkgProperties({
-    existing: pkgFileParsed,
-    custom: projectConfig,
-  });
-  await writeFile(pkgFilePath, JSON.stringify(pkgContentsMerged, null, 2));
+  try {
+    const pkgFileParsed = JSON.parse(await readFile(pkgFilePath));
+    const pkgContentsMerged = await mergePkgProperties({
+      existing: pkgFileParsed,
+      custom: projectConfig,
+    });
+    await writeFile(pkgFilePath, JSON.stringify(pkgContentsMerged, null, 2));
+  } catch (err) {
+    console.log(err);
+  }
   console.log("done");
 };
 
