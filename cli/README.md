@@ -27,7 +27,8 @@ From your command line, `cd` into an ampty project directory and run:
 npx corgi project .
 ```
 
-(the dot indicates the current working directory)
+(the dot indicates the current working directory).  
+You'll be prompted to enter an optional template repo — more on that later.
 
 ---
 
@@ -42,13 +43,24 @@ Usage:
 corgi project
 ```
 
-With options:
+You'll be prompted to enter a project directory and an optional project template URL.  
+You can skip these prompts by entering them in the inital command, like so:
 
 ```sh
-corgi project my-project-directory --use-config
+corgi project my-awesome-web-app --template https://github.com/<user>/<repo>/tree/<branch>
 ```
 
-The `--use-config` (or `-c`) option will look for a JSON file called `corgi-project.config.json` in your project's directory, which can include some overrides for the project. The default Corgi config settings look like this:
+#### Options
+
+##### `--template, -t`
+
+Specify an optional URL which points to a Github repo and branch containing a Corgi template.  
+Example: `https://github.com/<user>/<repo>/tree/<branch>`
+
+#### Custom config
+
+If using a custom template, the command will look for an optional JSON file located the root of the template repo, called `corgi-project.config.json`.  
+This config file can include overrides for the project, such as NPM dependencies, scripts, and a project name. The default Corgi config settings look like this:
 
 ```js
   name: "corgi-project",
@@ -57,11 +69,10 @@ The `--use-config` (or `-c`) option will look for a JSON file called `corgi-proj
   scripts: {},
 ```
 
-You can overwrite all of these properties from within your `corgi-project.config.json`, and also add an optional `templateURL` which points to a Github repo and branch containing a Corgi template. Example of a custom `corgi-project.config.json`:
+You can overwrite any of these properties from within your template's `corgi-project.config.json`, like so:
 
 ```json
 {
-  "templateURL": "https://github.com/wethegit/wtc-next-starter/tree/test/corgi-template",
   "name": "andrews-corgi-test-project",
   "dependencies": {},
   "devDependencies": {

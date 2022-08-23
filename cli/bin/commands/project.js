@@ -3,25 +3,35 @@ import fse from "fs-extra";
 import path from "path";
 import * as url from "url";
 
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
-
 import CONSTS from "../../consts.js";
 
 import mergeTemplateRepo from "../../lib/merge-template-repo.js";
 import mergePkgProperties from "../../lib/merge-package-properties.js";
 import prompt from "../../lib/prompt.js";
 
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 const { pathExistsSync, copySync } = fse;
-
 let projectConfig = { ...CONSTS.CONFIG_DEFAULTS };
 
+const getQuestion = (id) => CONSTS.QUESTIONS.find((q) => q.id === id).text;
+
 const project = async (directory, options) => {
-  // Prompt the user to specify a project directory, if one wasn't provided.
+  let { template } = options;
+  let customConfig = {};
+
+  // Prompt the user to specify arguments if they haven't
   if (!directory) {
     try {
-      directory = await prompt(
-        CONSTS.QUESTIONS.find((q) => q.id === "directory").text
-      );
+      directory = await prompt(getQuestion("directory"));
+      if (!directory) directory = ".";
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  if (!template) {
+    try {
+      template = await prompt(getQuestion("template"));
     } catch (err) {
       console.log(err);
     }
@@ -30,31 +40,19 @@ const project = async (directory, options) => {
   // create the directory if needed
   if (!pathExistsSync(directory)) await mkdir(directory);
 
-  // If there's a preexisting config file, ensure those settings take priority
-  if (options.useConfig) {
-    const configFilePath = path.resolve(directory, CONSTS.CONFIG_FILENAME);
-
-    try {
-      await pathExistsSync(configFilePath);
-      const parsed = JSON.parse(await readFile(configFilePath));
-      projectConfig = { ...CONSTS.CONFIG_DEFAULTS, ...parsed };
-    } catch {
-      console.log(`⚠️  No config file found at ${configFilePath}.`);
-      console.log("Proceeding with the default Corgi configuration.");
-    }
-  }
-
-  // Grab the default, barebones template.
-  // Any external templates should _extend_ this, not replace it.
-  const defaultTemplate = path.join(__dirname, "../../template");
-  await copySync(defaultTemplate, directory);
+  // Grab the default boilerplate.
+  // Any external templates will extend this (not replace it).
+  const boilerplate = path.join(__dirname, "../../template");
+  await copySync(boilerplate, directory);
 
   // Grab optional custom template
-  if (projectConfig.templateURL) {
-    await mergeTemplateRepo({
-      templateURL: projectConfig.templateURL,
+  if (template) {
+    customConfig = await mergeTemplateRepo({
+      templateURL: template,
       destination: path.resolve(process.cwd(), directory),
     });
+
+    projectConfig = { ...CONSTS.CONFIG_DEFAULTS, ...customConfig };
   }
 
   // Append config-specific NPM scripts and dependencies

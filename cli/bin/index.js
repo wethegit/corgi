@@ -16,16 +16,16 @@ program
   )
   .argument("[directory]")
   .option(
-    "-c, --use-config",
-    "Use an existing corgi.config.json file from within destination directory.",
-    false
+    "-t, --template <url>",
+    "URL of a Github repo's branch containing a Corgi template.\nExample: https://github.com/<user>/<repo>/tree/<branchname>",
+    null
   )
   .action(project);
 
 program
   .command("page")
   .description(
-    "Generate one or many new pages, for each locale in your config."
+    "Generate one or many new pages, for each locale in your config. TODO: prioritize a --locales flag; fall back to the locales array in the project's config-locales.js"
   );
 // .action(page);
 

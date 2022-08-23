@@ -1,9 +1,12 @@
-import { mkdir, rm } from "fs/promises";
+import { mkdir, readFile, rm } from "fs/promises";
+import fse from "fs-extra";
 import { exec } from "child_process";
 import path from "path";
 import mergedirs from "merge-dirs";
+import CONSTS from "../consts.js";
 
 const TEMP_FOLDER_NAME = "corgi-temp";
+const { pathExistsSync } = fse;
 
 const runShellCommand = (command) => {
   return new Promise((resolve, reject) => {
@@ -14,8 +17,16 @@ const runShellCommand = (command) => {
   });
 };
 
+/**
+ * @param {Object} options
+ * @param {Object} [options.templateURL] - Github branch URL containing a Corgi template
+ * @param {Object} [options.destination] - Directory to clone template into.
+ * @returns {Object} - custom template configuration object, per the repo. Defaults to {}.
+ */
 const mergeTemplateRepo = async ({ templateURL, destination }) => {
+  let templateConfig = {};
   const TEMP_FOLDER_PATH = path.resolve(destination, TEMP_FOLDER_NAME);
+
   await mkdir(TEMP_FOLDER_PATH);
 
   // parse the github URL passed; clone the repo/branch
@@ -36,6 +47,17 @@ const mergeTemplateRepo = async ({ templateURL, destination }) => {
     )} ${TEMP_FOLDER_PATH}`
   );
 
+  // Grab any config overrides from the template
+  const configFilePath = path.resolve(TEMP_FOLDER_PATH, CONSTS.CONFIG_FILENAME);
+  try {
+    await pathExistsSync(configFilePath);
+    templateConfig = JSON.parse(await readFile(configFilePath));
+  } catch (err) {
+    // console.log(err);
+    console.log(`⚠️  No config file found at ${configFilePath}.`);
+    console.log("Proceeding with the default Corgi configuration.");
+  }
+
   // remove .git/
   await rm(path.join(TEMP_FOLDER_PATH, ".git"), {
     recursive: true,
@@ -45,9 +67,11 @@ const mergeTemplateRepo = async ({ templateURL, destination }) => {
   console.log("merging template…");
   mergedirs.default(TEMP_FOLDER_PATH, destination, "overwrite");
 
-  // Clean up
+  // Clean up temporary folder
   console.log("cleaning up…");
   await rm(TEMP_FOLDER_PATH, { recursive: true });
+
+  return templateConfig;
 };
 
 export default mergeTemplateRepo;
