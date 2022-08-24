@@ -13,7 +13,7 @@ const CONSTS = {
     },
     {
       id: "template",
-      text: "Do you have a Github branch to use as a project template? (Optional; enter to skip): ",
+      text: "Enter the Github URL to use as a project template (optional; press enter to skip): ",
     },
   ],
 };

@@ -3,6 +3,9 @@ import fse from "fs-extra";
 import { exec } from "child_process";
 import path from "path";
 import mergedirs from "merge-dirs";
+import chalk from "chalk";
+
+import log, { killSpinner } from "./log.js";
 import CONSTS from "../consts.js";
 
 const TEMP_FOLDER_NAME = "corgi-temp";
@@ -21,9 +24,14 @@ const runShellCommand = (command) => {
  * @param {Object} options
  * @param {Object} [options.templateURL] - Github branch URL containing a Corgi template
  * @param {Object} [options.destination] - Directory to clone template into.
+ * @param {Object} [options.spinnerInstance] - If there's an existing spinner, pass it here so we can cancel it if need be.
  * @returns {Object} - custom template configuration object, per the repo. Defaults to {}.
  */
-const mergeTemplateRepo = async ({ templateURL, destination }) => {
+const mergeTemplateRepo = async ({
+  templateURL,
+  destination,
+  spinnerInstance,
+}) => {
   let templateConfig = {};
   const TEMP_FOLDER_PATH = path.resolve(destination, TEMP_FOLDER_NAME);
 
@@ -40,7 +48,6 @@ const mergeTemplateRepo = async ({ templateURL, destination }) => {
   // branch name uses "rest" here since branch names may contain slashes
   const [user, repo, _, ...branch] = url.toString().split("/").slice(3);
 
-  console.log("cloning template repo…");
   await runShellCommand(
     `git clone git@github.com:${user}/${repo}.git --branch ${branch.join(
       "/"
@@ -53,9 +60,13 @@ const mergeTemplateRepo = async ({ templateURL, destination }) => {
     await pathExistsSync(configFilePath);
     templateConfig = JSON.parse(await readFile(configFilePath));
   } catch (err) {
-    // console.log(err);
-    console.log(`⚠️  No config file found at ${configFilePath}.`);
-    console.log("Proceeding with the default Corgi configuration.");
+    if (spinnerInstance) killSpinner(spinnerInstance);
+    log(
+      "warn",
+      `No config file found at ${chalk.dim(
+        configFilePath
+      )}.\nProceeding with the default Corgi configuration.`
+    );
   }
 
   // remove .git/
@@ -64,11 +75,9 @@ const mergeTemplateRepo = async ({ templateURL, destination }) => {
   });
 
   // merge template into project
-  console.log("merging template…");
   mergedirs.default(TEMP_FOLDER_PATH, destination, "overwrite");
 
   // Clean up temporary folder
-  console.log("cleaning up…");
   await rm(TEMP_FOLDER_PATH, { recursive: true });
 
   return templateConfig;
