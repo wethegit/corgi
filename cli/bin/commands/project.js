@@ -45,7 +45,7 @@ const project = async (directory, options) => {
 
   // Grab the default boilerplate.
   // Any external templates will extend this (not replace it).
-  const boilerplate = path.join(__dirname, "../../template");
+  const boilerplate = path.join(__dirname, "../../templates/project");
   await copySync(boilerplate, directory);
 
   // Grab optional custom template
