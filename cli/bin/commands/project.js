@@ -10,13 +10,12 @@ import mergePkgProperties from "../../lib/merge-package-properties.js";
 import mergeTemplateRepo from "../../lib/merge-template-repo.js";
 import printNextSteps from "../../lib/print-next-steps.js";
 import prompt from "../../lib/prompt.js";
+import { getQuestion } from "../../lib/utils.js";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 const { pathExistsSync, copySync } = fse;
 let projectConfig = { ...CONSTS.CONFIG_DEFAULTS };
 let usedCustomConfig = false;
-
-const getQuestion = (id) => CONSTS.QUESTIONS.find((q) => q.id === id).text;
 
 const project = async (directory, options) => {
   let { template } = options;

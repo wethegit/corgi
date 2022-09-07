@@ -1,7 +1,8 @@
-import log from "./log";
+import chalk from "chalk";
+import log from "./log.js";
 
 const printNextSteps = (dir) => {
-  const cdInstruction = dir === "." ? "" : `\ncd ${dir} `
+  const cdInstruction = dir === "." ? "" : `\ncd ${dir} `;
 
   log("ok", "Project setup complete.");
   log(
@@ -12,4 +13,4 @@ const printNextSteps = (dir) => {
   );
 };
 
-export default printNextSteps
+export default printNextSteps;

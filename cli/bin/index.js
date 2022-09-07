@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
+import page from "./commands/page.js";
 import project from "./commands/project.js";
 
 const program = new Command();
@@ -14,19 +15,29 @@ program
   .description(
     "Scaffold a new project, based either on the default template or on a Github template of your choosing."
   )
-  .argument("[directory]")
+  .argument(
+    "[directory]",
+    'Relative path to your intended project directory. Use a dot "." for the current working directory. Examples:\ncorgi project my-web-app\ncorgi project .'
+  )
   .option(
     "-t, --template <url>",
-    "URL of a Github repo's branch containing a Corgi template.\nExample: https://github.com/<user>/<repo>/tree/<branchname>",
-    null
+    "URL of a Github repo's branch containing a Corgi template. Example:\ncorgi project my-web-app --template https://github.com/<user>/<repo>/tree/<branchname>"
   )
   .action(project);
 
 program
   .command("page")
   .description(
-    "Generate one or many new pages, for each locale in your config. TODO: prioritize a --locales flag; fall back to the locales array in the project's config-locales.js"
-  );
-// .action(page);
+    "Generate one or multiple new pages within a Corgi app. Must be executed from the root of the project directory."
+  )
+  .argument(
+    "[names...]",
+    "Page component name(s), space-separated. Use the intended case when providing names. Examples:\ncorgi page AboutPage\ncorgi page MyPage YourPage TheirPage"
+  )
+  .option(
+    "-l, --locales [locales...]",
+    "A space-separated list of locales to generate the page(s) for. Example:\ncorgi page AboutPage --locales en es fr pt"
+  )
+  .action(page);
 
 program.parse();
