@@ -1,3 +1,5 @@
+// This needs to be an async iterator; currently this breaks if you pass multiple pages
+
 import { existsSync } from "fs";
 import { mkdir, writeFile } from "fs/promises";
 

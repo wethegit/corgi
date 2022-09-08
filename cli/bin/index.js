@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
+
+import component from "./commands/component.js";
 import page from "./commands/page.js";
 import project from "./commands/project.js";
 
@@ -39,5 +41,16 @@ program
     "A space-separated list of locales to generate the page(s) for. Example:\ncorgi page AboutPage --locales en es fr pt"
   )
   .action(page);
+
+program
+  .command("component")
+  .description(
+    "Generate one or many new React components within a Corgi app. Includes a `.scss` module file for each."
+  )
+  .argument(
+    "[names...]",
+    "Component name(s), space-separated. Use the intended case when providing names. Examples:\ncorgi component ButtonIcon\ncorgi component ToggleSwitch TabbedList Slideshow"
+  )
+  .action(component);
 
 program.parse();
