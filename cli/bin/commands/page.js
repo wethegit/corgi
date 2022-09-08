@@ -7,6 +7,7 @@ import createPages from "../../lib/create-pages.js";
 import handleNamingErrors, {
   NAME_TYPES,
 } from "../../lib/handle-naming-errors.js";
+import log from "../../lib/log.js";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
@@ -24,8 +25,11 @@ const page = async (names, options) => {
     path.join(__dirname, "../../templates/locale.yml"),
     { encoding: "utf8" }
   );
-  createPages(names, pageTemplate);
-  createLocales(names, locales, localeTemplate);
+  
+  Promise.all([
+    createPages(names, pageTemplate),
+    createLocales(names, locales, localeTemplate)
+  ])
 };
 
 export default page;
