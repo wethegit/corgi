@@ -14,7 +14,7 @@ const COMPONENT_NAME = ({ className, ...props }) => {
   
   return (
     <div className={classnames([styles.wrap, className])} {...props}>
-      Corgi component template
+      <code>COMPONENT_NAME</code>!
     </div>
   )
 }

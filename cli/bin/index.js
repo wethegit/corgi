@@ -45,7 +45,7 @@ program
 program
   .command("component")
   .description(
-    "Generate one or many new React components within a Corgi app. Includes a `.scss` module file for each."
+    "Generate one or many new React components within a Corgi app. Includes a `.scss` module file for each. Must be executed from the root of the project directory."
   )
   .argument(
     "[names...]",
