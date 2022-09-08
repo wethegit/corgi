@@ -1,3 +1,4 @@
+import { existsSync } from "fs";
 import { mkdir, readFile, writeFile } from "fs/promises";
 import fse from "fs-extra";
 import path from "path";
@@ -13,7 +14,7 @@ import prompt from "../../lib/prompt.js";
 import { getQuestion } from "../../lib/utils.js";
 
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
-const { pathExistsSync, copySync } = fse;
+const { copySync } = fse;
 let projectConfig = { ...CONSTS.CONFIG_DEFAULTS };
 let usedCustomConfig = false;
 
@@ -40,7 +41,7 @@ const project = async (directory, options) => {
   }
 
   // create the directory if needed
-  if (!pathExistsSync(directory)) await mkdir(directory);
+  if (!existsSync(directory)) await mkdir(directory);
 
   // Grab the default boilerplate.
   // Any external templates will extend this (not replace it).

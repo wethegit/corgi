@@ -3,6 +3,7 @@ import path from "path";
 import * as url from "url";
 
 import checkPageNames from "../../lib/check-page-names.js";
+import createLocales from "../../lib/create-locales.js";
 import createPages from "../../lib/create-pages.js";
 import log from "../../lib/log.js";
 import prompt from "../../lib/prompt.js";
@@ -42,14 +43,17 @@ const page = async (names, options) => {
   // Make sure the user intends to overwrite any existing pages
   await checkPageNames(names);
 
-  // Bootstrap the pages' index.js files based on the Corgi page template
-  const template = await readFile(
+  // Bootstrap all necessary page files, based on the Corgi page and locale templates
+  const pageTemplate = await readFile(
     path.join(__dirname, "../../templates/page.js"),
     { encoding: "utf8" }
   );
-  await createPages(names, template);
-
-  // TODO: Bootstrap the pages' locale YAML files
+  const localeTemplate = await readFile(
+    path.join(__dirname, "../../templates/locale.yml"),
+    { encoding: "utf8" }
+  );
+  createPages(names, pageTemplate);
+  createLocales(names, locales, localeTemplate);
 };
 
 export default page;

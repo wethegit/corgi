@@ -1,9 +1,7 @@
-import fse from "fs-extra";
+import { existsSync } from "fs";
 
 import prompt from "./prompt.js";
 import { getQuestion, pascalToKebab } from "./utils.js";
-
-const { pathExistsSync } = fse;
 
 // Checks if any of the supplied page names already exist
 const checkPageNames = async (pageNames) => {
@@ -11,7 +9,7 @@ const checkPageNames = async (pageNames) => {
   while (names.length) {
     const name = names.shift();
     const slug = pascalToKebab(name);
-    if (pathExistsSync(`./src/pages/[locale]/${slug}`)) {
+    if (existsSync(`./src/pages/[locale]/${slug}`)) {
       const input = await prompt(
         getQuestion("page-overwrite")
           .replace("%PAGE_SLUG%", slug)

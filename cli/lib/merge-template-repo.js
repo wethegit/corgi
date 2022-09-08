@@ -1,5 +1,5 @@
+import { existsSync } from "fs";
 import { mkdir, readFile, rm } from "fs/promises";
-import fse from "fs-extra";
 import { exec } from "child_process";
 import path from "path";
 import mergedirs from "merge-dirs";
@@ -9,7 +9,6 @@ import log, { killSpinner } from "./log.js";
 import CONSTS from "../consts.js";
 
 const TEMP_FOLDER_NAME = "corgi-temp";
-const { pathExistsSync } = fse;
 
 const runShellCommand = (command) => {
   return new Promise((resolve, reject) => {
@@ -57,7 +56,7 @@ const mergeTemplateRepo = async ({
   // Grab any config overrides from the template
   const configFilePath = path.resolve(TEMP_FOLDER_PATH, CONSTS.CONFIG_FILENAME);
   try {
-    await pathExistsSync(configFilePath);
+    if (!existsSync(configFilePath)) throw new Error();
     templateConfig = JSON.parse(await readFile(configFilePath));
   } catch (err) {
     if (spinnerInstance) killSpinner(spinnerInstance);

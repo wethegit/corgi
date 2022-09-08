@@ -1,0 +1,7 @@
+meta:
+  title: Page-specific <title> tag content
+  description: Page-specific meta description.
+
+header:
+  title: PAGE_NAME
+  body: Welcome to the PAGE_NAME page.
