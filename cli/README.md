@@ -5,6 +5,9 @@ Tools for streamlining common tasks on corgi projects.
 - [Installation](#installation-optional)
 - [Quick-start](#quick-start)
 - [Commands](#commands)
+  - [project](#project)
+  - [page](#page)
+  - [component](#component)
 - [Contributing](#contributing)
 
 ---
@@ -47,10 +50,10 @@ corgi project
 | directory | Relative directory to create the project in. If you do not pass a directory argument, you will be prompted for one. |
 
 #### Options
-| Flag        | Short flag | Description   |
-| ----------- | -----------| ------------- |
-| --template  | -t         | Optional. URL of a Github repo's branch containing a Corgi template. Example: `https://github.com/<user>/<repo>/tree/<branchname>`. If you do not pass this flag, you will be prompted to enter an optional template. |
-| --help      | -h         | Displays a list of arguments and options. |
+| Flag           | Short flag | Description   |
+| -------------- | -----------| ------------- |
+| --template     | -t         | Optional. URL of a Github repo's branch containing a Corgi template. Example: `https://github.com/<user>/<repo>/tree/<branchname>`. If you do not pass this flag, you will be prompted to enter an optional template. |
+| --help         | -h         | Displays a list of arguments and options. |
 
 #### Examples:
 ```sh
