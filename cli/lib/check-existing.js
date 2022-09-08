@@ -1,27 +1,33 @@
-// TODO: This needs a refactor to _actually_ be synchronous.
-// Currently it WORKS, but some sort of async iterator pattern would
-// be ideal here, rather than "await" inside a while loop, lol.
-
 import { existsSync } from "fs";
 
+import log from "./log.js"
 import prompt from "./prompt.js";
 import { getQuestion, pascalToKebab } from "./utils.js";
 
-// Checks if any of the supplied page names already exist
-const checkExisting = async (dirNames, type) => {
-  const names = [...dirNames];
-  while (names.length) {
-    const name = names.shift();
+// Async iterator lets us wait for the user's input on each question
+async function* askQuestions(dirNames, type) {
+  for (const name of dirNames) {
     const slug = pascalToKebab(name);
+
     if (existsSync(`${type.location}/${slug}`)) {
       const input = await prompt(
         getQuestion(`${type.id}-overwrite`)
           .replace(`%${type.id.toUpperCase()}_SLUG%`, slug)
           .replace(`%${type.id.toUpperCase()}_NAME%`, name)
       );
-      if (input.trim() !== "y") process.exit();
+      
+      yield { name, input }
     }
-    checkExisting(names, type);
+  }
+}
+
+// Checks if any of the supplied page names already exist
+const checkExisting = async (dirNames, type) => {
+  const questionIterator = askQuestions(dirNames, type);
+
+  for await (const answer of questionIterator) {
+    if (answer.input.trim() !== "y") log("msg", `Skipping ${answer.name}…`)
+    else log("msg", `Overwriting ${answer.name}…`)
   }
 };
 
