@@ -1,0 +1,45 @@
+---
+sidebar_position: 1
+---
+
+# Create a project
+
+The easiest way to set up a new project is via the **Corgi CLI**. This page walks through that process.
+
+To create a new project, run the folling in the command line:
+
+```sh
+npx corgi project my-web-app
+```
+
+When prompted to enter a template URL, just press enter to skip the step for now. Feel free to jump ahead to read about **Corgi templates** though.
+
+Once complete, navigate to your new project directory and install all dependencies:
+
+```sh
+cd my-web-app
+```
+
+```sh
+npm install
+```
+
+🎉 **That's it! You're ready to start building your web app.**
+
+:::info Directory prompt
+If you prefer, you can omit the directory name argument when spinning up a project. The CLI will then prompt prompt you to enter a directory name upon running the command:
+
+```sh
+npx corgi project
+```
+
+:::
+
+:::caution Node.JS & NVM
+Corgi requires **[Node.js](https://nodejs.org/en/) version 16 or greater**. If you use `nvm`, run the following before installing dependencies:
+
+```sh
+nvm use
+```
+
+:::

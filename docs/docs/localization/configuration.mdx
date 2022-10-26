@@ -1,0 +1,71 @@
+---
+sidebar_position: 1
+---
+
+# Locale settings
+
+Project-level locale configuration lives in the `src/config-locales.js` file. It is here that you can define your default locale, all of your supported locales, and various other locale-specific information you might need.
+
+By default, Corgi sets you up with `"en"` as your default locale, and `"en"`, `"es"`, and `"fr"` as your supported locales.
+
+Edit this data per your project's needs. Ensure that the strings entered correspond with what you want your URLs to look like.
+
+The following sections outline the most commonly-edited settings in the locale config.
+
+## defaultLocale
+
+The default locale string for your project.
+
+```js src/config-locales.js
+module.exports = {
+  defaultLocale: "en",
+
+  // other properties omitted for brevity
+};
+```
+
+## locales
+
+The supported locale strings for your project.
+
+```js src/config-locales.js
+module.exports = {
+  locales: ["en", "es", "fr"],
+
+  // other properties omitted for brevity
+};
+```
+
+## localeMap
+
+A map of locale strings to various bits of relevant data you might need. For example, if your locale is `"en"`, but you want your HTML's `lang` attribute to be `"en-US"`, you could put that data here. All of this information is available via the [`useLocale`](./use-locale-hook) hook.
+
+```js src/config-locales.js
+module.exports = {
+  localeMap: new Map([
+    [
+      "en",
+      {
+        language: "en-US",
+        someAPIEndpointLocale: "en_US",
+      },
+    ],
+    [
+      "es",
+      {
+        language: "es-ES",
+        someAPIEndpointLocale: "es_ES",
+      },
+    ],
+    [
+      "fr",
+      {
+        language: "fr-FR",
+        someAPIEndpointLocale: "fr_FR",
+      },
+    ],
+  ]),
+
+  // other properties omitted for brevity
+};
+```

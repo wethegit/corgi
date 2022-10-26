@@ -2,46 +2,22 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# What is Corgi?
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Corgi is a toolkit for creating localized, static React web applications with Next.js. It was born out of a specific need to localize _statically-exported_ Next.js projects.
 
-## Getting Started
+The Corgi toolkit consists of:
 
-Get started by **creating a new site**.
+- A command line interface (CLI) for easily creating new projects, pages, and components.
+- A framework for creating localized SSG projects using Next.js.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## External resources
 
-### What you'll need
+To learn more about Next.js, take a look at the following:
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API. Corgi is built on Next JS 12.
+- [Learn Next.js](https://nextjs.org/learn/foundations/about-nextjs) - an interactive Next.js tutorial.
 
-## Generate a new site
+To learn more about React, check out the [React documentation (beta)](https://beta.reactjs.org/).
 
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+You can treat most of this project as you would any other Next.js SSG app (static site generation), so the documentation above will be invaluable. This is a custom framework however, as Next's SSG does not work with any existing localization packages in the community. Thus, the Corgi documentation will help you get up and running with lozalization and SSG!

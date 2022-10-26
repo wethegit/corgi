@@ -2,30 +2,6 @@ import React from "react";
 import clsx from "clsx";
 import styles from "./styles.module.css";
 
-const FeatureList = [
-  {
-    title: "Testing testing, this thing still needs a name",
-    Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
-    description: (
-      <>
-        Names, man. How do <em>they</em> work?
-      </>
-    ),
-  },
-  {
-    title: "i18n out of the box",
-    Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
-    description: (
-      <>You can translate your project into one million languages.</>
-    ),
-  },
-  {
-    title: "Docs",
-    Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
-    description: <>Learn more in the docs, mmkay?</>,
-  },
-];
-
 function Feature({ Svg, title, description }) {
   return (
     <div className={clsx("col col--4")}>

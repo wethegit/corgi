@@ -1,0 +1,27 @@
+---
+sidebar_position: 2
+---
+
+# Add pages
+
+Pages live within the `src/pages/[locale]` directory. `[locale]` is a [dynamic route](https://nextjs.org/docs/routing/dynamic-routes), which gets swapped out with the appropriate locale string in the URL ("en-US", "fr-CA", "pt-BR", etc.)
+
+By default, an index page ("home page") and a sub-page will created for you within the project. The home page, specifically, behaves slightly differently than sub-pages, so we'll outline each below.
+
+## Home page
+
+Your homepage layout lives in `src/components/home-page-contents`. Any content on the homepage must be built within this component.
+
+## Sub-pages
+
+All sub-pages live within the `src/pages/[locale]/sub-page-name` directory, and expect an index.js file as their source.
+
+## Creating new pages
+
+The easiest way to create new pages is by using the **Corgi CLI**:
+
+```sh
+npx corgi page MySubPage
+```
+
+This will scaffold all the necessary files for authoring a new page: the page component itself, a CSS module file, and all the appropriate locale data files.
