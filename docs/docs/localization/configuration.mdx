@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Locale settings
 
-Project-level locale configuration lives in the `src/config-locales.js` file. It is here that you can define your default locale, all of your supported locales, and various other locale-specific information you might need.
+Project-level locale configuration lives in the `src/config-locales.js` file. It is here that you can define your default locale, all of your supported locales, and various other locale-specific information you might need. While this config will be used for general localization setup, it will also be conveniently exposed to your components and pages via the [`useLocale`](./use-locale-hook) React hook.
 
 By default, Corgi sets you up with `"en"` as your default locale, and `"en"`, `"es"`, and `"fr"` as your supported locales.
 
@@ -14,7 +14,7 @@ The following sections outline the most commonly-edited settings in the locale c
 
 ## defaultLocale
 
-The default locale string for your project.
+The default locale string for your project. Your default locale's homepage will live at the root of the site `/`, while its subpages will live at `/<default locale>/<subpage-name>`
 
 ```js src/config-locales.js
 module.exports = {
@@ -26,7 +26,7 @@ module.exports = {
 
 ## locales
 
-The supported locale strings for your project.
+The supported locale strings for your project. _All_ pages of the project in these locales (with the exception of the [defaultLocale](#defaultLocale), see above) will live at `/<locale string>/<page name>`.
 
 ```js src/config-locales.js
 module.exports = {
