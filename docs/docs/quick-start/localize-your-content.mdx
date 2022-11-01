@@ -8,7 +8,7 @@ This quick start guide will cover the bare minumum you need to get up and runnin
 
 ## Configure your locales
 
-Project-level locale configuration lives in the `src/config-locales.js` file. By default, your project's default locale will be `"en"`, and the other two supported locales are `"fr"` and `"es"`. Edit this data per your project's needs, Ensuring that the strings entered correspond with what you want your URLs to look like. For more information, check out the [Locale config documentation](../localization/configuration)
+Project-level locale configuration lives in the `src/config-locales.js` file. By default, your project's default locale will be `"en"`, with two other default locales of `"fr"` and `"es"`. Edit this data per your project's needs, Ensuring that the strings entered correspond with what you want your URLs to look like. For more information, check out the [Locale config documentation](../localization/configuration)
 
 ## Add locale-specific content
 
@@ -36,7 +36,7 @@ All of your site's region-specific content lives inside `src/locales/`, in the `
 
 ### Globals
 
-To add global locale data such as navigation items, headers, and footers; create and edit the files as needed, ensuring that YAML properties are equivalent across languages. Below are examples of two global locale files. We'll go over _using_ the data at the end of this section.
+To add global locale data such as navigation items, headers, and footers; create and edit the appropriate YAML files under `src/locales/globals` as needed. Ensure that YAML properties are consistent across all languages, unless certain locales should intentionally exclude information. Your filenames must match your locale config strings. For example, if your default locale is `"en"`, the filename for English "global" locale data should be `en.yml`. Below are examples of two global locale files. We'll go over _using_ the data at the end of this section.
 
 ```yml title="/src/locales/globals/en.yml"
 # English!
@@ -66,7 +66,7 @@ footer: © Le nom de votre entreprise.
 
 ### Page-level data
 
-Here are examples of two homepage data files:
+To add page-specific locale data, create and edit the appropriate YAML files under `src/locales/<page-name>/` (where ` <page-name>` is the directory name of your page, as it exists in your pages directory). Ensure that YAML properties are consistent across languages, unless certain locales should intentionally exclude information. Your filenames must match your locale config strings. For example, if your default locale is `"en"`, the filename for English page data should be `en.yml`. Below are examples of two page-level locale files. We'll go over _using_ the data at the end of this section.
 
 ```yml title="/src/locales/home/en.yml"
 # English!
@@ -76,7 +76,7 @@ meta:
   description: The homepage-specific meta description.
 
 title: My homepage
-body: Lorem ipsum something, something.
+body: Lorem ipsum something, something. Irure sunt exercitation Lorem anim nostrud non ipsum fugiat aute. Reprehenderit ullamco aliqua dolore irure laboris. Officia nulla exercitation voluptate elit. Sit eiusmod nostrud reprehenderit Lorem veniam. Esse irure proident ea duis consectetur fugiat proident mollit mollit. Aliqua labore nostrud commodo laboris officia ullamco aliqua pariatur ex in reprehenderit magna. Cupidatat consequat labore mollit et anim veniam anim.
 ```
 
 ```yml title="/src/locales/home/fr.yml"
@@ -87,12 +87,12 @@ meta:
   description: La méta description spécifique à la page d'accueil.
 
 title: Ma page d'accueil
-body: Lorem ipsum quelque chose, quelque chose.
+body: Lorem ipsum quelque chose, quelque chose. Occaecat fugiat do sit id incididunt qui. Voluptate consectetur elit et enim ut sint excepteur dolore culpa laborum veniam eu ipsum. Non deserunt aliquip consectetur ut sunt nostrud labore officia labore. Incididunt eiusmod consectetur id aute anim dolor ipsum ullamco ex consequat esse fugiat. Excepteur ad sit tempor voluptate commodo. Ea labore veniam ea do. Aliqua non consequat ipsum irure id ipsum cillum laboris non reprehenderit culpa consequat.
 ```
 
 ## Getting locale data into your components
 
-The `useLocale` hook will allow you to grab locale information from whatever component you're in. Data available includes `globals`, `page` data, the `locale` string, and more. Check out the [useLocale documentation](../localization/use-locale-hook) for more.
+The `useLocale` hook will allow you to retrieve locale information from within any functional React component. Data available includes `globals`, `page` data, the `locale` string, and more. Check out the [useLocale documentation](../localization/use-locale-hook) for more.
 
 Global data example:
 
