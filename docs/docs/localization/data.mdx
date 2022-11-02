@@ -4,4 +4,113 @@ sidebar_position: 2
 
 # Locale data
 
-Coming soon
+Static site data for each locale is grouped into two general categories: the "global" data and the "page" data. Global data refers to site-wide content—things like navigation menus, footers, and so on—while page data refers to page-specific content—things like a homepage header, or a biography for an "about" page.
+
+All static locale data lives within the `src/locales/` directory, and is grouped into these two categories. You can treat the `globals` directory as a reserved directory name, as all global (site-wide) data is compiled from within it. All other directories here, however, are page-level data directories which should match each page's filename as it exists in the `src/pages/` directory.
+
+Within both `src/locales/globals/` and `src/locales/<page-name>/`, should live YAML files containing the actual locale data. Each YAML file's name should be the locale string as specified in the [locale config](./configuration#locales), with a `.yml` extension.
+
+Here is an example file tree, containing global data as well as data for two pages—all containing content for three locales:
+
+```
+.
+└── src/
+    └── locales/
+        ├── globals/
+        │   ├── en.yml
+        │   ├── es.yml
+        │   └── fr.yml
+        ├── home/
+        │   ├── en.yml
+        │   ├── es.yml
+        │   └── fr.yml
+        └── about/
+            ├── en.yml
+            ├── es.yml
+            └── fr.yml
+```
+
+## Locale data compilation
+
+Under the hood, all of these files get compiled into two objects—`globals` and `page`—and are then passed to each page as props. This process is done via Next JS' `getStaticProps` convention. The [`useLocale`](./use-locale-hook) hook is a convenient way to work with this data from _any_ functional React component in your project.
+
+## `globals` example
+
+An example `globals` YAML file for the `"en"` locale:
+
+```yml title="/src/locales/globals/en.yml"
+meta:
+  title: My Cool Web App
+  description: The site-wide meta description.
+  og_alt: Description of the og image.
+
+nav:
+  label: Main site navigation
+  items:
+    - id: home
+      label: Home
+    - id: about
+      label: About Us
+    - id: contact
+      label: Get in touch
+
+footer: © Company Name.
+```
+
+As mentioned, that data gets compiled into a page-level prop called `globals`, for the current page and locale. Here's an example that uses that data (via [`useLocale`](./use-locale-hook)) from within an imaginary `<Navigation />` component:
+
+```jsx
+import useLocale from "../../hooks/use-locale"
+
+const Navigation = () => {
+  const { globals } = useLocale()
+
+  return (
+    <nav aria-labelledby="nav-label">
+      <span id="nav-label" className="visually-hidden">{globals.nav.label}</span>
+      <ul>
+        {globals.nav.items.map(item => (
+          <li key={item.id}>{item.label}</li>
+        )}
+      </ul>
+    </nav>
+  )
+}
+
+export default Navigation
+```
+
+## `page` example
+
+An example `about` page YAML file for the `"en"` locale:
+
+```yml title="/src/locales/about/en.yml"
+meta:
+  title: About Us
+  description: Our team is pretty cool. We do cool things.
+
+title: About Us
+
+bio: Aliqua irure sint ea amet duis exercitation labore non occaecat velit voluptate. Ipsum fugiat officia irure consequat laborum in incididunt sit magna ex deserunt reprehenderit veniam ea.
+```
+
+This data gets compiled into a page-level prop called `page`, for the current page and locale. Here's an example that uses that data (via [`useLocale`](./use-locale-hook)) from within an imaginary About page component:
+
+```jsx
+import useLocale from "../../hooks/use-locale"
+
+const AboutPage = () => {
+  const { page } = useLocale()
+
+  return (
+    <header aria-labelledby="about-title">
+      <h1 id="about-title">{page.title}</h1>
+    </header>
+    <main>
+      <p>{page.bio}</p>
+    </main>
+  )
+}
+
+export default AboutPage
+```

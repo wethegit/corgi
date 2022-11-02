@@ -40,25 +40,29 @@ You'll be prompted to enter an optional template repo — more on that later.
 ### `project`
 
 Sets up a Corgi project.  
-Basic usage:  
+Basic usage:
 
 ```sh
 corgi project
 ```
-| Arguments   | Description |
-| ----------- | ------------- |
+
+| Arguments | Description                                                                                                         |
+| --------- | ------------------------------------------------------------------------------------------------------------------- |
 | directory | Relative directory to create the project in. If you do not pass a directory argument, you will be prompted for one. |
 
 #### Options
-| Flag           | Short flag | Description   |
-| -------------- | -----------| ------------- |
-| --template     | -t         | Optional. URL of a Github repo's branch containing a Corgi template. Example: `https://github.com/<user>/<repo>/tree/<branchname>`. If you do not pass this flag, you will be prompted to enter an optional template. |
-| --help         | -h         | Displays a list of arguments and options. |
+
+| Flag       | Short flag | Description                                                                                                                                                                                                           |
+| ---------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --template | -t         | Optional. URL of a Github repo's branch containing a Corgi template. Example: `https://github.com/<user>/<repo>/tree/<branchname>`. If you do not pass this flag, you will be prompted to enter an optional template. |
+| --help     | -h         | Displays a list of arguments and options.                                                                                                                                                                             |
 
 #### Examples:
+
 ```sh
 corgi project my-awesome-web-app
 ```
+
 ```sh
 corgi project my-awesome-web-app --template https://github.com/<user>/<repo>/tree/<branch>
 ```
@@ -99,28 +103,33 @@ You can overwrite any of these properties from within your template's `corgi-pro
 ### `page`
 
 Sets up a page component and locale data files in a Corgi project. Must be executed from the root of the project directory.  
-Basic usage:  
+Basic usage:
 
 ```sh
 corgi page
 ```
-| Arguments   | Description |
-| ----------- | ------------- |
-| name(s)     | A space-separated list of page component names. If you do not pass any name arguments, you will be prompted to enter a page component name. |
+
+| Arguments | Description                                                                                                                                 |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| name(s)   | A space-separated list of page component names. If you do not pass any name arguments, you will be prompted to enter a page component name. |
 
 #### Options
-| Flag        | Short flag | Default value | Description   |
-| ----------- | -----------| ------------- | ------------- |
-| --locales   | -l         | `en`          | Optional. A space-separated list of locale slugs. |
-| --help      | -h         |               | Displays a list of arguments and options. |
+
+| Flag      | Short flag | Default value | Description                                       |
+| --------- | ---------- | ------------- | ------------------------------------------------- |
+| --locales | -l         | `en`          | Optional. A space-separated list of locale slugs. |
+| --help    | -h         |               | Displays a list of arguments and options.         |
 
 #### Examples:
+
 ```sh
 corgi page About
 ```
+
 ```sh
 corgi page About --locales en es fr pt
 ```
+
 ```sh
 corgi page About Contact Work Blog  --locales en-us es-mx fr-ca
 ```
@@ -128,24 +137,28 @@ corgi page About Contact Work Blog  --locales en-us es-mx fr-ca
 ### `component`
 
 Sets up one or multiple new React components within a Corgi app. Includes a `.scss` module file for each. Must be executed from the root of the project directory.
-Basic usage:  
+Basic usage:
 
 ```sh
 corgi component
 ```
-| Arguments   | Description |
-| ----------- | ------------- |
-| name(s)     | A space-separated list of component names. If you do not pass any name arguments, you will be prompted to enter a component name. |
+
+| Arguments | Description                                                                                                                       |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| name(s)   | A space-separated list of component names. If you do not pass any name arguments, you will be prompted to enter a component name. |
 
 #### Options
-| Flag        | Short flag | Description   |
-| ----------- | -----------| ------------- |
-| --help      | -h         | Displays a list of arguments and options. |
+
+| Flag   | Short flag | Description                               |
+| ------ | ---------- | ----------------------------------------- |
+| --help | -h         | Displays a list of arguments and options. |
 
 #### Examples:
+
 ```sh
 corgi component ToggleButton
 ```
+
 ```sh
 corgi component ToggleButton Pagination TabbedList
 ```
