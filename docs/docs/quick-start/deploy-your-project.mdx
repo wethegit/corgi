@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# Deploy your project
+# Deploy for production
 
 Corgi requires Node.js version 16 or greater. If you use nvm, run the following before installing dependencies if you have not done so already:
 
@@ -13,21 +13,13 @@ nvm use
 Install dependencies:
 
 ```bash
-npm install
+npm ci
 ```
 
-## Run project locally
-
-Run a local development server at `http://localhost:8080`:
-
-```bash
-npm start
-```
-
-## Build for production
+Build the static site:
 
 ```bash
 npm run build
 ```
 
-The static files are generated in the `out` folder.
+The static files are generated in the `out` folder. Upload the contents of this directory to your static file server of choice.
