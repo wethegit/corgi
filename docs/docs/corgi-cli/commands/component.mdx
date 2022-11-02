@@ -1,0 +1,35 @@
+---
+sidebar_position: 3
+title: component
+description: Sets up one or multiple React components.
+---
+
+# The `component` command
+
+Sets up one or multiple new React components within a Corgi app. Includes a `.scss` module file for each. Must be executed from the root of the project directory.
+
+## Basic usage
+```
+npx @corgi/cli component
+```
+
+## Arguments
+
+| Arguments   | Description |
+| ----------- | ------------- |
+| name(s)     | A space-separated list of page component names. If you do not pass any name arguments, you will be prompted to enter a page component name. |
+
+### Examples
+```bash
+npx @corgi/cli component ToggleButton
+```
+
+```bash
+npx @corgi/cli component ToggleButton Pagination TabbedList
+```
+
+## Options
+
+| Flag        | Short flag | Description   |
+| ----------- | -----------| ------------- |
+| --help      | -h         | Displays a list of arguments and options. |
