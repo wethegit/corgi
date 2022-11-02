@@ -24,7 +24,7 @@ npm install -g @corgi/cli
 
 ## Quick-start
 
-From your command line, `cd` into an ampty project directory and run:
+From your command line, `cd` into an empty project directory and run:
 
 ```sh
 npx corgi project .
