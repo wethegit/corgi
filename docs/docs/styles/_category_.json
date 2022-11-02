@@ -1,0 +1,8 @@
+{
+  "label": "Styles",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "An introduction to styling your project at both component level and globally."
+  }
+}
