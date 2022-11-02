@@ -1,0 +1,59 @@
+---
+sidebar_position: 2
+---
+
+# Page components
+
+There are some specific requirements and "boilerplate" for creating a page component in Corgi. While we suggest using the Corgi CLI (see the Quick Start guide to [creating pages](../quick-start/add-pages#creating-new-pages)) to create page components, this section will provide the information you need to gain a deeper understanding of page components in Corgi.
+
+## A basic page component
+
+Here's an example `index.js` file for a page component. We'll break it down in the following sections.
+
+```jsx
+import { setupPaths, setupProps } from "../../../utils/page-setup";
+import PageProvider from "../../../context/page-context";
+import useLocale from "../../../hooks/use-locale";
+
+const LOCALE_FOLDER = "about";
+
+const AboutPage = ({}) => {
+  const { page, globals } = useLocale(LOCALE_FOLDER);
+
+  return (
+    <PageProvider page={LOCALE_FOLDER}>
+      <header>
+        <h1>{page.header.title}</h1>
+        <p>{page.header.body}</p>
+      </header>
+
+      <main></main>
+    </PageProvider>
+  );
+};
+
+export const getStaticPaths = () => setupPaths(LOCALE_FOLDER);
+export const getStaticProps = async (ctx) => setupProps(ctx, LOCALE_FOLDER);
+
+export default AboutPage;
+```
+
+As you can see, the component itself must be the default export of the JavaScript module. Let's break some of these pieces down so we can understand what we're looking at.
+
+### The `LOCALE_FOLDER` constant
+
+The value bound to this constant must match the directory path of your page's `locales` folder. For example, if your homepage locale content lives in `/src/locales/home/`, then your `LOCALE_FOLDER` value must be `"home"`. Likewise, if a nested page's content lives at `/src/locales/work/advertising/`, then your `LOCALE_FOLDER` value must be `"work/advertising"`.
+
+The `LOCALE_FOLDER` is used in many places within a top-level page component, as you can see above.
+
+### `setupPaths` and `setupProps`
+
+These two functions are wrappers around Next.js' [`getStaticPaths`](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths) and [`getStaticProps`](https://nextjs.org/docs/basic-features/data-fetching/get-static-props), respectively. These functions are abstracted away in Corgi so that you don't have to be _as_ concerned with the relatively complex setup of a page. Both of these functions must be imported into the page component, and subsequently exported as `getStaticPaths` and `getStaticProps`; passing in the [`LOCALE_FOLDER`](#the-locale_folder-constant) constant to each.
+
+### The `useLocale` hook
+
+The `useLocale` hook is explained in detail in the [useLocale hook documentation](../localization/use-locale-hook). What's relevant here, is that when setting up a top-level page component, you _must_ pass the `LOCALE_FOLDER` string to the hook. Essentially, this acts as an initializer for the hook. Subsequent uses of the hook in other components do not require this step.
+
+### The `<PageProvider>` component
+
+The PageProvider component is a wrapper around all page content. It expects a `page` prop, set to the string bound to `LOCALE_FOLDER`. This allows Corgi to maintain a cache of sorts, of the page-level content, which is useful when creating page transition animations. Rather than instantly changing the `page` locale data during a page transition of, say, 500 miliseconds, the PageProvider knows to _not_ change the locale data to that of the incoming page until the transition is complete.
