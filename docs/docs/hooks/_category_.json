@@ -1,0 +1,7 @@
+{
+  "label": "Hooks",
+  "link": {
+    "type": "generated-index",
+    "description": "The Corgi framework includes a handful of custom React hooks. This section outlines each of them."
+  }
+}
