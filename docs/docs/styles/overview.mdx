@@ -1,0 +1,121 @@
+---
+sidebar_position: 1
+---
+
+# Overview
+
+Corgi uses SASS `.scss` by default, but also handles vanilla CSS `.css` out the box.
+
+# Component styles
+
+Component level styles use CSS Modules, which are scoped to the component by default. Thus, there is no need to follow any particular CSS naming conventions (BEM/OOCSS). Here is a quick example of how you might style a Navigation component using this technique:
+
+```
+/* src/components/nav/nav.module.scss */
+
+.nav {
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  place-content: center;
+}
+
+.item {
+  padding: 24px;
+}
+```
+
+```
+/* src/components/nav/nav.js */
+
+import { nav, list, item } from "./nav.module.scss"
+
+export default function Nav() {
+  // component logic omitted for brevity 
+
+  return (
+    <nav className={nav} aria-label={globals.nav.title}>
+      <ul className={list}>
+        {globals.nav.items.map((item, i) => (
+          <li className={item} key={`nav-item-${i}`}>
+            {item.label}
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}
+```
+
+💡 You can also import styles in bulk, via:
+
+`import * as styles from "./nav.module.scss"`
+
+…and then reference them from the styles object:
+
+```
+<nav className={styles.nav}>
+  ...
+</nav>
+```
+
+# Global styles
+
+Global styles live in `globals.scss`, which are imported into `_app.js`. These are inherited by evey page throughout the project. By default this file consists of:
+
+- Mixins/helpers
+- Global settings and variables
+- Global styles
+- Global utilities
+
+Each of these will be broken down separately in the next section.
+
+```
+/* src/styles/globals.scss */
+
+// Mixins/helpers specific to this file:
+@use "./helpers/helpers-a11y" as *;
+
+// Global settings and variables
+@import "./settings/settings-animation";
+@import "./settings/settings-breakpoints";
+@import "./settings/settings-color";
+@import "./settings/settings-layout";
+@import "./settings/settings-reduced-motion";
+
+// Global style declarations:
+@import "./base/resets.scss";
+@import "./base/layout.scss";
+@import "./base/typography.scss";
+
+// Global utility classes:
+@import "./utility-classes/utils-a11y.scss";
+@import "./utility-classes/utils-breakpoints.scss";
+@import "./utility-classes/utils-color.scss";
+@import "./utility-classes/utils-image.scss";
+@import "./utility-classes/utils-in-view.scss";
+@import "./utility-classes/utils-layout.scss";
+@import "./utility-classes/utils-typography.scss";
+
+*:focus {
+  @include focus-style;
+
+  outline: none;
+
+  &:not(:focus-visible) {
+    box-shadow: none;
+  }
+}
+```
+
+```
+/* src/pages/_app.js */
+
+import "../styles/globals.scss";
+```
+
