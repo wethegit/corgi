@@ -8,8 +8,8 @@ Corgi is a toolkit for creating localized, static React web applications with Ne
 
 The Corgi toolkit consists of:
 
+- A framework for creating localized, statically-generated (SSG) projects using Next.js.
 - A command line interface (CLI) for easily creating new projects, pages, and components.
-- A framework for creating localized SSG projects using Next.js.
 
 ## External resources
 

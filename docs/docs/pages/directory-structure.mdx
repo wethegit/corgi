@@ -1,0 +1,72 @@
+---
+sidebar_position: 1
+
+description: How to set up dynamic, locale-based routing.
+---
+
+# Directory Structure
+
+## Dynamic locale-based routing
+
+Next.js 12 uses page-based routing, meaning the structure of your `/src/pages/` directory will directly determine the routes of your project. In Corgi, all pages must live one step deeper: within the `/src/pages/[locale]/` directory.
+
+The `[locale]` directory acts as a [dynamic route](https://nextjs.org/docs/routing/dynamic-routes), which—when compiled—results in the appropriate locale string being slotted into the URL.
+
+Here is an example file tree for the pages directory in a Corgi project. We'll cover some of the other files shortly; let's only concern ourselves with the `[locale]` directory for now:
+
+```
+.
+└── src/
+    └── pages/
+        ├── [locale]/
+        │   ├── index.js
+        │   ├── about/
+        │   │   └── index.js
+        │   └── contact/
+        │       └── index.js
+        ├── _app.js
+        ├── _document.js
+        ├── 404.js
+        ├── 500.js
+        └── index.js
+```
+
+The directory structure above will result in the following routes, assuming [locales](../category/localization) are defined for "en", "es", and "fr":
+
+```js title="Page routes"
+/
+/es
+/fr
+
+/en/about
+/es/about
+/fr/about
+
+/en/contact
+/es/contact
+/fr/contact
+```
+
+:::info Default locale homepage URL
+Note that the root (homepage) of the default locale's URL does _not_ contain the locale string. This is an opinion enforced by Corgi, in an effort to have simpler URLs for the primary locele's landing page experience.
+
+In other words, Corgi makes it so that you don't have to share your website as `myproject.com/en` if your default locale is `"en"`. Rather, you can just share `myproject.com`
+:::
+
+## Other files in the `pages` directory
+
+### `/src/pages/index.js`
+
+This is the root/homepage component, for the **default** locale only. It ensures that you can navigate to `/` on your project, and see the default locale's content.
+
+:::caution Homepage content
+All homepage _content_ must be edited in the `/src/components/home-page-contents` component, becuase this particular index page is not the only place the homepage content needs to live. A homepage index file must also live in the dynamic [locale] path (for localized pages, of course!) — thus the abstracted component for the homepage. More on this in the [page component](./page-components#homepage-specifics) section.
+:::
+
+### `_app_.js`, `_document.js`
+
+These are no different than the typical custom Next.js 12 setup, and handle things like global context providers, the HTML `<head>` element, `<body>` tag, and so on. More info in the Next docs, for [`_app.js`](https://nextjs.org/docs/advanced-features/custom-app) and [`_document.js`](https://nextjs.org/docs/advanced-features/custom-document).
+
+### `404.js`, `500.js`
+
+These are resource-not-found and server-error files, which are required for Next.js builds. Since Corgi generates a static site, these files are not actually _used_ in a deployment build, but since Next.js requires them, we must keep them here.

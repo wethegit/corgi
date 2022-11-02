@@ -1,0 +1,8 @@
+{
+  "label": "Corgi CLI",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "The Corgi CLI provides a toolkit for the hassle-free creation of Corgi projects, pages, and components."
+  }
+}
