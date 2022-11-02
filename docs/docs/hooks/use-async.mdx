@@ -8,10 +8,12 @@ Location: `/src/hooks/use-async.js`
 
 The `useAsync` hook manages the calling of an asynchronous JavaScript function, while also providing you with the return data and the state of the function call.
 
+`useAsync(asyncFn, [deferred])`
+
 | Arguments   | Type     | Description |
 | ----------- | -------- | ----------- |
 | asyncFn     | Function | A JavaScript function which returns a promise. |
-| [deferred]  | Boolean  | Optional. Whether to defer the execution of `asyncFn`. Default: `false`. |
+| deferred    | Boolean  | Optional. Whether to defer the execution of `asyncFn`. Default: `false`. |
 
 ## Return value
 

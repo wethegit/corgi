@@ -1,0 +1,45 @@
+---
+description: Manages state based on the browser's localStorage.
+---
+
+# `useLocalStorage`
+
+Location: `/src/hooks/use-local-storage.js`
+
+The `useLocalStorage` is a state manager, similar to React's `useState`,  but all values are set and retrieved based on the user's browser localStorage.
+
+`useLocalStorage(key, [defaultValue])`
+
+| Arguments    | Type   | Description |
+| ------------ | ------ | ----------- |
+| key          | String | The localStorage key to get and set. |
+| defaultValue | String | Optional. The default value for `key`. Default: `""`. |
+
+## Return value
+
+Similar to React's `useState` hook, `useLocalStorage` returns an array containing the state value and a state updater function:
+
+| Array index | Type     | Description |
+| ----------- | -------- | ----------- |
+| 0           | String   | The browser's localStorage value corresponding to the `key` argument passed. |
+| 1           | Function | Updater function which expects the new state value as the sole argument. |
+
+## Usage
+
+Here's an admittedly-contrived example, which sets the localStorage value of `userID` to `"1234"`, and logs out the value from localStorage to verify that it's working.
+
+```jsx
+import useLocalStorage from "../../hooks/use-local-storage";
+
+const MyComponent = () => {
+  const [id, setId] = useLocalStorage("userID")
+
+  const handleClick = (_) => setId("1234")
+  
+  console.log(window.localStorage.getItem("userID"))
+
+  return (
+    <button onClick={handleClick}>Set user ID to "1234"</button>
+  )
+};
+```
