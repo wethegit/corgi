@@ -1,0 +1,49 @@
+---
+sidebar_position: 2
+---
+
+# The `project` command
+
+Sets up a base Corgi project.
+
+## tl;dr
+
+From your command line, `cd` into an empty project directory and run:
+
+```bash
+npx @corgi/cli project .
+```
+The dot `.` indicates the current working directory. You can also choose to specify a directory name instead.
+
+You'll then be prompted to enter an optional template repo. For more information on template, see the [options documentation](#option) below.
+
+:::info Note
+If using `npx` from a brand new directory as shown (as opposed to having the `corgi` command installed globally), you must ensure that NPM has been initialized in your directory (via `npm init`).
+:::
+
+## Arguments
+
+| Arguments   | Description |
+| ----------- | ------------- |
+| directory | Relative directory to create the project in. If you do not pass a directory argument, you will be prompted for one. |
+
+### Examples
+```bash
+npx @corgi/cli project .
+```
+
+```bash
+npx @corgi/cli project my-cool-website
+```
+
+## Options
+| Flag           | Short flag | Description   |
+| -------------- | -----------| ------------- |
+| --template     | -t         | Optional. URL of a Github repo's branch containing a Corgi template. Example: `https://github.com/<user>/<repo>/tree/<branchname>`. If you do not pass this flag, you will be prompted to enter an optional template. |
+| --help         | -h         | Displays a list of arguments and options. |
+
+
+### Examples
+```bash
+npx @corgi/cli project . --template https://github.com/<user>/<repo>/tree/<branchname>
+```
