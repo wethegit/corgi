@@ -6,63 +6,7 @@ sidebar_position: 1
 
 Corgi uses SASS `.scss` by default, but also handles vanilla CSS `.css` out the box.
 
-# Component styles
-
-Component level styles use CSS Modules, which are scoped to the component by default. Thus, there is no need to follow any particular CSS naming conventions (BEM/OOCSS). Here is a quick example of how you might style a Navigation component using this technique:
-
-```
-/* src/components/nav/nav.module.scss */
-
-.nav {
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-.list {
-  display: flex;
-  place-content: center;
-}
-
-.item {
-  padding: 24px;
-}
-```
-
-```
-/* src/components/nav/nav.js */
-
-import { nav, list, item } from "./nav.module.scss"
-
-export default function Nav() {
-  // component logic omitted for brevity 
-
-  return (
-    <nav className={nav} aria-label={globals.nav.title}>
-      <ul className={list}>
-        {globals.nav.items.map((item, i) => (
-          <li className={item} key={`nav-item-${i}`}>
-            {item.label}
-          </li>
-        ))}
-      </ul>
-    </nav>
-  )
-}
-```
-
-💡 You can also import styles in bulk, via:
-
-`import * as styles from "./nav.module.scss"`
-
-…and then reference them from the styles object:
-
-```
-<nav className={styles.nav}>
-  ...
-</nav>
-```
+All componenet level styles use [CSS Modules](https://github.com/css-modules/css-modules). As these styles are scoped to components, there is no need to follow any strict CSS methodologies/naming conventions (BEM/OOCSS).
 
 # Global styles
 
