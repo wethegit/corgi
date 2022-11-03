@@ -1,0 +1,38 @@
+---
+description: Toggles a "hidden" overflow property on the <body> element's style attribute.
+---
+
+# `usePreventScroll`
+
+Location: `/src/hooks/use-prevent-scroll.js`
+
+The `usePreventScroll` hook allows you to toggle the document's `<body>` element scrollability. This is useful for cases when dialog/modal windows are displayed.
+
+`usePreventScroll(state)`
+
+| Arguments         | Type    | Description |
+| ----------------- | ------- | ----------- |
+| state             | Boolean | Whether to add the `"overflow: hidden"` CSS style declaration to the HTML `<body>` element. |
+
+## Return value
+
+| Value     | Description |
+| --------- | ----------- |
+| undefined | -           |
+
+## Usage
+
+```jsx
+import { setState } from "react"
+import usePreventScroll from "../../hooks/use-prevent-scroll";
+
+const MyComponent = () => {
+  const [modalOpen, setModalOpen] = useState(false)
+
+  usePreventScroll(modalOpen)
+
+  return (
+    ...
+  );
+};
+```
