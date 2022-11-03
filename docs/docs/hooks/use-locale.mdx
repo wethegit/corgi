@@ -1,0 +1,72 @@
+---
+description: Retrieves global, page-level, and other useful locale data.
+---
+
+# `useLocale`
+
+Location: `/src/hooks/use-locale.js`
+
+The `useLocale` hook allows you to easily retrieve various pieces of locale-specific data from within your components. In addition to this page, see the [Localization docs: useLocale hook](../localization/use-locale-hook) for some common usage patterns. 
+
+`useLocale([pageDirectoryName])`
+
+| Arguments         | Type   | Description |
+| ----------------- | ------ | ----------- |
+| pageDirectoryName | String | Optional. A string pointing to the page's locale directory name — for example, "home" or "work/advertising". This argument only needs to be passed once per page, from within the top-level page component. It acts as a locale "initializer", setting a page-level key in Corgi's locale data cache, which is necessary for the [`<PageProvider>`](../pages/page-components#the-pageprovider-component) component. |
+
+## Return value
+
+`useLocale` returns an object containing the following properties:
+
+| Property           | Type   | Description |
+| ------------------ | ------ | ----------- |
+| pageName           | String | The current page's `pageDirectoryName`, as passed to the hook at the page level. |
+| locale             | String | The current locale string (`"en"`, for example). |
+| localeMap          | Object | The `localeMap` data for the current locale, as defined in `/src/config-locales.js`. |
+| page               | Object | The page-level locale data, for the current page and locale. |
+| globals            | Object | The site-wide locale data, for the current locale. |
+| alternativeLocales | Array  | A list of all available locales for the page, excluding the current locale. |
+
+
+## Usage
+
+General, component-level usage of the `useLocale` hook is straightforward—just call the function and you're done. In this example, we're destructuring a few properties from the hook's return value, and logging them out:
+
+```jsx
+import useLocale from "../../hooks/use-locale";
+
+const MyComponent = () => {
+  const { globals, page, pageName, locale } = useLocale();
+
+  console.log(globals);   // => object of global YAML data for the locale.
+  console.log(page);      // => object of page-level YAML data for the locale.
+  console.log(pageName);  // => "about"
+  console.log(locale);    // => "en"
+
+  return (
+    ...
+  );
+};
+```
+
+When used within a [**page component**](../pages/page-components), the `pageDirectoryName` is a required argument. In this scenario, we'll bind that value to `LOCALE_FOLDER` and pass _it_ in, as this value gets used in a few other places throughout the page component.
+
+```jsx
+import useLocale from "../../../hooks/use-locale";
+
+const LOCALE_FOLDER = "about";
+// for nested pages, this might look more like "work/advertising"
+
+const AboutPage = () => {
+  const { globals, page, pageName, locale } = useLocale(LOCALE_FOLDER);
+
+  console.log(globals);
+  console.log(page);
+  console.log(pageName);
+  console.log(locale);
+
+  return (
+    ...
+  );
+};
+```
