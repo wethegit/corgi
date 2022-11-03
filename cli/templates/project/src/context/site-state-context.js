@@ -1,5 +1,3 @@
-// TODO: global modal-open state?
-
 import { createContext, useState, useReducer } from "react"
 
 const PAGE_TRANSITION_STATE = {
@@ -21,7 +19,6 @@ const SiteStateProvider = ({ children, version }) => {
   // (i.e. higher DOM level than the page content), such as backgrounds:
   const [background, setBackground] = useState()
 
-  const [visiblePage, setVisiblePage] = useState()
   const [pageHistory, addPage] = useReducer((history, newPage) => {
     return [newPage, ...history]
   }, [])
@@ -47,8 +44,6 @@ const SiteStateProvider = ({ children, version }) => {
         setModalOpen,
         background,
         setBackground,
-        visiblePage,
-        setVisiblePage,
         pageHistory,
         addPage,
         transitionState,
