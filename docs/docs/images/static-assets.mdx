@@ -1,0 +1,40 @@
+---
+title: Static assets
+---
+
+# Other static assets
+
+If your assets do not call for any [image optimization](./image-optimization) or breakpoint-specific versions (i.e. the [`<Picture>` component](./picture-component)), then they fall into this category.
+
+You can include any assets in the `/public/` directory, to be served as static files from the compiled project's root. Do not tamper with the Corgi-generated `/public/_images/` directory though, as that is reserved for images generated and optimized by Corgi.
+
+Formats like `.svg`, `.mp4`, `.mp3` (and so on) are good candidates for the `/public/` directory. There is no need to use any specific component to access these files—just use the HTML-native `<img>`, `<video>`, or `<audio>` elements, respectively.
+
+:::info non-optimized images
+You don't _have_ to buy-in to Corgi's image system if you prefer not to. Any file format be accessed from the public folder just as you'd expect, by referencing the file path from the project's root `/`. For example, an image in `/public/images/logos/my-logo.png` would be accessed via `<img src="/images/logos/my-logo.png" alt="" />`.
+:::
+
+## Examples
+
+```jsx
+const MyComponent = () => {
+  return (
+    <>
+      <img src="/images/logo.png" alt="Description of company logo." />
+
+      <img src="/images/diamond-icon.svg" alt="Diamond" />
+
+      <audio src="/audio/annoying-background-music.mp3" muted controls />
+
+      <video
+        src="/videos/header-background.mp4"
+        autoplay
+        playsinline
+        muted
+        loop
+        controls
+      />
+    </>
+  );
+};
+```
