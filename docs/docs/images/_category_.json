@@ -1,6 +1,6 @@
 {
   "label": "Images",
-  "position": 6,
+  "position": 7,
   "link": {
     "type": "generated-index",
     "description": "Corgi has its own image optimization tools, as unfortunately Next.js' built-in <Image> component is not supported by statically-exported Next.js sites. This section goes over the various techniques for using and optimizing images in a Corgi project."
