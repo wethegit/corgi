@@ -6,16 +6,19 @@ description: Using the NPM module
 
 # Installation
 
-You can install the `corgi` command globally, via:
+For versioning reasons, it's recommended to use `npx` to pull and install the executable _locally_, on demand. If this is not your cup of tea, you can also install the `corgi` command globally.
 
-```bash
-npm install -g @corgi/cli
-```
-
-Alternatively, you can use `npx`, which pulls and installs the executable _locally_, on demand:
-
-```
+```bash title="example corgi command with npx"
 npx @corgi/cli component ToggleButton
+```
+
+Or
+
+```bash title="Installation and usage via a global corgi command"
+npm install -g @corgi/cli
+
+# usage:
+corgi component ToggleButton
 ```
 
 Read on to learn about the specific `corgi` commands for creating new projects, pages, and components.
