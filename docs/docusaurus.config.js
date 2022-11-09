@@ -6,9 +6,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Corgi",
+  title: "corgi",
   tagline:
-    "A framework for creating static, localized React web applications with Next.js",
+    "A framework for creating static, localized, React web applications with Next.js",
   url: "https://your-docusaurus-test-site.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -52,8 +52,8 @@ const config = {
       navbar: {
         title: "corgi",
         logo: {
-          alt: "My Site Logo",
-          src: "img/logo.svg",
+          alt: "Corgi logo",
+          src: "img/corgi.svg",
         },
         items: [
           {

@@ -1,11 +1,7 @@
-.features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
+.list {
+  padding: 0;
+  margin: 0 24px;
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.card {
 }

@@ -2,30 +2,22 @@ import React from "react";
 import clsx from "clsx";
 import styles from "./styles.module.css";
 
-function Feature({ Svg, title, description }) {
-  return (
-    <div className={clsx("col col--4")}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <h3>{title}</h3>
-        <p>{description}</p>
-      </div>
-    </div>
-  );
-}
+const FEATURES = [
+  "Easy localization within static Next.js projects.",
+  "Full SCSS framework for layout, typography, and more.",
+  "Command line interface for quickly and easily setting up projects, pages, and components.",
+];
 
 export default function HomepageFeatures() {
   return (
-    <section className={styles.features}>
-      <div className="container">
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
-        </div>
-      </div>
-    </section>
+    <ul className={clsx("row", styles.list)}>
+      {FEATURES.map((feature, idx) => (
+        <ii key={idx} className="col col--4">
+          <div className={clsx("card", styles.card)}>
+            <p className="card__body">{feature}</p>
+          </div>
+        </ii>
+      ))}
+    </ul>
   );
 }
