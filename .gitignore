@@ -16,7 +16,7 @@ public/sitemap-0.xml
 public/robots.txt
 
 # production
-# build
+build
 dist
 deploy
 
