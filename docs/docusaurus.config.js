@@ -9,7 +9,7 @@ const config = {
   title: "corgi",
   tagline:
     "A framework for creating static, localized, React web applications with Next.js",
-  url: "https://your-docusaurus-test-site.com",
+  url: "https://wethecollective.com",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
