@@ -1,7 +1,33 @@
 .list {
-  padding: 0;
-  margin: 0 24px;
+  list-style-type: none;
+  margin: 0;
+  padding: 2em 0;
+}
+
+.item + .item {
+  margin-top: 2em;
 }
 
 .card {
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+.icon {
+  align-self: center;
+  font-size: 3em !important;
+  color: var(--ifm-color-primary);
+}
+
+/* 997 is Docusaurus' mobile breakpoint */
+@media (min-width: 997px) {
+  .list {
+    margin: 0 24px;
+  }
+
+  .item + .item {
+    margin-top: 0;
+  }
 }

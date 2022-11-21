@@ -62,7 +62,7 @@ const config = {
             position: "left",
             label: "Docs",
           },
-          { to: "/blog", label: "Blog", position: "left" },
+          // { to: "/blog", label: "Blog", position: "left" },
           {
             href: "https://github.com/wethegit/corgi",
             label: "GitHub",
@@ -88,7 +88,7 @@ const config = {
             ],
           },
           {
-            title: "Community",
+            title: "we { the collective }",
             items: [
               {
                 label: "CodePen",
@@ -105,12 +105,12 @@ const config = {
             ],
           },
           {
-            title: "More",
+            title: "Contribute",
             items: [
-              {
-                label: "Blog",
-                to: "/blog",
-              },
+              // {
+              //   label: "Blog",
+              //   to: "/blog",
+              // },
               {
                 label: "GitHub",
                 href: "https://github.com/wethegit/corgi",

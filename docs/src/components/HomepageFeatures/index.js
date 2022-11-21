@@ -1,23 +1,34 @@
 import React from "react";
 import clsx from "clsx";
+import CodeIcon from "@mui/icons-material/Code";
+import ConstructionIcon from "@mui/icons-material/Construction";
+import LanguageIcon from "@mui/icons-material/Language";
+
 import styles from "./styles.module.css";
 
 const FEATURES = [
-  "Easy localization within static Next.js projects.",
-  "Full SCSS framework for layout, typography, and more.",
-  "Command line interface for quickly and easily setting up projects, pages, and components.",
+  ["Easy localization within static Next.js projects.", LanguageIcon],
+  ["Full SCSS framework for layout, typography, and more.", ConstructionIcon],
+  [
+    "Command line interface for quickly and easily setting up projects, pages, and components.",
+    CodeIcon,
+  ],
 ];
 
 export default function HomepageFeatures() {
   return (
     <ul className={clsx("row", styles.list)}>
-      {FEATURES.map((feature, idx) => (
-        <ii key={idx} className="col col--4">
-          <div className={clsx("card", styles.card)}>
-            <p className="card__body">{feature}</p>
-          </div>
-        </ii>
-      ))}
+      {FEATURES.map(([feature, icon], idx) => {
+        const Icon = icon;
+        return (
+          <li key={idx} className={clsx("col col--4", styles.item)}>
+            <div className={clsx("card", styles.card)}>
+              <Icon className={clsx(styles.icon, "margin-top--md")} />
+              <p className="card__body">{feature}</p>
+            </div>
+          </li>
+        );
+      })}
     </ul>
   );
 }

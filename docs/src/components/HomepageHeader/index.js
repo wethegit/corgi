@@ -1,6 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import Link from "@docusaurus/Link";
 
 import styles from "./styles.module.css";
 
@@ -16,6 +17,13 @@ export default function HomepageHeader() {
           <span>{siteConfig.title}</span>
         </h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
+
+        <Link
+          className="button button--secondary button--lg"
+          to="/docs/category/quick-start"
+        >
+          Quick start tutorial
+        </Link>
       </div>
     </header>
   );
