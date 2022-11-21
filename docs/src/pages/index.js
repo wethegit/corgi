@@ -11,8 +11,8 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      title={`${siteConfig.title}: a Next.JS framework`}
+      description="Official documentation for Corgi: a framework for creating static, localized, React web applications with Next.js."
     >
       <HomepageHeader />
 
