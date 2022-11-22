@@ -1,0 +1,34 @@
+name: Publish Package to npmjs
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Publish to NPM registry
+      # Setup .npmrc file on the fly
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
+          registry-url: "https://registry.npmjs.org"
+      - run: |
+          npm ci
+          npm publish --access public
+        working-directory: "./cli"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      # Publish to Github registry
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
+          registry-url: https://npm.pkg.github.com/
+      - run: |
+          npm ci
+          npm publish
+        working-directory: "./cli"
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
