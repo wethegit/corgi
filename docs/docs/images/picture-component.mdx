@@ -25,7 +25,7 @@ Given the source file location of `/src/images/defined/logo-2x.png`, we can use 
 There are two things to take note of here:
 
 - The `src` attribute does _not_ expect the `-2x` suffix in the filename.
-- The inclusion of the `webp` prop set to `true` — this is optional, but can be useful for serving up highly-optimized images for modern browsers.
+- corgi recognizes that the source image is a PNG, and thus generates a WEBP version as well.
 
 ```jsx title="<Picture> component usage"
 import Picture from "../picture";
@@ -55,7 +55,7 @@ const MyComponent = () => (
 
 ## Images for different breakpoints
 
-Providing your source files with specific _breakpoint_ suffixes will generate and optimize all the necessary breakpoint-specific versions of your image. The best part? You do not have to change anything about how you use the component—it's all automatic, based on the filenames. The breakpoint suffixes are as follows, and match those of Corgi's defined CSS breakpoints:
+Providing your source files' names with specific _breakpoint_ suffixes will generate and optimize all the necessary breakpoint-specific versions of your image. The best part? You do not have to change anything about how you use the component—it's all automatic, based on the filenames. The breakpoint suffixes are as follows, and match those of corgi's pre-defined CSS breakpoints:
 
 ```txt title="Available breakpoint suffixes"
 medium-up
@@ -131,7 +131,6 @@ As you can see, this is component is invaluable for working with images!
 | ---------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | src              | String  | The path to an image, starting from the `/src/images/defined/` directory and including a leading slash. This should not include the `-2x` prefix.                              |
 | alt              | String  | Alt text attribute for the image.                                                                                                                                              |
-| webp             | Boolean | Optional. Whether to render `<source>` tags for the webp format. Applies to .png source files only. Default: `false`.                                                          |
 | breakpoints      | Array   | Optional. Array of breakpoint strings, used for overwriting the default filename-based output. Can include any of: `"medium-up"`, `"large-up"`, `"xlarge-up"`, `"xxlarge-up"`. |
 | lazy             | Boolean | Optional. Whether to add browser-native lazy-loading, via the `loading="lazy"` attribute. Default: `false`.                                                                    |
 | className        | String  | Optional. CSS className to be appended to the rendered `<img>` element.                                                                                                        |
