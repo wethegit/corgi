@@ -1,12 +1,13 @@
 {
   "name": "@corgi/cli",
   "version": "0.0.1",
-  "description": "",
+  "description": "Command line interface for use with the corgi framework.",
   "type": "module",
   "main": "bin/index.js",
   "bin": {
     "corgi": "bin/index.js"
   },
+  "author": "Andrew Rubin <andrew@wethecollective.com> (https://wethecollective.com/)",
   "contributors": [],
   "license": "MIT",
   "dependencies": {

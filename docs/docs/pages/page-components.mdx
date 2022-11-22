@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 
-description: The anatomy of a Corgi page.
+description: The anatomy of a corgi page.
 ---
 
 # Page components
@@ -58,7 +58,7 @@ The `LOCALE_FOLDER` is used in many places within a top-level page component, as
 
 ### `setupPaths` and `setupProps`
 
-These two functions are wrappers around Next.js' [`getStaticPaths`](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths) and [`getStaticProps`](https://nextjs.org/docs/basic-features/data-fetching/get-static-props), respectively. These functions are abstracted away in Corgi so that you don't have to be _as_ concerned with the relatively complex setup of a page. Both of these functions must be imported into the page component, and subsequently exported as `getStaticPaths` and `getStaticProps`; passing in the [`LOCALE_FOLDER`](#the-locale_folder-constant) constant to each.
+These two functions are wrappers around Next.js' [`getStaticPaths`](https://nextjs.org/docs/basic-features/data-fetching/get-static-paths) and [`getStaticProps`](https://nextjs.org/docs/basic-features/data-fetching/get-static-props), respectively. These functions are abstracted away in corgi so that you don't have to be _as_ concerned with the relatively complex setup of a page. Both of these functions must be imported into the page component, and subsequently exported as `getStaticPaths` and `getStaticProps`; passing in the [`LOCALE_FOLDER`](#the-locale_folder-constant) constant to each.
 
 ### The `useLocale` hook
 
@@ -66,10 +66,10 @@ The `useLocale` hook is explained in detail in the [useLocale hook documentation
 
 ### The `<PageProvider>` component
 
-The PageProvider component is a wrapper around all page content. It expects a `page` prop, set to the string bound to `LOCALE_FOLDER`. This allows Corgi to maintain a cache of sorts, of the page-level content, which is useful when creating page transition animations. Rather than instantly changing the `page` locale data during a page transition of, say, 500 miliseconds, the PageProvider knows to _not_ change the locale data to that of the incoming page until the transition is complete.
+The PageProvider component is a wrapper around all page content. It expects a `page` prop, set to the string bound to `LOCALE_FOLDER`. This allows corgi to maintain a cache of sorts, of the page-level content, which is useful when creating page transition animations. Rather than instantly changing the `page` locale data during a page transition of, say, 500 miliseconds, the PageProvider knows to _not_ change the locale data to that of the incoming page until the transition is complete.
 
 ## Homepage specifics
 
-One of Corgi's localization opinions is that it gives users of the _default_ locale a nice, locale-free URL. For example, if your default locale is United States English (`"en-us"`), the homepage of your project will live at `your-project.com`, as opposed to `your-project.com/en-us`.
+One of corgi's localization opinions is that it gives users of the _default_ locale a nice, locale-free URL. For example, if your default locale is United States English (`"en-us"`), the homepage of your project will live at `your-project.com`, as opposed to `your-project.com/en-us`.
 
-Because the "home" page component must live both at the project root _and_ the dynamic [locale] root, we must abstract the actual homepage content away, into its own component that can be shared across both of these root (`index.js`) files. By default, Corgi sets this content up within the `/src/components/home-page-contents/home-page-contents.js` file. Consequently, all your homepage content must be built-out from within this component, rather than the page two homepage `index.js` components themselves.
+Because the "home" page component must live both at the project root _and_ the dynamic [locale] root, we must abstract the actual homepage content away, into its own component that can be shared across both of these root (`index.js`) files. By default, corgi sets this content up within the `/src/components/home-page-contents/home-page-contents.js` file. Consequently, all your homepage content must be built-out from within this component, rather than the page two homepage `index.js` components themselves.

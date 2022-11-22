@@ -12,7 +12,7 @@ const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 const component = async (names) => {
   await handleNamingErrors(names, NAME_TYPES.COMPONENT);
 
-  // Bootstrap all necessary component files, based on the Corgi templates
+  // Bootstrap all necessary component files, based on the corgi templates
   const template = await readFile(
     path.join(__dirname, "../../templates/component/component.js"),
     { encoding: "utf8" }

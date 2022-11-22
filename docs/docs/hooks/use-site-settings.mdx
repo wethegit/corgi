@@ -6,7 +6,7 @@ description: Provides a global settings context for the site.
 
 Location: `/src/hooks/use-site-state.js`
 
-The `useSiteState` hook provides a generic, global settings context for the site. Many of its properties and methods returned by default are necessary for various pieces of Corgi page management logic. However, it's an extremely open-ended hook, so in addition to these properties and methods, you are encouraged to add your own global/site-wide state if needed.
+The `useSiteState` hook provides a generic, global settings context for the site. Many of its properties and methods returned by default are necessary for various pieces of corgi page management logic. However, it's an extremely open-ended hook, so in addition to these properties and methods, you are encouraged to add your own global/site-wide state if needed.
 
 :::danger Overuse of React Context
 Any change of state within a Context Provider _will_ cause a re-render of all of its children. Only use this hook if you're absolutely sure that the state needs to managed at the app-level.
@@ -20,7 +20,7 @@ Any change of state within a Context Provider _will_ cause a re-render of all of
 
 | Property        | Type     | Description                                                                                                                                                                                                                                       |
 | --------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| modalOpen       | Boolean  | A flag for the _full scope_ of your site, which tells all child components when a Modal window is open. Note that Corgi does not provide a modal component out of the box.                                                                        |
+| modalOpen       | Boolean  | A flag for the _full scope_ of your site, which tells all child components when a Modal window is open. Note that corgi does not provide a modal component out of the box.                                                                        |
 | setModalOpen    | Function | An updater function for the `modalOpen` state. It can be useful to call this function along with your modal open/close implementation, passing in whatever the "open" state is.                                                                   |
 | background      | String   | A generic value that can be used to set an element's background from much deeper in the DOM.                                                                                                                                                      |
 | setBackground   | Function | An updater function for the `background` state.                                                                                                                                                                                                   |

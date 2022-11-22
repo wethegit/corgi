@@ -21,7 +21,7 @@ const runShellCommand = (command) => {
 
 /**
  * @param {Object} options
- * @param {Object} [options.templateURL] - Github branch URL containing a Corgi template
+ * @param {Object} [options.templateURL] - Github branch URL containing a corgi template
  * @param {Object} [options.destination] - Directory to clone template into.
  * @param {Object} [options.spinnerInstance] - If there's an existing spinner, pass it here so we can cancel it if need be.
  * @returns {Object} - custom template configuration object, per the repo. Defaults to {}.
@@ -64,7 +64,7 @@ const mergeTemplateRepo = async ({
       "warn",
       `No config file found at ${chalk.dim(
         configFilePath
-      )}.\nProceeding with the default Corgi configuration.`
+      )}.\nProceeding with the default corgi configuration.`
     );
   }
 

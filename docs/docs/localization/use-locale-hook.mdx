@@ -5,7 +5,7 @@ title: "useLocale() hook"
 
 # The `useLocale` hook
 
-Corgi's built-in React hook, `useLocale` allows you to easily pull in various pieces of locale-specific data from within your functional React components.
+corgi's built-in React hook, `useLocale` allows you to easily pull in various pieces of locale-specific data from within your functional React components.
 
 ## General usage
 
@@ -45,13 +45,14 @@ const AboutPage = () => {
 ```
 
 ## Available properties
+
 The `useLocale` hook returns a number of other useful properties, all of which are outlined below.
 
-| Property           | Type   | Description |
-| ------------------ | ------ | ----------- |
-| pageName           | String | The current page's directory name. This is the same as the locale folder name. |
-| locale             | String | The current locale string (`"en"`, for example). |
+| Property           | Type   | Description                                                                         |
+| ------------------ | ------ | ----------------------------------------------------------------------------------- |
+| pageName           | String | The current page's directory name. This is the same as the locale folder name.      |
+| locale             | String | The current locale string (`"en"`, for example).                                    |
 | localeMap          | Object | The localeMap data as specified in `src/config-locales.js`, for the current locale. |
-| page               | Object | The page-level locale data, for the current page and locale. |
-| globals            | Object | The site-wide locale data, for the current locale. |
-| alternativeLocales | Array  | A list of all available locales for the page, excluding the current locale. |
+| page               | Object | The page-level locale data, for the current page and locale.                        |
+| globals            | Object | The site-wide locale data, for the current locale.                                  |
+| alternativeLocales | Array  | A list of all available locales for the page, excluding the current locale.         |

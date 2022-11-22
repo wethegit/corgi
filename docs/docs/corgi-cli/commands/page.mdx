@@ -6,20 +6,22 @@ description: Sets up one or multiple pages.
 
 # The `page` command
 
-Sets up a page component and locale data files in a Corgi project. Must be executed from the root of the project directory.
+Sets up a page component and locale data files in a corgi project. Must be executed from the root of the project directory.
 
 ## Basic usage
+
 ```
 npx @corgi/cli page
 ```
 
 ## Arguments
 
-| Arguments   | Description |
-| ----------- | ------------- |
-| name(s)     | A space-separated list of page component names. If you do not pass any name arguments, you will be prompted to enter a page component name. |
+| Arguments | Description                                                                                                                                 |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| name(s)   | A space-separated list of page component names. If you do not pass any name arguments, you will be prompted to enter a page component name. |
 
 ### Examples
+
 ```bash
 npx @corgi/cli page About
 ```
@@ -30,19 +32,21 @@ npx @corgi/cli page About Work Contact
 
 ## Options
 
-| Flag        | Short flag | Default value | Description   |
-| ----------- | -----------| ------------- | ------------- |
-| --locales   | -l         | `en`          | Optional. A space-separated list of locale slugs. |
-| --help      | -h         |               | Displays a list of arguments and options. |
-
+| Flag      | Short flag | Default value | Description                                       |
+| --------- | ---------- | ------------- | ------------------------------------------------- |
+| --locales | -l         | `en`          | Optional. A space-separated list of locale slugs. |
+| --help    | -h         |               | Displays a list of arguments and options.         |
 
 ### Examples
+
 ```bash
 npx @corgi/cli page About --locales en es fr pt
 ```
 
 ## All together now…
+
 ```bash
 npx @corgi/cli page About Work Contact Blog --locales en-us es-mx fr-ca
 ```
+
 This will scaffold out all the necessary locale YAML files and page components for four different pages, with three locales each. Nice!

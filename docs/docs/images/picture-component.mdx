@@ -10,7 +10,7 @@ title: "<Picture> component"
 Please read the [image optimization docs](./image-optimization) before using the `<Picture>` component!
 :::
 
-Corgi's built-in `<Picture>` component allows you to easily use the generated and optimized images from its [image optimization](./image-optimization) step. This component renders a standard [HTML `<picture>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture); with fallback formats, 1x and 2x srcset support, and breakpoint-specific images.
+corgi's built-in `<Picture>` component allows you to easily use the generated and optimized images from its [image optimization](./image-optimization) step. This component renders a standard [HTML `<picture>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture); with fallback formats, 1x and 2x srcset support, and breakpoint-specific images.
 
 In this article:
 
@@ -20,42 +20,51 @@ In this article:
 
 ## Basic usage
 
-Given the source file location of `/src/images/defined/logo-2x.png`, we can use the component as shown below.
+Given the source file location of `/src/images/defined/logos/my-company-logo-2x.png`, we can use the component as shown below.
 
 There are two things to take note of here:
 
 - The `src` attribute does _not_ expect the `-2x` suffix in the filename.
-- The inclusion of the `webp` prop set to `true` — this is optional, but can be useful for serving up highly-optimized images for modern browsers.
+- corgi recognizes that the source image is a PNG, and thus generates a WEBP version as well.
 
 ```jsx title="<Picture> component usage"
 import Picture from "../picture";
 
 const MyComponent = () => (
-  <Picture src="/logo.png" alt="Description of the company logo." webp={true} />
+  <Picture
+    src="logos/my-company-logo.png"
+    alt="Description of the company logo."
+  />
 );
 ```
 
 ```html title="Rendered DOM markup"
 <picture>
   <source
-    srcset="/_images/logo.webp 1x, /_images/logo-2x.webp 2x"
+    srcset="
+      /_images/logos/my-company-logo.webp    1x,
+      /_images/logos/my-company-logo-2x.webp 2x
+    "
     type="image/webp"
   />
   <source
-    srcset="/_images/logo.png 1x, /_images/logo-2x.png 2x"
+    srcset="
+      /_images/logos/my-company-logo.png    1x,
+      /_images/logos/my-company-logo-2x.png 2x
+    "
     type="image/png"
   />
   <img
     class=""
     alt="Description of the company logo."
-    src="/_images/logo.png"
+    src="/_images/logos/my-company-logo.png"
   />
 </picture>
 ```
 
 ## Images for different breakpoints
 
-Providing your source files with specific _breakpoint_ suffixes will generate and optimize all the necessary breakpoint-specific versions of your image. The best part? You do not have to change anything about how you use the component—it's all automatic, based on the filenames. The breakpoint suffixes are as follows, and match those of Corgi's defined CSS breakpoints:
+Providing your source files' names with specific _breakpoint_ suffixes will generate and optimize all the necessary breakpoint-specific versions of your image. The best part? You do not have to change anything about how you use the component—it's all automatic, based on the filenames. The breakpoint suffixes are as follows, and match those of corgi's pre-defined CSS breakpoints:
 
 ```txt title="Available breakpoint suffixes"
 medium-up
@@ -65,52 +74,71 @@ xxlarge-up
 ```
 
 ```txt title="File tree with breakpoint-specific images"
-.
-└── public/
-    └── _images/
-        ├── logo-2x.png
-        ├── logo-medium-up-2x.png
-        └── logo-large-up-2x.png
+src/
+└── images/
+    └── defined/
+        └── logos/
+            ├── my-company-logo-2x.png
+            ├── my-company-logo-medium-up-2x.png
+            └── my-company-logo-large-up-2x.png
 ```
 
 ```html title="Rendered DOM markup"
 <picture>
   <source
     media="(min-width: 1024px)"
-    srcset="/_images/logo-large-up.webp 1x, /_images/logo-large-up-2x.webp 2x"
+    srcset="
+      /_images/logos/my-company-logo-large-up.webp    1x,
+      /_images/logos/my-company-logo-large-up-2x.webp 2x
+    "
     width="248"
     height="128"
     type="image/webp"
   />
   <source
     media="(min-width: 1024px)"
-    srcset="/_images/logo-large-up.png 1x, /_images/logo-large-up-2x.png 2x"
+    srcset="
+      /_images/logos/my-company-logo-large-up.png    1x,
+      /_images/logos/my-company-logo-large-up-2x.png 2x
+    "
     width="248"
     height="128"
     type="image/png"
   />
   <source
     media="(min-width: 640px)"
-    srcset="/_images/logo-medium-up.webp 1x, /_images/logo-medium-up-2x.webp 2x"
+    srcset="
+      /_images/logos/my-company-logo-medium-up.webp    1x,
+      /_images/logos/my-company-logo-medium-up-2x.webp 2x
+    "
     width="248"
     height="128"
     type="image/webp"
   />
   <source
     media="(min-width: 640px)"
-    srcset="/_images/logo-medium-up.png 1x, /_images/logo-medium-up-2x.png 2x"
+    srcset="
+      /_images/logos/my-company-logo-medium-up.png    1x,
+      /_images/logos/my-company-logo-medium-up-2x.png 2x
+    "
     width="248"
     height="128"
     type="image/png"
   />
   <source
-    srcset="/_images/logo.webp 1x, /_images/logo-2x.webp 2x"
+    srcset="
+      /_images/logos/my-company-logo.webp    1x,
+      /_images/logos/my-company-logo-2x.webp 2x
+    "
     type="image/webp"
     width="248"
     height="128"
   />
   <source
-    srcset="/_images/logo.png 1x, /_images/logo-2x.png 2x"
+    srcset="
+      /_images/logos/my-company-logo.png    1x,
+      /_images/logos/my-company-logo-2x.png 2x
+    "
     type="image/png"
     width="248"
     height="128"
@@ -118,7 +146,7 @@ xxlarge-up
   <img
     class=""
     alt="Description of the company logo."
-    src="/_images/logo.png"
+    src="/_images/logos/my-company-logo.png"
   />
 </picture>
 ```
@@ -129,9 +157,8 @@ As you can see, this is component is invaluable for working with images!
 
 | Prop             | Type    | Description                                                                                                                                                                    |
 | ---------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| src              | String  | The path to an image, starting from the `/src/images/defined/` directory and including a leading slash. This should not include the `-2x` prefix.                              |
+| src              | String  | The path to an image, starting from the `/src/images/defined/` directory. This should not include the `-2x` prefix.                                                            |
 | alt              | String  | Alt text attribute for the image.                                                                                                                                              |
-| webp             | Boolean | Optional. Whether to render `<source>` tags for the webp format. Applies to .png source files only. Default: `false`.                                                          |
 | breakpoints      | Array   | Optional. Array of breakpoint strings, used for overwriting the default filename-based output. Can include any of: `"medium-up"`, `"large-up"`, `"xlarge-up"`, `"xxlarge-up"`. |
 | lazy             | Boolean | Optional. Whether to add browser-native lazy-loading, via the `loading="lazy"` attribute. Default: `false`.                                                                    |
 | className        | String  | Optional. CSS className to be appended to the rendered `<img>` element.                                                                                                        |

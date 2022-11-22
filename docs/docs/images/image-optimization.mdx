@@ -3,15 +3,15 @@
 
 # Image optimization
 
-Corgi can optimize and compresses images for you; allowing you to only have to worry about uploading a single, high-res ("2x" pixel density) image. This optimization process generates compressed versions of these `2x` images, their `1x` counterparts, and `.webp` versions if applicable.
+corgi can optimize and compresses images for you; allowing you to only have to worry about uploading a single, high-res ("2x" pixel density) image. This optimization process generates compressed versions of these `2x` images, their `1x` counterparts, and `.webp` versions if applicable.
 
 ## Image source file location
 
-To take advantage of Corgi's image optimization, save your image _source_ files in the `/src/images/defined/` directory. You're welcome to make subdirectories within `defined/`. The images you add here must have the `-2x` suffix on their filenames. For example, `/src/images/defined/banner-logo-2x.png`. Note that the `-2x` suffix implies that the image is twice the size of its intended CSS dimensions. Don't worry about adding the single-pixel-density images ("1x"), as they will be automatically generated for use with devices/browsers that request them. If files are removed from this directory, Corgi will pick up on that, and update the generated output accordingly.
+To take advantage of corgi's image optimization, save your image _source_ files in the `/src/images/defined/` directory. You're welcome to make subdirectories within `defined/`. The images you add here must have the `-2x` suffix on their filenames. For example, `/src/images/defined/banner-logo-2x.png`. Note that the `-2x` suffix implies that the image is twice the size of its intended CSS dimensions. Don't worry about adding the single-pixel-density images ("1x"), as they will be automatically generated for use with devices/browsers that request them. If files are removed from this directory, corgi will pick up on that, and update the generated output accordingly.
 
 ## Image optimization output location
 
-Once the source images are in place, running any of the following Node scripts (per the `package.json` scripts) will optimize your source images. The **output** files will be saved to `/public/_images/`. This directory is reserved for images optimized by Corgi, so do not edit any of this directory's contents directly. Any changes to your images should _always_ be made from the source directory: `/src/images/defined/`.
+Once the source images are in place, running any of the following Node scripts (per the `package.json` scripts) will optimize your source images. The **output** files will be saved to `/public/_images/`. This directory is reserved for images optimized by corgi, so do not edit any of this directory's contents directly. Any changes to your images should _always_ be made from the source directory: `/src/images/defined/`.
 
 ```bash
 # When developing, all images in the `src/images/defined/` directory will be watched for changes,
@@ -55,10 +55,10 @@ As you can see in the example output above, not only are the 1x versions of the 
 
 ## Image formats
 
-Corgi's image compression is intended for `.jpg` and `.png` files.
+corgi's image compression is intended for `.jpg` and `.png` files.
 
 If you need static `.svg`, `.mp4`, or assets of other formats, add them to the default Next.js `/public/` directory. Just remember not to tamper with the generated `/public/_images/` directory within. More on this in the [other static assets](./static-assets) section.
 
 ## Image usage
 
-Corgi provides a component for using the generated and optimized images. Check out the [`<Picture>` component docs](./picture-component) for more information.
+corgi provides a component for using the generated and optimized images. Check out the [`<Picture>` component docs](./picture-component) for more information.

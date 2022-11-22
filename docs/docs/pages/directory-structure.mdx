@@ -8,11 +8,11 @@ description: How to set up dynamic, locale-based routing.
 
 ## Dynamic locale-based routing
 
-Next.js 12 uses page-based routing, meaning the structure of your `/src/pages/` directory will directly determine the routes of your project. In Corgi, all pages must live one step deeper: within the `/src/pages/[locale]/` directory.
+Next.js 12 uses page-based routing, meaning the structure of your `/src/pages/` directory will directly determine the routes of your project. In corgi, all pages must live one step deeper: within the `/src/pages/[locale]/` directory.
 
 The `[locale]` directory acts as a [dynamic route](https://nextjs.org/docs/routing/dynamic-routes), which—when compiled—results in the appropriate locale string being slotted into the URL.
 
-Here is an example file tree for the pages directory in a Corgi project. We'll cover some of the other files shortly; let's only concern ourselves with the `[locale]` directory for now:
+Here is an example file tree for the pages directory in a corgi project. We'll cover some of the other files shortly; let's only concern ourselves with the `[locale]` directory for now:
 
 ```
 .
@@ -48,9 +48,9 @@ The directory structure above will result in the following routes, assuming [loc
 ```
 
 :::info Default locale homepage URL
-Note that the root (homepage) of the default locale's URL does _not_ contain the locale string. This is an opinion enforced by Corgi, in an effort to have simpler URLs for the primary locele's landing page experience.
+Note that the root (homepage) of the default locale's URL does _not_ contain the locale string. This is an opinion enforced by corgi, in an effort to have simpler URLs for the primary locele's landing page experience.
 
-In other words, Corgi makes it so that you don't have to share your website as `myproject.com/en` if your default locale is `"en"`. Rather, you can just share `myproject.com`
+In other words, corgi makes it so that you don't have to share your website as `myproject.com/en` if your default locale is `"en"`. Rather, you can just share `myproject.com`
 :::
 
 ## Other files in the `pages` directory
@@ -69,4 +69,4 @@ These are no different than the typical custom Next.js 12 setup, and handle thin
 
 ### `404.js`, `500.js`
 
-These are resource-not-found and server-error files, which are required for Next.js builds. Since Corgi generates a static site, these files are not actually _used_ in a deployment build, but since Next.js requires them, we must keep them here.
+These are resource-not-found and server-error files, which are required for Next.js builds. Since corgi generates a static site, these files are not actually _used_ in a deployment build, but since Next.js requires them, we must keep them here.
