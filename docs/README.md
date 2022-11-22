@@ -1,41 +1,45 @@
-# Website
+# corgi docs
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+The corgi documentation site is built using [Docusaurus 2](https://docusaurus.io/).
+
+## Commands
+
+⚠️ The following commands should be run from the `/docs/` directory
 
 ### Installation
 
-```
-$ yarn
+```bash
+npm install
 ```
 
 ### Local Development
 
-```
-$ yarn start
+```bash
+npm start
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
 ### Build
 
-```
-$ yarn build
+```bash
+npm run build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
 ### Deployment
 
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
+```bash
+npm run deploy
 ```
 
-Not using SSH:
+This command will build the website and push to the `gh-pages` branch, which subsequently deploys to Github pages.
 
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
+## Contributing
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+For local development, you'll want to:
+
+- Clone this repo, and branch off `dev`.
+- `cd` into `/docs/` and make your changes.
+- Make any pull requests against the `dev` branch.
