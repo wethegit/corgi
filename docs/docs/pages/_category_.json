@@ -3,6 +3,6 @@
   "position": 4,
   "link": {
     "type": "generated-index",
-    "description": "Pages in Corgi projects follow the Next.js conventions closely, but there are a few key differences which make statically-generated localization possible. While the Corgi CLI abstracts away most of the setup outlined in this section, this should provide a deeper understanding of how the framework manages pages."
+    "description": "Pages in corgi projects follow the Next.js conventions closely, but there are a few key differences which make statically-generated localization possible. While the corgi CLI abstracts away most of the setup outlined in this section, this should provide a deeper understanding of how the framework manages pages."
   }
 }

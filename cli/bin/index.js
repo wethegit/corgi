@@ -23,14 +23,14 @@ program
   )
   .option(
     "-t, --template <url>",
-    "URL of a Github repo's branch containing a Corgi template. Example:\ncorgi project my-web-app --template https://github.com/<user>/<repo>/tree/<branchname>"
+    "URL of a Github repo's branch containing a corgi template. Example:\ncorgi project my-web-app --template https://github.com/<user>/<repo>/tree/<branchname>"
   )
   .action(project);
 
 program
   .command("page")
   .description(
-    "Generate one or multiple new pages within a Corgi app. Must be executed from the root of the project directory."
+    "Generate one or multiple new pages within a corgi app. Must be executed from the root of the project directory."
   )
   .argument(
     "[names...]",
@@ -45,7 +45,7 @@ program
 program
   .command("component")
   .description(
-    "Generate one or many new React components within a Corgi app. Includes a `.scss` module file for each. Must be executed from the root of the project directory."
+    "Generate one or many new React components within a corgi app. Includes a `.scss` module file for each. Must be executed from the root of the project directory."
   )
   .argument(
     "[names...]",

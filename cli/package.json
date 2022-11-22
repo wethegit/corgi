@@ -1,7 +1,7 @@
 {
   "name": "@corgi/cli",
   "version": "0.0.1",
-  "description": "Command line interface for use with the Corgi framework.",
+  "description": "Command line interface for use with the corgi framework.",
   "type": "module",
   "main": "bin/index.js",
   "bin": {

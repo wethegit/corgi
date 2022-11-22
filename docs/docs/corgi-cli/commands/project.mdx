@@ -5,7 +5,7 @@ title: project
 
 # The `project` command
 
-Sets up a Corgi project.
+Sets up a corgi project.
 
 ## Basic usage
 
@@ -14,6 +14,7 @@ From your command line, `cd` into an empty project directory and run:
 ```bash
 npx @corgi/cli project .
 ```
+
 The dot `.` indicates the current working directory. You can also choose to specify a directory name instead.
 
 You'll then be prompted to enter an optional template repo. For more information on templates, see the [template option](#templates) below.
@@ -24,11 +25,12 @@ If using `npx` from a brand new directory as shown (as opposed to having the `co
 
 ## Arguments
 
-| Arguments   | Description |
-| ----------- | ------------- |
+| Arguments | Description                                                                                                         |
+| --------- | ------------------------------------------------------------------------------------------------------------------- |
 | directory | Relative directory to create the project in. If you do not pass a directory argument, you will be prompted for one. |
 
 ### Examples
+
 ```bash
 npx @corgi/cli project .
 ```
@@ -39,11 +41,10 @@ npx @corgi/cli project my-cool-website
 
 ## Options
 
-| Flag           | Short flag | Description   |
-| -------------- | -----------| ------------- |
-| --template     | -t         | Optional. URL of a Github repo's branch containing a Corgi template. Example: `https://github.com/<user>/<repo>/tree/<branchname>`. If you do not pass this flag, you will be prompted to enter an optional template. |
-| --help         | -h         | Displays a list of arguments and options. |
-
+| Flag       | Short flag | Description                                                                                                                                                                                                           |
+| ---------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --template | -t         | Optional. URL of a Github repo's branch containing a corgi template. Example: `https://github.com/<user>/<repo>/tree/<branchname>`. If you do not pass this flag, you will be prompted to enter an optional template. |
+| --help     | -h         | Displays a list of arguments and options.                                                                                                                                                                             |
 
 ### Examples
 
@@ -53,16 +54,16 @@ npx @corgi/cli project . --template https://github.com/<user>/<repo>/tree/<branc
 
 ## Templates
 
-Pre-defined templates for Corgi projects can be pulled into your project automatically, by specifying the `--template` option within the `project` command. These templates must live within a branch of a github repo which you have access to. Templates are typically just sets of files which contain everything _other than_ the existing Corgi framework — i.e. pre-defined pages, components, locales, and so on.
+Pre-defined templates for corgi projects can be pulled into your project automatically, by specifying the `--template` option within the `project` command. These templates must live within a branch of a github repo which you have access to. Templates are typically just sets of files which contain everything _other than_ the existing corgi framework — i.e. pre-defined pages, components, locales, and so on.
 
 ### Custom config
 
 If custom template is specified, the `project` command will look for an optional JSON file located the root of the template repo, called `corgi-project.config.json`.
 
-This config file can include overrides for the project, such as NPM dependencies, scripts, and a project name. The default Corgi config settings look like this:
+This config file can include overrides for the project, such as NPM dependencies, scripts, and a project name. The default corgi config settings look like this:
 
 ```js
-{ 
+{
   name: "corgi-project",
   dependencies: {},
   devDependencies: {},
@@ -71,6 +72,7 @@ This config file can include overrides for the project, such as NPM dependencies
 ```
 
 You can overwrite any of these properties from within your template's `corgi-project.config.json`, like so:
+
 ```json title=corgi-project-config.json
 {
   "name": "andrews-corgi-project",

@@ -16,7 +16,7 @@ const page = async (names, options) => {
 
   await handleNamingErrors(names, NAME_TYPES.PAGE);
 
-  // Bootstrap all necessary page files, based on the Corgi page and locale templates
+  // Bootstrap all necessary page files, based on the corgi page and locale templates
   const pageTemplate = await readFile(
     path.join(__dirname, "../../templates/page.js"),
     { encoding: "utf8" }
@@ -25,11 +25,11 @@ const page = async (names, options) => {
     path.join(__dirname, "../../templates/locale.yml"),
     { encoding: "utf8" }
   );
-  
+
   Promise.all([
     createPages(names, pageTemplate),
-    createLocales(names, locales, localeTemplate)
-  ])
+    createLocales(names, locales, localeTemplate),
+  ]);
 };
 
 export default page;

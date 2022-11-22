@@ -52,7 +52,7 @@ const config = {
       navbar: {
         title: "corgi",
         logo: {
-          alt: "Corgi logo",
+          alt: "corgi logo",
           src: "img/corgi.svg",
         },
         items: [
