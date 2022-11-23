@@ -1,5 +1,5 @@
 {
-  "name": "@corgi/cli",
+  "name": "@wethegit/corgi",
   "version": "0.0.0",
   "description": "Command line interface for use with the corgi framework.",
   "type": "module",

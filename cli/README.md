@@ -11,6 +11,6 @@ For local development, you'll want to:
 - Clone this repo, and branch off `dev`.
 - `cd` into the `cli` directory, run `npm install`.
 - Run `npm link` to create a symlink to the corgi executable.
-- Create an empty test project somewhere else on your machine, and run `npm link @corgi/cli`.
+- Create an empty test project somewhere else on your machine, and run `npm link @wethegit/corgi`.
 - You can now make changes to the corgi codebase and see them reflected in your test project.
 - Make any pull requests against the `dev` branch.
