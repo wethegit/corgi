@@ -6,9 +6,9 @@ sidebar_position: 2
 
 Static site data for each locale is grouped into two general categories: the "global" data and the "page" data. Global data refers to site-wide content—things like navigation menus, footers, and so on—while page data refers to page-specific content—things like a homepage header, or a biography for an "about" page.
 
-All static locale data lives within the `src/locales/` directory, and is grouped into these two categories. You can treat the `globals` directory as a reserved directory name, as all global (site-wide) data is compiled from within it. All other directories here, however, are page-level data directories which should match each page's filename as it exists in the `src/pages/` directory.
+All static locale data lives within the `/src/locales/` directory, and is grouped into these two categories. You can treat the `globals` directory as a reserved directory name, as all global (site-wide) data is compiled from within it. All other directories here, however, are page-level data directories which should match each page's filename as it exists in the `/src/pages/` directory.
 
-Within both `src/locales/globals/` and `src/locales/<page-name>/`, should live YAML files containing the actual locale data. Each YAML file's name should be the locale string as specified in the [locale config](./configuration#locales), with a `.yml` extension.
+Within both `/src/locales/globals/` and `/src/locales/<page-name>/`, should live YAML files containing the actual locale data. Each YAML file's name should be the locale string as specified in the [locale config](./configuration#locales), with a `.yml` extension.
 
 Here is an example file tree, containing global data as well as data for two pages—all containing content for three locales:
 
@@ -24,7 +24,7 @@ Here is an example file tree, containing global data as well as data for two pag
         │   ├── en.yml
         │   ├── es.yml
         │   └── fr.yml
-        └── about/
+        └── features/
             ├── en.yml
             ├── es.yml
             └── fr.yml
@@ -32,13 +32,13 @@ Here is an example file tree, containing global data as well as data for two pag
 
 ## Locale data compilation
 
-Under the hood, all of these files get compiled into two objects—`globals` and `page`—and are then passed to each page as props. This process is done via Next JS' `getStaticProps` convention. The [`useLocale`](./use-locale-hook) hook is a convenient way to work with this data from _any_ functional React component in your project.
+Under the hood, all of these files get compiled into two objects—`globals` and `page`—and are then passed to each page as props. This process is done via Next JS' `getStaticProps` convention. The [`useLocale` hook](./use-locale-hook) is a convenient way to work with this data from _any_ functional React component in your project.
 
 ## `globals` example
 
 An example `globals` YAML file for the `"en"` locale:
 
-```yml title="/src/locales/globals/en.yml"
+```yml title=/src/locales/globals/en.yml
 meta:
   title: My Cool Web App
   description: The site-wide meta description.
@@ -49,8 +49,8 @@ nav:
   items:
     - id: home
       label: Home
-    - id: about
-      label: About Us
+    - id: features
+      label: Product Features
     - id: contact
       label: Get in touch
 
@@ -59,7 +59,7 @@ footer: © Company Name.
 
 As mentioned, that data gets compiled into a page-level prop called `globals`, for the current page and locale. Here's an example that uses that data (via [`useLocale`](./use-locale-hook)) from within an imaginary `<Navigation />` component:
 
-```jsx
+```jsx title=/src/components/navigation.js
 import useLocale from "../../hooks/use-locale"
 
 const Navigation = () => {
@@ -82,35 +82,47 @@ export default Navigation
 
 ## `page` example
 
-An example `about` page YAML file for the `"en"` locale:
+An example "Product Features" page YAML file for the `"en"` locale:
 
-```yml title="/src/locales/about/en.yml"
+```yml title=/src/locales/features/en.yml
 meta:
-  title: About Us
-  description: Our team is pretty cool. We do cool things.
+  title: Product Features
+  description: Our product is pretty cool. It does cool things.
 
-title: About Us
-
-bio: Aliqua irure sint ea amet duis exercitation labore non occaecat velit voluptate. Ipsum fugiat officia irure consequat laborum in incididunt sit magna ex deserunt reprehenderit veniam ea.
+features:
+  - id: 897213
+    image: path-to-some-image.jpg
+    image_alt: Description of image goes here.
+    description: Laborum sint ut mollit proident quis do proident ex laboris sint nisi.
+  - id: 216357
+    image: path-to-some-other-image.jpg
+    image_alt: Description of image goes here.
+    description: Consequat ea fugiat irure do magna fugiat ex minim aute proident ullamco.
+  - id: 187236
+    image: path-to-yet-another-image.jpg
+    image_alt: Description of image goes here.
+    description: Magna in laborum aliquip exercitation est est est.
 ```
 
-This data gets compiled into a page-level prop called `page`, for the current page and locale. Here's an example that uses that data (via [`useLocale`](./use-locale-hook)) from within an imaginary About page component:
+This data gets compiled into a page-level prop called `page`, for the current page and locale. Here's an example that uses that data (via [`useLocale`](./use-locale-hook)) from within an imaginary `<FeatureList>` component:
 
-```jsx
-import useLocale from "../../hooks/use-locale"
+```jsx title=/src/components/feature-list.js
+import useLocale from "../../hooks/use-locale";
 
-const AboutPage = () => {
-  const { page } = useLocale()
+const FeatureList = ({}) => {
+  const { page } = useLocale();
 
   return (
-    <header aria-labelledby="about-title">
-      <h1 id="about-title">{page.title}</h1>
-    </header>
-    <main>
-      <p>{page.bio}</p>
-    </main>
-  )
-}
+    <ul>
+      {page.features.map((feature) => (
+        <li key={feature.id}>
+          <img src={feature.image} alt={featue.image_alt} />
+          <span>{feature.description}</span>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
-export default AboutPage
+export default FeatureCard;
 ```

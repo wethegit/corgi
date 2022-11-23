@@ -8,13 +8,13 @@ This quick start guide will cover the bare minumum you need to get up and runnin
 
 ## Configure your locales
 
-Project-level locale configuration lives in the `src/config-locales.js` file. By default, your project's default locale will be `"en"`, with two other default locales of `"fr"` and `"es"`. Edit this data per your project's needs, ensuring that the strings entered correspond with what you want your URLs to look like. For more information, check out the [Locale config documentation](../localization/configuration)
+Project-level locale configuration lives in the `/src/config-locales.js` file. Assuming you have not overridden this file via a custom corgi template, your project's default locale will be `"en"`, with two other default locales of `"fr"` and `"es"`. Edit this data per your project's needs, ensuring that the strings entered correspond with what you want your URLs to look like. For more information, check out the [locale config documentation](../localization/configuration)
 
 ## Add locale-specific content
 
-This is just a quick-start guide. For more detailed guide to locale content, check out the [Locale data documentation](../localization/data).
+This is just a quick-start guide. For more detailed guide to locale content, check out the [locale data documentation](../localization/data).
 
-All of your site's region-specific content lives inside `src/locales/`, in the `globals` directory and the page-specific directories. Each of the filenames within these directories should match the locale config strings you've set up in the previous section. Here's an example file tree:
+All of your site's region-specific content is set up in YAML files which live within the `/src/locales/` directory. This content is further segmented into a `globals` directory as well as page-specific directories. Each of the filenames within these directories should match the locale config strings you've set up in the previous section. Here's an example file tree:
 
 ```
 .
@@ -34,9 +34,9 @@ All of your site's region-specific content lives inside `src/locales/`, in the `
             └── fr.yml
 ```
 
-### Globals
+### Global data
 
-To add global locale data such as navigation items, headers, and footers; create and edit the appropriate YAML files under `src/locales/globals` as needed. Ensure that YAML properties are consistent across all languages, unless certain locales should intentionally exclude information. Your filenames must match your locale config strings. For example, if your default locale is `"en"`, the filename for English "global" locale data should be `en.yml`. Below are examples of two global locale files. We'll go over _using_ the data at the end of this section.
+To add global locale data such as navigation items, headers, and footers; create and edit the appropriate YAML files under `/src/locales/globals` as needed. Ensure that YAML properties are consistent across all languages, unless certain locales should intentionally exclude information. Your filenames must match your locale config strings. For example, if your default locale is `"en"`, the filename for English "global" locale data should be `en.yml`. Below are examples of two global locale files. We'll go over _using_ the data at the end of this section. Here are two example global locale files for "en" and "fr":
 
 ```yml title="/src/locales/globals/en.yml"
 # English!
@@ -66,7 +66,7 @@ footer: © Le nom de votre entreprise.
 
 ### Page-level data
 
-To add page-specific locale data, create and edit the appropriate YAML files under `src/locales/<page-name>/` (where ` <page-name>` is the directory name of your page, as it exists in your pages directory). Ensure that YAML properties are consistent across languages, unless certain locales should intentionally exclude information. Your filenames must match your locale config strings. For example, if your default locale is `"en"`, the filename for English page data should be `en.yml`. Below are examples of two page-level locale files. We'll go over _using_ the data at the end of this section.
+To add page-specific locale data, create and edit the appropriate YAML files under `/src/locales/<page-name>/` (where ` <page-name>` is the directory name of your page, as it exists in your pages directory). Ensure that YAML properties are consistent across languages, unless certain locales should intentionally exclude information. Your filenames must match your locale config strings. For example, if your default locale is `"en"`, the filename for English page data should be `en.yml`. Below are examples of two page-level locale files. We'll go over _using_ the data at the end of this section. Here are two example page-level locale files for "en" and "fr":
 
 ```yml title="/src/locales/home/en.yml"
 # English!
@@ -94,7 +94,7 @@ body: Lorem ipsum quelque chose, quelque chose. Occaecat fugiat do sit id incidi
 
 The `useLocale` hook will allow you to retrieve locale information from within any functional React component. Data available includes `globals`, `page` data, the `locale` string, and more. Check out the [useLocale documentation](../localization/use-locale-hook) for more.
 
-Global data example:
+### Global data example:
 
 ```jsx title=/src/components/footer/footer.js
 import useLocale from "../../hooks/use-locale";
@@ -112,7 +112,7 @@ const Footer = ({ children }) => {
 export default Footer;
 ```
 
-Page and global data example:
+### Page and global data example:
 
 ```jsx title=/src/components/home-page-contents/home-page-contents.js
 import useLocale from "../../hooks/use-locale";

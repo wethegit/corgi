@@ -39,22 +39,22 @@ npx @wethegit/corgi project my-cool-website
 
 | Flag       | Short flag | Description                                                                                                                                                                                                           |
 | ---------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| --template | -t         | Optional. URL of a Github repo's branch containing a corgi template. Example: `https://github.com/<user>/<repo>/tree/<branchname>`. If you do not pass this flag, you will be prompted to enter an optional template. |
+| --template | -t         | Optional. URL of a GitHub repo's branch containing a corgi template. Example: `https://github.com/<user>/<repo>/tree/<branchname>`. If you do not pass this flag, you will be prompted to enter an optional template. |
 | --help     | -h         | Displays a list of arguments and options.                                                                                                                                                                             |
 
-### Examples
+## Templates
+
+Pre-defined templates for corgi projects can be pulled into your project automatically, by specifying the `--template` option within the `project` command. These templates must live within a branch of a GitHub repo which you have access to. Templates are just sets of files which _extend_ the base corgi setup. This typically includes sets of pre-defined pages, components, locales, and so on.
+
+### Example
 
 ```bash
 npx @wethegit/corgi project . --template https://github.com/<user>/<repo>/tree/<branchname>
 ```
 
-## Templates
-
-Pre-defined templates for corgi projects can be pulled into your project automatically, by specifying the `--template` option within the `project` command. These templates must live within a branch of a github repo which you have access to. Templates are typically just sets of files which contain everything _other than_ the existing corgi framework — i.e. pre-defined pages, components, locales, and so on.
-
 ### Custom config
 
-If custom template is specified, the `project` command will look for an optional JSON file located the root of the template repo, called `corgi-project.config.json`.
+If a custom template is specified, the `project` command will look for an optional JSON file located the root of the template repo, called `corgi-project.config.json`.
 
 This config file can include overrides for the project, such as NPM dependencies, scripts, and a project name. The default corgi config settings look like this:
 

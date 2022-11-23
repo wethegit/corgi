@@ -48,7 +48,7 @@ The directory structure above will result in the following routes, assuming [loc
 ```
 
 :::info Default locale homepage URL
-Note that the root (homepage) of the default locale's URL does _not_ contain the locale string. This is an opinion enforced by corgi, in an effort to have simpler URLs for the primary locele's landing page experience.
+Note that the root (homepage) of the default locale's URL does _not_ contain the locale string. This is an opinion enforced by corgi, in an effort to have simpler URLs for the primary locale's landing page experience.
 
 In other words, corgi makes it so that you don't have to share your website as `myproject.com/en` if your default locale is `"en"`. Rather, you can just share `myproject.com`
 :::
@@ -60,7 +60,7 @@ In other words, corgi makes it so that you don't have to share your website as `
 This is the root/homepage component, for the **default** locale only. It ensures that you can navigate to `/` on your project, and see the default locale's content.
 
 :::caution Homepage content
-All homepage _content_ must be edited in the `/src/components/home-page-contents` component, becuase this particular index page is not the only place the homepage content needs to live. A homepage index file must also live in the dynamic [locale] path (for localized pages, of course!) — thus the abstracted component for the homepage. More on this in the [page component](./page-components#homepage-specifics) section.
+All homepage _content_ must be edited in the `/src/components/home-page-contents` component, becuase this particular index page is not the only place the homepage content needs to live. A homepage index file must also live in the dynamic [locale] path (for localized pages, of course!) — thus the abstracted component for the homepage. More on this in the [page components](./page-components#homepage-specifics) section.
 :::
 
 ### `_app_.js`, `_document.js`

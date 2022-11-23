@@ -21,7 +21,7 @@ const CONSTS = {
     },
     {
       id: "page-overwrite",
-      text: "The page %PAGE_NAME% at `src/pages/[locale]/%PAGE_SLUG%` already exists in this project. Would you like to overwrite it? (y/n): ",
+      text: "The page %PAGE_NAME% at `/src/pages/[locale]/%PAGE_SLUG%` already exists in this project. Would you like to overwrite it? (y/n): ",
     },
     {
       id: "component",
@@ -29,7 +29,7 @@ const CONSTS = {
     },
     {
       id: "component-overwrite",
-      text: "The component %COMPONENT_NAME% at `src/components/%COMPONENT_SLUG%` already exists in this project. Would you like to overwrite it? (y/n): ",
+      text: "The component %COMPONENT_NAME% at `/src/components/%COMPONENT_SLUG%` already exists in this project. Would you like to overwrite it? (y/n): ",
     },
   ],
 };
