@@ -1,34 +1,66 @@
 @use "../helpers/helpers-layout" as *;
 
-// Breakpoint corner tag
-body::after {
-  background: #fff;
-  bottom: 0;
-  content: "S";
-  display: none;
-  font-size: 1.6rem;
-  padding: 10px;
-  position: fixed;
-  right: 0;
-  z-index: 1;
+// Generates "row" class names (for flex layout) for the given breakpoint
+@mixin add-grid-row($size: null) {
+  $klass: get-grid-class(row, $size);
+
+  .#{$klass} {
+    display: flex;
+  }
+
+  .#{$klass}--horizontal-uncenter {
+    justify-content: flex-start;
+  }
+
+  .#{$klass}--nowrap {
+    flex-wrap: nowrap;
+  }
+
+  .#{$klass}--reverse {
+    flex-direction: row-reverse;
+  }
+
+  .#{$klass}--vertical-center {
+    align-items: center;
+  }
+
+  .#{$klass}--vertical-baseline {
+    align-items: baseline;
+  }
 }
 
-body[data-env="development"]::after {
-  display: block;
+// Generates "column" class names (for flex layout) for the given breakpoint
+@mixin add-grid-columns($size: null) {
+  $klass: get-grid-class(column, $size);
+  $total-columns: 12;
+
+  @for $i from 1 through $total-columns {
+    .#{$klass}--#{$i} {
+      flex-basis: grid-calc($i);
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
 }
 
-// Flex layout utils
-// note that "row" and "column" flex layouts only kick in at Medium and up
-.flex {
-  display: flex;
-}
+// Breakpoint corner tag.
+// This is necessary for the useBreakpoints React hook — please do not remove it.
+body {
+  &::after {
+    background: #fff;
+    bottom: 0;
+    content: "S";
+    display: none;
+    font-size: 1.6rem;
+    padding: 10px;
+    position: fixed;
+    right: 0;
+    z-index: 1;
+  }
 
-.flex--center {
-  place-content: center;
-}
-
-.flex--wrap {
-  flex-wrap: wrap;
+  &[data-env="development"]::after {
+    display: block;
+  }
 }
 
 .wrapper,
@@ -53,6 +85,25 @@ body[data-env="development"]::after {
 .column--deep {
   padding-left: 0;
   padding-right: 0;
+}
+
+// Flex layout utils.
+// This is _not_ the "flex grid system", these are just quick helpers.
+// Note that the "row" and "column" flex layout system only kicks in at Medium-up.
+.flex {
+  display: flex;
+}
+
+.flex--center {
+  place-content: center;
+}
+
+.flex--vertical-center {
+  align-items: center;
+}
+
+.flex--wrap {
+  flex-wrap: wrap;
 }
 
 // vertical spacing utils
