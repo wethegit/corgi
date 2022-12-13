@@ -5,7 +5,7 @@ import * as styles from "./page-transition.module.scss";
 
 import { useRouter } from "next/router";
 import { locales } from "../../config-locales";
-import { useUserPrefs } from "@wethegit/react-hooks";
+import useUserPrefs from "../../hooks/use-user-prefs";
 const localeRemover = new RegExp("/(" + locales.join("|") + ")/");
 
 import { PAGE_TRANSITION_STATE } from "../../context/site-state-context";

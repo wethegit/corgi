@@ -5,7 +5,7 @@
   "type": "module",
   "main": "bin/index.js",
   "bin": {
-    "corgi": "bin/index.js"
+    "corgiTest": "bin/index.js"
   },
   "author": "Andrew Rubin <andrew@wethecollective.com> (https://wethecollective.com/)",
   "contributors": [],

@@ -1,4 +1,4 @@
-import { useUserPrefs } from "@wethegit/react-hooks"
+import useUserPrefs from "../../hooks/use-user-prefs"
 import useLocale from "../../hooks/use-locale"
 
 import { castToBool } from "../../utils/utils"
