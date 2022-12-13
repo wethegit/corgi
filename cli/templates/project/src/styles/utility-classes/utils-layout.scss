@@ -17,7 +17,7 @@
   }
 
   .#{$klass}--reverse {
-    flex-direction: reverse;
+    flex-direction: row-reverse;
   }
 
   .#{$klass}--vertical-center {
