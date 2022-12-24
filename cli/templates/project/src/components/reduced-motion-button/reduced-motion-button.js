@@ -1,19 +1,20 @@
-import useUserPrefs from "../../hooks/use-user-prefs"
-import useLocale from "../../hooks/use-locale"
+import { useUserPrefs } from "@wethegit/react-hooks";
 
-import { castToBool } from "../../utils/utils"
-import classnames from "../../utils/classnames"
+import useLocale from "../../hooks/use-locale";
+
+import { castToBool } from "../../utils/utils";
+import classnames from "../../utils/classnames";
 
 import {
   rmButton,
   rmButtonSelected,
   rmButtonLabel,
   rmButtonIcon,
-} from "./reduced-motion-button.module.scss"
+} from "./reduced-motion-button.module.scss";
 
 const ReducedMotionButton = () => {
-  const { globals } = useLocale()
-  const { prefersReducedMotion, togglePrefersReducedMotion } = useUserPrefs()
+  const { globals } = useLocale();
+  const { prefersReducedMotion, togglePrefersReducedMotion } = useUserPrefs();
 
   return (
     <button
@@ -24,9 +25,11 @@ const ReducedMotionButton = () => {
       onClick={() => togglePrefersReducedMotion()}
     >
       <span className={rmButtonIcon}></span>
-      <span className={rmButtonLabel}>{globals.nav.a11yOptions.reducedMotion}</span>
+      <span className={rmButtonLabel}>
+        {globals.nav.a11yOptions.reducedMotion}
+      </span>
     </button>
-  )
-}
+  );
+};
 
-export default ReducedMotionButton
+export default ReducedMotionButton;

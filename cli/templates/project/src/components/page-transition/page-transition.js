@@ -1,15 +1,17 @@
 import { Transition } from "react-transition-group";
 import { SwitchTransition } from "react-transition-group";
 import { useReducer, useEffect, useCallback, useRef } from "react";
+import { useRouter } from "next/router";
+import { useUserPrefs } from "@wethegit/react-hooks";
+
+import { locales } from "../../config-locales";
+const localeRemover = new RegExp("/(" + locales.join("|") + ")/");
+import { PAGE_TRANSITION_STATE } from "../../context/site-state-context";
+
+import useSiteState from "../../hooks/use-site-state";
+
 import * as styles from "./page-transition.module.scss";
 
-import { useRouter } from "next/router";
-import { locales } from "../../config-locales";
-import useUserPrefs from "../../hooks/use-user-prefs";
-const localeRemover = new RegExp("/(" + locales.join("|") + ")/");
-
-import { PAGE_TRANSITION_STATE } from "../../context/site-state-context";
-import useSiteState from "../../hooks/use-site-state";
 // import SwipeTransition from "./swipe/swipe"
 // import BatmanTransition from "./batman/batman"
 
