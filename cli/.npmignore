@@ -1,0 +1,16 @@
+# This file contains all the default items in an .npmignore,
+# minus the .gitignore, since we need that in our template.
+
+.*.swp
+._*
+.DS_Store
+.git
+.hg
+.npmignore
+.npmrc
+.lock-wscript
+.svn
+.wafpickle-*
+config.gypi
+CVS
+npm-debug.log
