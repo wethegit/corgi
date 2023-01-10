@@ -1,0 +1,169 @@
+---
+sidebar_position: 3
+---
+
+# Grid System
+
+The grid system used at We The Collective is loosely based on the foundation grid system. 
+
+Out of the box it provides a responsive flex grid system that is 1440px wide and contains 12 columns with a 24px gutter.
+
+
+## Before you start
+
+#### <a href="https://codepen.io/team/wtc/pen/BEjzmW" target="_blank" rel="noreferrer noopener">Bookmarklet</a>
+
+This bookmarklet will allow you to view implementations of this grid system in right in your browser.
+
+
+#### <a href="https://bootstrap.wethe.work/grid-demo/" target="_blank" rel="noreferrer noopener">Demo</a>
+
+This is a demo of the grid system. You can also access this file from the documentation project <a href="https://github.com/wethegit/bootstrap/blob/main/documentation/pages/grid-demo/index.pug" target="_blank" rel="noreferrer noopener">here</a>.
+
+## How to use
+
+The grid itself is available from medium up and there are classes provided that allow the configuration of elements to different grid sizes at different responsive stops.
+
+The grid system works around the concept of rows and columns. Each .row can contain .columns and each .column must contain both a .column class as well as a .column--X class.
+
+## Basic
+
+The simplest way to use the grid in practice is to create a row and, within that row, create some columns:
+
+```
+.row
+  .column.column--4
+    p I'm a 4 column element
+  .column.column--4
+    p I'm another 4 column element
+  .column.column--4
+    p I'm a third 4 column element, together we add up to 12 columns
+```
+
+If you have a grid row, your columns should add up to 12 at the most if you want them all to appear on the same row. More than that and they'll wrap around.
+
+## Responsive grids
+
+Sometimes you want grids that change between responsive stops. This can be accomplished by combining grid classes on elements. The important thing to remember is that grid classes work upwards - that is, medium classes will work for all stops between medium and xxlarge, large will work for all stops between large and xxlarge etc.
+
+```
+.row
+  .column.column--10.column-xlarge--6
+    p I'm 10 columns at medium and large and 6 columns from xlarge
+  .column.column--2.column-xlarge--6
+    p I'm 2 columns at medium and large and 6 columns from xlarge
+```
+
+This example will provide a grid row that contains 2 columns. At medium and large the first element will be 10 columns wide and the second 2, while at xlarge+ they will both be 6 columns wide.
+
+## Responsive exclusion
+
+In addition to customizing columns responsively, it's also possible to include rows responsively!
+
+```
+.row--large
+  .column.column--6
+    p I will be a 6 column element only at large+!
+  .column.column--6
+    p Same here. Below that we will both simply display using default div styling.
+```
+
+In this example, you can see that the row has the --large modifier, this makes it so that the fleg grid styling is only applied at large+.
+
+## Nested columns
+
+It's also possible to nest rows and columns within other columns. This is particularly useful when you have something like a featured item which has items within it that have to conform to the larger grid.
+
+```
+.row
+  .column.column--10
+    .row
+      .column.column--deep.column--6
+        p I'm a deep element that is 5 columns wide
+      .column.column--deep.column--6
+        p I'm a deep element that is 5 columns wide
+  .column.column--2
+    p I'm an element that's 2 columns wide
+```
+
+This code creates a 10-column element that contains 2 5 column elements. It's important to remember here that the size of columns within nested rows have widths that are porportional to their rows and that in order to confirm to the size of the major grid system, the math needs to be done by you.
+
+This demo is a good example of that. We want the nested elements to be 5 columns wide, so we know that this is half of the 10 column system that contains them, so we need to make each sub-column hald of the grid system, which is 12 columns. So they end up being 6 columns each.
+
+## Available classes
+
+### .row
+This allows an element to behave as a row. Ensures that all sub classes can be laid out accordingly. By default, elements within the row will be center aligned, horizontally.
+
+### .wrapper
+Wrapper and row are the same except that wrapper includes the gutter padding left and right.
+
+### .row--nowrap
+As above but makes it so that columns within the row don't wrap when they move beyond the column maximum.
+
+### .row--vertical-center
+Aligns elements within the row to teh vertical center of the row.
+
+### .row--vertical-uncenter
+Aligns elements within the row to the baseline of the row.
+
+### .row--horizontal-uncenter
+Aligns elements within the row to the left of the column.
+
+### .row--gutterless
+Removes gutters from column elements within this row.
+
+### .column
+All column elements must have a column class. This provides the basic styling for columns.
+
+### .column--X
+For medium plus (we assume that at small, all grid systems should stack), create a column of X columns in width.
+
+X should be a whole number between 1 and $number-of-columns.
+
+### .column-large--X
+For large and up.
+
+### .column-xlarge--X
+For extra-large and up.
+
+### .column-xxlarge--X
+For extra-extra-large and up.
+
+### .column--deep
+Column deep is used when nesting columns. It simply removes the fixed pixel gutters and makes the column gutterless so that it displays as intended with relation to the major grid system.
+
+## Configuration
+The grid can be configured in `style-utils/_grid.scss`. The following options are available:
+
+### $total-width
+This is the total width of the grid system less the left and right gutters.
+
+<i>Default: 1392px</i>
+
+### $number-of-columns
+The number of columns to include.
+
+<i>Default: 12</i>
+
+### $gutter-width
+The width of the gutters, in pixels.
+
+<i>Default: 24px</i>
+
+## Helpers
+In addition to providing classes, the grid system also provides some helpers that are useful when you want to extend the grid system or provide utility properties to elements of your own.
+
+### grid-calc
+`@function grid-calc($colNumber)`
+
+The grid-calc function returns a percentage that conforms to the number of columns provided. This is useful when trying to offset columns by a specific number of columns.
+
+#### Example
+`@import "../style-utils/grid";`
+
+.push-2 {
+  margin-left: grid-calc(2);
+}
+
+The above will add a class that pushes a column 2 columns to the right.
