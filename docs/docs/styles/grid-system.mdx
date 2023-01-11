@@ -6,8 +6,11 @@ sidebar_position: 3
 
 The grid system used at We The Collective is loosely based on the foundation grid system. 
 
-Out of the box it provides a responsive flex grid system that is 1440px wide and contains 12 columns with a 24px gutter.
+## How to use
 
+The grid itself is available from medium up and there are classes provided that allow the configuration of elements to different grid sizes at different responsive stops.
+
+The grid system works around the concept of rows and columns. Each .row can contain .columns and each .column must contain both a .column class as well as a .column--X class.
 
 ## Before you start
 
@@ -20,17 +23,34 @@ This bookmarklet will allow you to view implementations of this grid system in r
 
 This is a demo of the grid system. You can also access this file from the documentation project <a href="https://github.com/wethegit/bootstrap/blob/main/documentation/pages/grid-demo/index.pug" target="_blank" rel="noreferrer noopener">here</a>.
 
-## How to use
+## Configuration
 
-The grid itself is available from medium up and there are classes provided that allow the configuration of elements to different grid sizes at different responsive stops.
+Out of the box it provides a responsive flex grid system that is 1440px wide and contains 12 columns with a 24px gutter.
 
-The grid system works around the concept of rows and columns. Each .row can contain .columns and each .column must contain both a .column class as well as a .column--X class.
+The grid can be configured in `/src/styles/settings/_settings-layout.scss`. If you are using Sketch, layout settings in Sketch should be configured to match with the grid configuration. The layout settings can be found under `View > Canvas > Layout Settings`.
+
+The following options are available:
+
+### $total-width
+This is the total width of the grid system less the left and right gutters.
+
+<i>Default: 1392px</i>
+
+### $number-of-columns
+The number of columns to include.
+
+<i>Default: 12</i>
+
+### $gutter-width
+The width of the gutters, in pixels.
+
+<i>Default: 24px</i>
 
 ## Basic
 
 The simplest way to use the grid in practice is to create a row and, within that row, create some columns:
 
-```
+```scss
 .row
   .column.column--4
     p I'm a 4 column element
@@ -46,7 +66,7 @@ If you have a grid row, your columns should add up to 12 at the most if you want
 
 Sometimes you want grids that change between responsive stops. This can be accomplished by combining grid classes on elements. The important thing to remember is that grid classes work upwards - that is, medium classes will work for all stops between medium and xxlarge, large will work for all stops between large and xxlarge etc.
 
-```
+```scss
 .row
   .column.column--10.column-xlarge--6
     p I'm 10 columns at medium and large and 6 columns from xlarge
@@ -60,7 +80,7 @@ This example will provide a grid row that contains 2 columns. At medium and larg
 
 In addition to customizing columns responsively, it's also possible to include rows responsively!
 
-```
+```scss
 .row--large
   .column.column--6
     p I will be a 6 column element only at large+!
@@ -74,7 +94,7 @@ In this example, you can see that the row has the --large modifier, this makes i
 
 It's also possible to nest rows and columns within other columns. This is particularly useful when you have something like a featured item which has items within it that have to conform to the larger grid.
 
-```
+```scss
 .row
   .column.column--10
     .row
@@ -133,24 +153,6 @@ For extra-extra-large and up.
 ### .column--deep
 Column deep is used when nesting columns. It simply removes the fixed pixel gutters and makes the column gutterless so that it displays as intended with relation to the major grid system.
 
-## Configuration
-The grid can be configured in `style-utils/_grid.scss`. The following options are available:
-
-### $total-width
-This is the total width of the grid system less the left and right gutters.
-
-<i>Default: 1392px</i>
-
-### $number-of-columns
-The number of columns to include.
-
-<i>Default: 12</i>
-
-### $gutter-width
-The width of the gutters, in pixels.
-
-<i>Default: 24px</i>
-
 ## Helpers
 In addition to providing classes, the grid system also provides some helpers that are useful when you want to extend the grid system or provide utility properties to elements of your own.
 
@@ -160,7 +162,7 @@ In addition to providing classes, the grid system also provides some helpers tha
 The grid-calc function returns a percentage that conforms to the number of columns provided. This is useful when trying to offset columns by a specific number of columns.
 
 #### Example
-`@import "../style-utils/grid";`
+`@use "../../styles/helpers/helpers-layout" as *;`
 
 .push-2 {
   margin-left: grid-calc(2);
