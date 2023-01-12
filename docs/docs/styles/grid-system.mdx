@@ -2,6 +2,14 @@
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import Example1 from './examples/example1';
+import Example2 from './examples/example2';
+import Example3 from './examples/example3';
+import Example4 from './examples/example4';
+
 # Grid System
 
 The grid system used at We The Collective is loosely based on the foundation grid system. 
@@ -17,11 +25,6 @@ The grid system works around the concept of rows and columns. Each .row can cont
 #### <a href="https://codepen.io/team/wtc/pen/BEjzmW" target="_blank" rel="noreferrer noopener">Bookmarklet</a>
 
 This bookmarklet will allow you to view implementations of this grid system in right in your browser.
-
-
-#### <a href="https://bootstrap.wethe.work/grid-demo/" target="_blank" rel="noreferrer noopener">Demo</a>
-
-This is a demo of the grid system. You can also access this file from the documentation project <a href="https://github.com/wethegit/bootstrap/blob/main/documentation/pages/grid-demo/index.pug" target="_blank" rel="noreferrer noopener">here</a>.
 
 ## Configuration
 
@@ -50,6 +53,9 @@ The width of the gutters, in pixels.
 
 The simplest way to use the grid in practice is to create a row and, within that row, create some columns:
 
+<Tabs>
+<TabItem value="code" label="Code">
+
 ```scss
 .row
   .column.column--4
@@ -60,11 +66,22 @@ The simplest way to use the grid in practice is to create a row and, within that
     p I'm a third 4 column element, together we add up to 12 columns
 ```
 
+</TabItem>
+<TabItem value="demo" label="Demo">
+
+  <Example1 />
+  
+</TabItem>
+</Tabs>
+
 If you have a grid row, your columns should add up to 12 at the most if you want them all to appear on the same row. More than that and they'll wrap around.
 
 ## Responsive grids
 
 Sometimes you want grids that change between responsive stops. This can be accomplished by combining grid classes on elements. The important thing to remember is that grid classes work upwards - that is, medium classes will work for all stops between medium and xxlarge, large will work for all stops between large and xxlarge etc.
+
+<Tabs>
+<TabItem value="code" label="Code">
 
 ```scss
 .row
@@ -74,11 +91,22 @@ Sometimes you want grids that change between responsive stops. This can be accom
     p I'm 2 columns at medium and large and 6 columns from xlarge
 ```
 
+</TabItem>
+<TabItem value="demo" label="Demo">
+
+  <Example2 />
+  
+</TabItem>
+</Tabs>
+
 This example will provide a grid row that contains 2 columns. At medium and large the first element will be 10 columns wide and the second 2, while at xlarge+ they will both be 6 columns wide.
 
 ## Responsive exclusion
 
 In addition to customizing columns responsively, it's also possible to include rows responsively!
+
+<Tabs>
+<TabItem value="code" label="Code">
 
 ```scss
 .row--large
@@ -88,11 +116,22 @@ In addition to customizing columns responsively, it's also possible to include r
     p Same here. Below that we will both simply display using default div styling.
 ```
 
+</TabItem>
+<TabItem value="demo" label="Demo">
+
+  <Example3 />
+  
+</TabItem>
+</Tabs>
+
 In this example, you can see that the row has the --large modifier, this makes it so that the fleg grid styling is only applied at large+.
 
 ## Nested columns
 
 It's also possible to nest rows and columns within other columns. This is particularly useful when you have something like a featured item which has items within it that have to conform to the larger grid.
+
+<Tabs>
+<TabItem value="code" label="Code">
 
 ```scss
 .row
@@ -105,6 +144,14 @@ It's also possible to nest rows and columns within other columns. This is partic
   .column.column--2
     p I'm an element that's 2 columns wide
 ```
+
+</TabItem>
+<TabItem value="demo" label="Demo">
+
+  <Example4 />
+  
+</TabItem>
+</Tabs>
 
 This code creates a 10-column element that contains 2 5 column elements. It's important to remember here that the size of columns within nested rows have widths that are porportional to their rows and that in order to confirm to the size of the major grid system, the math needs to be done by you.
 
