@@ -3,14 +3,11 @@
 @import "./settings/settings-layout";
 
 // Global style declarations:
-@import "./base/resets.scss";
 @import "./base/layout.scss";
-@import "./base/typography.scss";
 
 // Global utility classes:
 @import "./utility-classes/utils-breakpoints.scss";
 @import "./utility-classes/utils-layout.scss";
-@import "./utility-classes/utils-typography.scss";
 
 // *:focus {
 //   @include focus-style;
