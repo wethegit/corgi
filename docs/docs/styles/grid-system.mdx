@@ -10,60 +10,51 @@ import Example2 from './examples/example2';
 import Example3 from './examples/example3';
 import Example4 from './examples/example4';
 
-# Grid System
+# Flex-grid system
 
-The grid system used at We The Collective is loosely based on the foundation grid system. 
+The flexbox-based grid layout system in Corgi is based on the concept of rows and columns. A row acts as a flex container, while a column is a flex child. By default, the flex styles are not applied until the `medium-up` breakpoint. Despite this, other `.row` and `.column` style delarations _do_ apply (such as padding, for example).
 
-## How to use
+This flex layout system also provides CSS modifier classes which allow the configuration of elements to different column sizes at different responsive breakpoints.
 
-The grid itself is available from medium up and there are classes provided that allow the configuration of elements to different grid sizes at different responsive stops.
+:::tip Flex-grid bookmarklet
+This bookmarklet provides a helpful visual overlay of the flex-grid system, directly in your browser, and is useful for learning or debugging: <a href="https://codepen.io/team/wtc/pen/BEjzmW" target="_blank" rel="noreferrer noopener">flex-grid bookmarklet</a>
+:::
 
-The grid system works around the concept of rows and columns. Each .row can contain .columns and each .column must contain both a .column class as well as a .column--X class.
-
-## Before you start
-
-#### <a href="https://codepen.io/team/wtc/pen/BEjzmW" target="_blank" rel="noreferrer noopener">Bookmarklet</a>
-
-This bookmarklet will allow you to view implementations of this grid system in right in your browser.
 
 ## Configuration
 
-Out of the box it provides a responsive flex grid system that is 1440px wide and contains 12 columns with a 24px gutter.
+Out of the box, Corgi provides a responsive flex-grid system with a max-width of 1440px wide, and contains 12 columns with a 24px gutter between each.
 
-The grid can be configured in `/src/styles/settings/_settings-layout.scss`. If you are using Sketch, layout settings in Sketch should be configured to match with the grid configuration. The layout settings can be found under `View > Canvas > Layout Settings`.
+The grid can be configured in `/src/styles/settings/_settings-layout.scss`. If you are using Sketch, layout settings in Sketch should be configured to match with the flex layout configuration. The layout settings can be found under `View > Canvas > Layout Settings`.
 
 The following options are available:
 
-### $total-width
-This is the total width of the grid system less the left and right gutters.
+| SCSS variable             | Default value | Description |
+| -------------             | ------------- | ----------- |
+| $total-width              | 1392px        | This is the maximum width of a `.row` grid system, less the left and right gutters. |
+| $number-of-columns        | 12            | The number of columns to include. |
+| $gutter-width             | 16px          | The width of the gutters at the `small` breakpoint, in pixels. |
+| $gutter-width-medium-up   | 24px          | The width of the gutters, at the `medium-up` breakpoint, in pixels. |
 
-<i>Default: 1392px</i>
-
-### $number-of-columns
-The number of columns to include.
-
-<i>Default: 12</i>
-
-### $gutter-width
-The width of the gutters, in pixels.
-
-<i>Default: 24px</i>
-
-## Basic
+## Basic usage
 
 The simplest way to use the grid in practice is to create a row and, within that row, create some columns:
 
 <Tabs>
 <TabItem value="code" label="Code">
 
-```scss
-.row
-  .column.column--4
-    p I'm a 4 column element
-  .column.column--4
-    p I'm another 4 column element
-  .column.column--4
-    p I'm a third 4 column element, together we add up to 12 columns
+```html
+<div class="row">
+  <div class="column column--4">
+    <p>I'm a 4 column element</p>
+  </div>
+  <div class="column column--4">
+    <p>I'm another 4 column element</p>
+  </div>
+  <div class="column column--4">
+    <p>I'm a third 4 column element, together we add up to 12 columns</p>
+  </div>
+</div>
 ```
 
 </TabItem>
@@ -74,21 +65,22 @@ The simplest way to use the grid in practice is to create a row and, within that
 </TabItem>
 </Tabs>
 
-If you have a grid row, your columns should add up to 12 at the most if you want them all to appear on the same row. More than that and they'll wrap around.
+## Breakpoints
 
-## Responsive grids
-
-Sometimes you want grids that change between responsive stops. This can be accomplished by combining grid classes on elements. The important thing to remember is that grid classes work upwards - that is, medium classes will work for all stops between medium and xxlarge, large will work for all stops between large and xxlarge etc.
+For layouts whose column spans change on a per-breakpoint basis, you can use breakpoint-specific classs:
 
 <Tabs>
 <TabItem value="code" label="Code">
 
-```scss
-.row
-  .column.column--10.column-xlarge--6
-    p I'm 10 columns at medium and large and 6 columns from xlarge
-  .column.column--2.column-xlarge--6
-    p I'm 2 columns at medium and large and 6 columns from xlarge
+```html
+<div class="row">
+  <div class="column column--10 column-xlarge--6">
+    <p>I'm 10 columns at medium and large and 6 columns from xlarge and up</p>
+  </div>
+  <div class="column column--2 column-xlarge--6">
+    <p>I'm 2 columns at medium and large and 6 columns from xlarge and up</p>
+  </div>
+</div>
 ```
 
 </TabItem>
@@ -101,48 +93,33 @@ Sometimes you want grids that change between responsive stops. This can be accom
 
 This example will provide a grid row that contains 2 columns. At medium and large the first element will be 10 columns wide and the second 2, while at xlarge+ they will both be 6 columns wide.
 
-## Responsive exclusion
-
-In addition to customizing columns responsively, it's also possible to include rows responsively!
-
-<Tabs>
-<TabItem value="code" label="Code">
-
-```scss
-.row--large
-  .column.column--6
-    p I will be a 6 column element only at large+!
-  .column.column--6
-    p Same here. Below that we will both simply display using default div styling.
-```
-
-</TabItem>
-<TabItem value="demo" label="Demo">
-
-  <Example3 />
-  
-</TabItem>
-</Tabs>
-
-In this example, you can see that the row has the --large modifier, this makes it so that the fleg grid styling is only applied at large+.
+:::info Mobile-first
+These breakpoints employ a mobile-first philosophy — that is, standard "column--X" classes will work for all breakpoints between `medium` and `xxlarge`; "column-large--X" classes will work for all breakpoints between `large` and `xxlarge`; "column-xlarge--X" classes will work for all breakpoints between `xlarge` and `xxlarge`; and so on.
+:::
 
 ## Nested columns
 
-It's also possible to nest rows and columns within other columns. This is particularly useful when you have something like a featured item which has items within it that have to conform to the larger grid.
+It's also possible to nest rows and columns. This is particularly useful when you want to create another "instance" of a flex-grid layout _inside_ an existing `.column` element that spans, say, 10 columns.
 
 <Tabs>
 <TabItem value="code" label="Code">
 
-```scss
-.row
-  .column.column--10
-    .row
-      .column.column--deep.column--6
-        p I'm a deep element that is 5 columns wide
-      .column.column--deep.column--6
-        p I'm a deep element that is 5 columns wide
-  .column.column--2
-    p I'm an element that's 2 columns wide
+```html
+<div class="row">
+  <div class="column column--10">
+    <div class="row">
+      <div class="column column--deep column--6">
+        <p>I'm a nested element that spans 6 columns of my parent row.</p>
+      </div>
+      <div class="column column--deep column--6">
+        <p>I'm a nested element that spans 6 columns of my parent row.</p>
+      </div>
+    </div>
+
+  <div class="column column--2">
+    <p>I'm an element that spans 2 columns</p>
+  </div>
+</div>
 ```
 
 </TabItem>
@@ -153,66 +130,35 @@ It's also possible to nest rows and columns within other columns. This is partic
 </TabItem>
 </Tabs>
 
-This code creates a 10-column element that contains 2 5 column elements. It's important to remember here that the size of columns within nested rows have widths that are porportional to their rows and that in order to confirm to the size of the major grid system, the math needs to be done by you.
+This code creates a 10-column element that contains two 6-column elements. Note that the width of a column within a _nested_ row will be relative to that columns's closest parent `.row` (because they're percentage-based widths).
 
-This demo is a good example of that. We want the nested elements to be 5 columns wide, so we know that this is half of the 10 column system that contains them, so we need to make each sub-column hald of the grid system, which is 12 columns. So they end up being 6 columns each.
+Note the `"column--deep"` className on nested columns here. This removes default left and right padding which is necessary for non-nested columns. Nested rows behave similarly, but do not need an explicit className.
 
-## Available classes
+## Available classNames
 
-### .row
-This allows an element to behave as a row. Ensures that all sub classes can be laid out accordingly. By default, elements within the row will be center aligned, horizontally.
+| className                       | Description |
+| ------------------------------- | ----------- |
+| wrapper                         | Apply this to a container element when you want the maximum width and padding of a `.row`, but do _not_ want a flex layout. |
+| row                             | Allows an element to behave as a container in the flex layout system. Adds a max-width based on your [config](#configuration), among other things. By default, elements within the row will be center-aligned horizontally. |
+| row--nowrap                     | Modifier. Ensures that immediate child elements do not wrap when they move beyond the maximum column count for a row. |
+| row--vertical-center            | Modifier. Vertically centers immediate child elements of a `.row`. |
+| row--horizontal-uncenter        | Modifier. Left-aligns immediate child elements of a `.row`. |
+| column                          | Base className for flex children of a `.row`. |
+| column--&lt;number&gt;          | Modifier. Creates an element that spans `<number>` of columns. `<number>` must be a whole-number, and between `1` and `$number-of-columns`. Example: `column--10`. |
+| column-large--&lt;number&gt;    | Modifier. Applies a specific column span to the `large-up` media query. |
+| column-xlarge--&lt;number&gt;   | Modifier. Applies a specific column span to the `xlarge-up` media query. |
+| column-xxlarge--&lt;number&gt;  | Modifier. Applies a specific column span to the `xxlarge-up` media query. |
+| column--deep                    | Modifier. Removes gutters (left and right padding) from the `.column`. Used when nesting layout systems. |
 
-### .wrapper
-Wrapper and row are the same except that wrapper includes the gutter padding left and right.
-
-### .row--nowrap
-As above but makes it so that columns within the row don't wrap when they move beyond the column maximum.
-
-### .row--vertical-center
-Aligns elements within the row to teh vertical center of the row.
-
-### .row--vertical-uncenter
-Aligns elements within the row to the baseline of the row.
-
-### .row--horizontal-uncenter
-Aligns elements within the row to the left of the column.
-
-### .row--gutterless
-Removes gutters from column elements within this row.
-
-### .column
-All column elements must have a column class. This provides the basic styling for columns.
-
-### .column--X
-For medium plus (we assume that at small, all grid systems should stack), create a column of X columns in width.
-
-X should be a whole number between 1 and $number-of-columns.
-
-### .column-large--X
-For large and up.
-
-### .column-xlarge--X
-For extra-large and up.
-
-### .column-xxlarge--X
-For extra-extra-large and up.
-
-### .column--deep
-Column deep is used when nesting columns. It simply removes the fixed pixel gutters and makes the column gutterless so that it displays as intended with relation to the major grid system.
-
-## Helpers
-In addition to providing classes, the grid system also provides some helpers that are useful when you want to extend the grid system or provide utility properties to elements of your own.
+## SCSS Helpers
+In addition to providing classNames, the flex-grid system also provides some SCSS helper functions that are useful when you want to extend the layout system or create utility classNames of your own.
 
 ### grid-calc
-`@function grid-calc($colNumber)`
+Function. Returns a percentage that conforms to the number of columns provided. This is useful when trying to offset columns by a specific number of columns (via left or right margin, for example). The following example will add two columns worth of left margin.
+```scss title="grid-calc example"
+@use "../../styles/helpers/helpers-layout" as *;
 
-The grid-calc function returns a percentage that conforms to the number of columns provided. This is useful when trying to offset columns by a specific number of columns.
-
-#### Example
-`@use "../../styles/helpers/helpers-layout" as *;`
-
-.push-2 {
+.my-element {
   margin-left: grid-calc(2);
 }
-
-The above will add a class that pushes a column 2 columns to the right.
+```
