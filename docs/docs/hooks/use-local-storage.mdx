@@ -4,9 +4,7 @@ description: Manages state based on the browser's localStorage.
 
 # `useLocalStorage`
 
-Location: `/src/hooks/use-local-storage.js`
-
-The `useLocalStorage` is a state manager, similar to React's `useState`,  but all values are set and retrieved based on the user's browser localStorage.
+The `useLocalStorage` is a state manager, similar to React's `useState`,  but all values are set and retrieved based on the user's browser localStorage. This hook is available by default, from within the [@wethegit/react-hooks](https://www.npmjs.com/package/@wethegit/react-hooks) NPM package.
 
 `useLocalStorage(key, [defaultValue])`
 
@@ -29,7 +27,7 @@ Similar to React's `useState` hook, `useLocalStorage` returns an array containin
 Here's an admittedly-contrived example, which sets the localStorage value of `userID` to `"1234"`, and logs out the value from localStorage to verify that it's working.
 
 ```jsx
-import useLocalStorage from "../../hooks/use-local-storage";
+import { useLocalStorage } from "@wethegit/react-hooks";
 
 const MyComponent = () => {
   const [id, setId] = useLocalStorage("userID")

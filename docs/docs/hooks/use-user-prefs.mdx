@@ -4,9 +4,7 @@ description: Give access to user preferences such as prefers-reduced-motion.
 
 # `useUserPrefs`
 
-Location: `/src/hooks/use-user-prefs.js`
-
-The `useUserPrefs` hook gives us access to various user preferences, the values of which are stored in localStorage.
+The `useUserPrefs` hook gives us access to various user preferences, the values of which are stored in localStorage. This hook is available by default, from within the [@wethegit/react-hooks](https://www.npmjs.com/package/@wethegit/react-hooks) NPM package.
 
 `useUserPrefs()`
 
@@ -28,8 +26,8 @@ The `useUserPrefs` hook gives us access to various user preferences, the values 
 Here we're passing a dynamic animation duration prop to an imaginary `<Menu>` component. The duration will change based on the state of `prefersReducedMotion`.
 
 ```jsx
+import { useUserPrefs } from "@wethegit/react-hooks";
 import Menu from "../somewhere"
-import useUserPrefs from "../../hooks/use-async";
 
 const MyComponent = () => {
   const { prefersReducedMotion } = useUserPrefs();
