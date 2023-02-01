@@ -1,0 +1,55 @@
+---
+title: "@media queries"
+sidebar_position: 3
+---
+
+# @media queries
+
+corgi has a few pre-defined `@media` queries which are used heavily in the [flex-grid layout](./grid-system.mdx) system, but can also be used in your page or component styleshseets. These "breakpoints" are set up as SASS variables which can be easily imported as needed.
+
+## Configuration
+
+The @media query breakpoints are defined within `/src/styles/settings/_settings-breakpoints.scss`. Pixel ranges are defined using rough approximations of common devices' screen widths, and then set to key words like `small`, `medium`, `large`, etc. Adjust these pixel ranges as needed.
+
+## SASS Variables
+
+| Name         | Default pixel range |
+| ------------ | ------------------- |
+| $small-only  | 0 – 639px           |
+| $medium-up   | 640px and up        |
+| $medium-only | 640px – 1023px      |
+| $large-up    | 1024px and up       |
+| $large-only  | 1024px – 1143px     |
+| $xlarge-up   | 1144px and up       |
+| $xlarge-only | 1144px – 1439px     |
+| $xxlarge-up  | 1440px and up       |
+
+:::info Mobile-first
+These breakpoints are written with a mobile-first methodology in mind. Part of the goal here (aside from organization) is to have the browser parse as little CSS as possible for smaller devices, which, presumably, have lower capabilities than a "desktop" device. It is good practice to work from your smallest breakpoints, upwards; adding style declarations as your users' viewports get wider.
+:::
+
+## Usage
+
+```scss title="Example component: /src/components/section/section.module.scss"
+@use "../../styles/settings/settings-breakpoints" as *;
+
+.mySection {
+  padding: 1rem;
+}
+
+@media #{$medium-up} {
+  .mySection {
+    padding: 2rem;
+  }
+}
+
+@media #{$large-up} {
+  .mySection {
+    padding: 2.6rem;
+  }
+}
+```
+
+:::tip SASS Syntax
+Note the [SASS interpolation](https://sass-lang.com/documentation/interpolation) syntax when using these variables: `#{$variable}`.
+:::
