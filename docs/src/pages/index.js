@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <Layout
       title={`${siteConfig.title}: a Next.JS framework`}
-      description="Official documentation for Corgi: a framework for creating static, localized, React web applications with Next.js."
+      description="Official documentation for corgi: a framework for creating static, localized, React web applications with Next.js."
     >
       <HomepageHeader />
 
