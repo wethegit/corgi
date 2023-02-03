@@ -4,34 +4,4 @@ description: Give access to user preferences such as prefers-reduced-motion.
 
 # `useUserPrefs`
 
-The `useUserPrefs` hook gives us access to various user preferences, the values of which are stored in localStorage. This hook is available by default, from within the [@wethegit/react-hooks](https://www.npmjs.com/package/@wethegit/react-hooks) NPM package.
-
-`useUserPrefs()`
-
-## Return value
-
-`useUserPrefs` returns an object containing the following properties:
-
-| Property                      | Type     | Description |
-| ----------------------------- | -------- | ----------- |
-| prefersDarkColorScheme        | Boolean  | Whether the user has either turned on "prefers dark color scheme" in their OS-level settings, or has chosen the option exposed by your site via some UI. |
-| togglePrefersDarkColorScheme  | Function | Accepts a sole property (Boolean) which toggles the local/site state of `prefersDarkColorScheme`. |
-| prefersReducedData            | Boolean  | Whether the user has either turned on "prefers reduced data" in their OS-level settings, or has chosen the option exposed by your site via some UI. |
-| togglePrefersReducedData      | Function | Accepts a sole property (Boolean) which toggles the local/site state of `prefersReducedData`. |
-| prefersReducedMotion          | Boolean  | Whether the user has either turned on "prefers reduced motion" in their OS-level settings, or has chosen the option exposed by your site via some UI. |
-| togglePrefersReducedMotion    | Function | Accepts a sole property (Boolean) which toggles the local/site state of `prefersReducedMotion`. |
-
-## Usage
-
-Here we're passing a dynamic animation duration prop to an imaginary `<Menu>` component. The duration will change based on the state of `prefersReducedMotion`.
-
-```jsx
-import { useUserPrefs } from "@wethegit/react-hooks";
-import Menu from "../somewhere"
-
-const MyComponent = () => {
-  const { prefersReducedMotion } = useUserPrefs();
-
-  <Menu animationDuration={prefersReducedMotion ? 1200 : 0} />
-};
-```
+The `useUserPrefs` hook gives us access to various user preferences — such as `prefers-reduced-motion`, `prefers-reduced-color-scheme`, and more — the values of which are stored in localStorage. This hook is available by default, from within the [@wethegit/react-hooks](https://www.npmjs.com/package/@wethegit/react-hooks) NPM package. Have a look at the docs there for more information.
