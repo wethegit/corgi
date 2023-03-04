@@ -4,9 +4,15 @@ import log from "./log.js"
 import { pascalToKebab } from "./utils.js";
 
 async function* makeLocaleFiles(pageNames, locales, localeTemplateUTF8) {
-  for (const name of pageNames) {
+  for (const input of pageNames) {
+    // account for the page being in a sub-directory:
+    const parts = input.split("/");
+    const name = parts.pop();
     const slug = pascalToKebab(name);
-    const localeDir = `./src/locales/${slug}`;
+    const subDirectory = parts.join("/");
+
+    const localeDir = `./src/locales/${subDirectory ? subDirectory + "/" : ""}${slug}`;
+
     const localeContent = localeTemplateUTF8.replaceAll("PAGE_NAME", name);
 
     await mkdir(localeDir, { recursive: true });

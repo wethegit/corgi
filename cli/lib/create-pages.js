@@ -4,12 +4,17 @@ import log from "./log.js"
 import { pascalToKebab } from "./utils.js";
 
 async function* makePages(pageNames, pageTemplateUTF8) {
-  for (const name of pageNames) {
+  for (const input of pageNames) {
+    // account for the page being in a sub-directory:
+    const parts = input.split("/")
+    const name = parts.pop()
     const slug = pascalToKebab(name);
-    const pageDir = `./src/pages/[locale]/${slug}`;
+    const subDirectory = parts.join("/");
+
+    const pageDir = `./src/pages/[locale]/${subDirectory ? subDirectory + "/" : ""}${slug}`;
 
     const pageContent = pageTemplateUTF8
-      .replaceAll("PAGE_SLUG", slug)
+      .replaceAll("PAGE_SLUG", `${subDirectory ? subDirectory + "/" : ""}${slug}`)
       .replaceAll("PAGE_NAME", name);
 
     await mkdir(pageDir, { recursive: true });
