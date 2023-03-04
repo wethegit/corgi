@@ -9,6 +9,7 @@
   },
   "imports": {
     "#components/*": "./src/components/*.js",
+    "#context/*": "./src/context/*.js",
     "#hooks/*": "./src/hooks/*.js",
     "#utils/*": "./src/utils/*.js"
   },
