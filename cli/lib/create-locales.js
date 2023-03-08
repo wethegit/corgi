@@ -1,23 +1,20 @@
 import { mkdir, writeFile } from "fs/promises";
 
 import log from "./log.js"
-import { pascalToKebab } from "./utils.js";
+import { assembleDirectoryPath } from "./utils.js"
 
 async function* makeLocaleFiles(pageNames, locales, localeTemplateUTF8) {
   for (const input of pageNames) {
-    // account for the page being in a sub-directory:
-    const parts = input.split("/");
-    const name = parts.pop();
-    const slug = pascalToKebab(name);
-    const subDirectory = parts.join("/");
-
-    const localeDir = `./src/locales/${subDirectory ? subDirectory + "/" : ""}${slug}`;
+    const { name, directory } = assembleDirectoryPath({
+      pathToDir: "./src/locales",
+      inputName: input,
+    })
 
     const localeContent = localeTemplateUTF8.replaceAll("PAGE_NAME", name);
 
-    await mkdir(localeDir, { recursive: true });
+    await mkdir(directory, { recursive: true });
     locales.forEach((loc) =>
-      writeFile(`${localeDir}/${loc}.yml`, localeContent)
+      writeFile(`${directory}/${loc}.yml`, localeContent)
     );
     yield name;
   }

@@ -1,17 +1,14 @@
 import { mkdir, writeFile } from "fs/promises";
 
 import log from "./log.js";
-import {pascalToKebab} from "./utils.js"
+import { assembleDirectoryPath } from "./utils.js"
 
 async function* makeComponents(names, template, stylesheet) {
   for (const input of names) {
-    // account for the component being in a sub-directory:
-    const parts = input.split("/");
-    const name = parts.pop();
-    const slug = pascalToKebab(name);
-    const subDirectory = parts.join("/");
-
-    const directory = `./src/components/${subDirectory ? subDirectory + "/" : ""}${slug}`;
+    const { name, slug, directory } = assembleDirectoryPath({
+      pathToDir: "./src/components",
+      inputName: input,
+    })
 
     const componentContent = template
       .replaceAll("COMPONENT_SLUG", slug)
