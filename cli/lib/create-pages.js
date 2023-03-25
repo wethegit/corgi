@@ -1,19 +1,21 @@
 import { mkdir, writeFile } from "fs/promises";
 
 import log from "./log.js"
-import { pascalToKebab } from "./utils.js";
+import { assembleDirectoryPath } from "./utils.js"
 
 async function* makePages(pageNames, pageTemplateUTF8) {
-  for (const name of pageNames) {
-    const slug = pascalToKebab(name);
-    const pageDir = `./src/pages/[locale]/${slug}`;
+  for (const input of pageNames) {
+    const { name, slug, directory, subDirectory } = assembleDirectoryPath({
+      pathToDir: "./src/pages/[locale]",
+      inputName: input,
+    })
 
     const pageContent = pageTemplateUTF8
-      .replaceAll("PAGE_SLUG", slug)
+      .replaceAll("PAGE_SLUG", `${subDirectory ? subDirectory + "/" : ""}${slug}`)
       .replaceAll("PAGE_NAME", name);
 
-    await mkdir(pageDir, { recursive: true });
-    writeFile(`${pageDir}/index.js`, pageContent);
+    await mkdir(directory, { recursive: true });
+    writeFile(`${directory}/index.js`, pageContent);
     yield name;
   }
 }

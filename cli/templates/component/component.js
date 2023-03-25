@@ -4,10 +4,10 @@ import { useEffect, useState } from "react"
 // components
 
 // hooks
-import useLocale from "../../hooks/use-locale"
+import useLocale from "#hooks/use-locale"
 
 // utilities
-import classnames from "../../utils/classnames"
+import classnames from "#utils/classnames"
 
 // styles
 import * as styles from "./COMPONENT_SLUG.module.scss"

@@ -1,12 +1,14 @@
 import { mkdir, writeFile } from "fs/promises";
 
 import log from "./log.js";
-import {pascalToKebab} from "./utils.js"
+import { assembleDirectoryPath } from "./utils.js"
 
 async function* makeComponents(names, template, stylesheet) {
-  for (const name of names) {
-    const slug = pascalToKebab(name);
-    const directory = `./src/components/${slug}`;
+  for (const input of names) {
+    const { name, slug, directory } = assembleDirectoryPath({
+      pathToDir: "./src/components",
+      inputName: input,
+    })
 
     const componentContent = template
       .replaceAll("COMPONENT_SLUG", slug)

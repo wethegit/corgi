@@ -7,6 +7,12 @@
   "bin": {
     "corgi": "bin/index.js"
   },
+  "imports": {
+    "#components/*": "./src/components/*.js",
+    "#context/*": "./src/context/*.js",
+    "#hooks/*": "./src/hooks/*.js",
+    "#utils/*": "./src/utils/*.js"
+  },
   "author": "Andrew Rubin <andrew@wethecollective.com> (https://wethecollective.com/)",
   "contributors": [],
   "license": "MIT",
