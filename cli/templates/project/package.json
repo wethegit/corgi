@@ -1,5 +1,6 @@
 {
   "name": "corgi-project",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "build": "npm run mash-build && next build",
@@ -31,6 +32,5 @@
     "node-watch": "^0.7.3",
     "sass": "~1.49.7",
     "yamljs": "~0.3.0"
-  },
-  "version": "0.0.1"
+  }
 }
