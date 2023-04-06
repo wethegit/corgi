@@ -2,20 +2,32 @@
   "name": "@wethegit/corgi",
   "version": "0.1.0",
   "description": "Command line interface for use with the corgi framework.",
-  "type": "module",
   "main": "bin/index.js",
   "bin": {
     "corgi": "bin/index.js"
   },
-  "imports": {
-    "#components/*": "./src/components/*.js",
-    "#context/*": "./src/context/*.js",
-    "#hooks/*": "./src/hooks/*.js",
-    "#utils/*": "./src/utils/*.js"
+  "type": "module",
+  "keywords": [
+    "generator",
+    "i18n",
+    "locale",
+    "localization",
+    "next",
+    "react",
+    "static site"
+  ],
+  "homepage": "https://wethegit.github.io/corgi/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wethegit/corgi",
+    "directory": "cli"
   },
-  "author": "Andrew Rubin <andrew@wethecollective.com> (https://wethecollective.com/)",
-  "contributors": [],
+  "bugs": "https://github.com/wethegit/corgi/issues",
   "license": "MIT",
+  "contributors": [
+    "Andrew Rubin <andrew@wethecollective.com> (https://github.com/orgs/wethegit/people/andrewrubin)",
+    "Steve Gardner <steve@wethecollective.com> (https://github.com/orgs/wethegit/people/ste-vg)"
+  ],
   "dependencies": {
     "chalk": "~5.0.1",
     "cli-spinner": "~0.2.10",

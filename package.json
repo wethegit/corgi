@@ -7,18 +7,16 @@
     "cli",
     "docs"
   ],
+  "license": "MIT",
+  "homepage": "https://wethegit.github.io/corgi/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wethegit/corgi.git"
+    "url": "https://github.com/wethegit/corgi"
   },
+  "bugs": "https://github.com/wethegit/corgi/issues",
   "contributors": [
     "Andrew Rubin <andrew@wethecollective.com> (https://github.com/orgs/wethegit/people/andrewrubin)",
     "Liam Egan <liam@wethecollective.com> (https://github.com/orgs/wethegit/people/liamegan)",
     "Steve Gardner <steve@wethecollective.com> (https://github.com/orgs/wethegit/people/ste-vg)"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/wethegit/corgi/issues"
-  },
-  "homepage": "https://github.com/wethegit/corgi#readme"
+  ]
 }
