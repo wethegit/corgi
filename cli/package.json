@@ -1,10 +1,10 @@
 {
   "name": "@wethegit/corgi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Command line interface for use with the corgi framework.",
   "main": "bin/index.js",
   "bin": {
-    "corgi": "bin/index.js"
+    "corgiTest": "bin/index.js"
   },
   "type": "module",
   "keywords": [
