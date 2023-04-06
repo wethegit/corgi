@@ -36,7 +36,7 @@ The following is just an example of the many things you _could_ do with this hoo
 
 ```jsx
 import { useEffect } from "react"
-import useSiteState from "../../hooks/use-site-state";
+import useSiteState from "#hooks/use-site-state";
 
 const MyComponent = () => {
   const { setBackground } = useSiteState();
@@ -51,7 +51,7 @@ const MyComponent = () => {
 ```
 
 ```jsx title=/src/containers/page.js
-import useSiteState from "../hooks/use-site-state";
+import useSiteState from "#hooks/use-site-state";
 
 const Page = ({ children, className, version }) => {
   const { background } = useSiteState();
