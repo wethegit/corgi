@@ -5,12 +5,12 @@ import { useRouter } from "next/router";
 import { useUserPrefs } from "@wethegit/react-hooks";
 
 import { locales } from "../../config-locales";
-const localeRemover = new RegExp("/(" + locales.join("|") + ")/");
-import { PAGE_TRANSITION_STATE } from "../../context/site-state-context";
-
-import useSiteState from "../../hooks/use-site-state";
+import { PAGE_TRANSITION_STATE } from "#context/site-state-context";
+import useSiteState from "#hooks/use-site-state";
 
 import * as styles from "./page-transition.module.scss";
+
+const localeRemover = new RegExp("/(" + locales.join("|") + ")/");
 
 // import SwipeTransition from "./swipe/swipe"
 // import BatmanTransition from "./batman/batman"

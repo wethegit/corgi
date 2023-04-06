@@ -11,7 +11,7 @@
 
 import Head from "next/head"
 import { useRouter } from "next/router"
-import useLocale from "../hooks/use-locale"
+import useLocale from "#hooks/use-locale"
 import localeConfig, { defaultLocale } from "../config-locales"
 
 const fallbackTitle = "DON'T FORGET TO ADD A TITLE!"

@@ -12,9 +12,9 @@
  */
 
 import { useContext } from "react";
-import { LocaleContext } from "../context/locale-context";
-import { PageContext } from "../context/page-context";
-import { SiteStateContext } from "../context/site-state-context";
+import { LocaleContext } from "#context/locale-context";
+import { PageContext } from "#context/page-context";
+import { SiteStateContext } from "#context/site-state-context";
 
 const useLocale = (setPage) => {
   const localeCache = useContext(LocaleContext);

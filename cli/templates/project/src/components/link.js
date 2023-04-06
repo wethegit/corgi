@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import NextLink from "next/link"
-import useLocale from "../hooks/use-locale"
+import useLocale from "#hooks/use-locale"
 import { defaultLocale } from "../config-locales"
 
 /**

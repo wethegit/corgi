@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import localesConfig from "../config-locales";
-import useLocale from "../hooks/use-locale";
+import localesConfig from "../../config-locales";
+import useLocale from "#hooks/use-locale";
 
-import BodyScripts from "../components/body-scripts";
-import Footer from "../components/footer/footer";
-import Nav from "../components/nav/nav";
-import PageHead from "../components/page-head";
+import BodyScripts from "#components/body-scripts";
+import Footer from "#components/footer/footer";
+import Nav from "#components/nav/nav";
+import PageHead from "#components/page-head";
 
-import classnames from "../utils/classnames";
+import classnames from "#utils/classnames";
 
 import * as styles from "./page.module.scss";
 

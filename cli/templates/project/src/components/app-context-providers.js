@@ -1,7 +1,7 @@
 import { UserPreferencesProvider } from "@wethegit/react-hooks";
 
-import LocaleProvider from "../context/locale-context";
-import SiteStateProvider from "../context/site-state-context";
+import LocaleProvider from "#context/locale-context";
+import SiteStateProvider from "#context/site-state-context";
 
 const AppContextProviders = ({ children, localeData, ...pageProps }) => {
   return (

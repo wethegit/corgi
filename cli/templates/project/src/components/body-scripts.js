@@ -5,7 +5,7 @@
  */
 
 import Script from "next/script"
-import useLocale from "../hooks/use-locale"
+import useLocale from "#hooks/use-locale"
 
 const BodyScripts = ({}) => {
   const { globals, page } = useLocale()

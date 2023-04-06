@@ -1,9 +1,11 @@
-import { setupPaths, setupProps } from "../../utils/page-setup"
-import HomePageContents from "../../components/home-page-contents/home-page-contents"
 import { useEffect } from "react"
 import { useRouter } from "next/router"
+
+import { setupPaths, setupProps } from "#utils/page-setup"
 import { defaultLocale } from "../../config-locales"
-import PageProvider from "../../context/page-context"
+
+import HomePageContents from "#components/home-page-contents/home-page-contents"
+import PageProvider from "#context/page-context"
 
 const LOCALE_FOLDER = "home"
 const Home = ({ locale, ...pageProps }) => {

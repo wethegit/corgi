@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { SiteStateContext } from "../context/site-state-context"
+import { SiteStateContext } from "#context/site-state-context"
 
 const useSiteState = () => useContext(SiteStateContext)
 

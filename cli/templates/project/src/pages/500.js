@@ -1,4 +1,4 @@
-import { setupProps } from "../utils/page-setup"
+import { setupProps } from "#utils/page-setup"
 
 const FiveHundred = ({ locale, globals }) => {
   return (
