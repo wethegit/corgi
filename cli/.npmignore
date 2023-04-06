@@ -4,7 +4,6 @@
 .*.swp
 ._*
 .DS_Store
-.nvmrc
 .git
 .hg
 .npmignore
