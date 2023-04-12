@@ -18,7 +18,7 @@ const duration = 400
 const Nav = ({}) => {
   const { globals, page } = useLocale()
   const [open, setOpen] = useState(false)
-  const currentBP = useBreakpoints()
+  const { breakpoint } = useBreakpoints()
 
   // This ref is just to avoid the "findDOMNode in strictMode" error:
   // https://github.com/reactjs/react-transition-group/issues/668
@@ -27,8 +27,8 @@ const Nav = ({}) => {
   const toggle = () => setOpen(!open)
 
   useEffect(() => {
-    if (currentBP > 2) setOpen(false)
-  }, [currentBP])
+    if (breakpoint > 2) setOpen(false)
+  }, [breakpoint])
 
   return (
     <div
@@ -47,7 +47,7 @@ const Nav = ({}) => {
         </li>
       </menu>
 
-      {currentBP < 3 && (
+      {breakpoint < 3 && (
         <button
           className={classnames([styles.toggler, open && styles.togglerPressed])}
           aria-live="polite"
@@ -69,9 +69,9 @@ const Nav = ({}) => {
         for the desktop experience (i.e. breakpoint is greater than 2) */
         }
 
-        const WrapperTag = currentBP > 2 ? Fragment : CSSTransition
+        const WrapperTag = breakpoint > 2 ? Fragment : CSSTransition
         const wrapperProps =
-          currentBP > 2
+          breakpoint > 2
             ? {}
             : {
                 classNames: navTransition,
