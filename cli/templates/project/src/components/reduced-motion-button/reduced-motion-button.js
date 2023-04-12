@@ -1,9 +1,9 @@
 import { useUserPrefs } from "@wethegit/react-hooks";
 
-import useLocale from "#hooks/use-locale";
+import useLocale from "@local/hooks/use-locale";
 
-import { castToBool } from "#utils/utils";
-import classnames from "#utils/classnames";
+import { castToBool } from "@local/utils/utils";
+import classnames from "@local/utils/classnames";
 
 import {
   rmButton,

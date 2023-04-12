@@ -1,11 +1,11 @@
 import { useEffect } from "react"
 import { useRouter } from "next/router"
 
-import { setupPaths, setupProps } from "#utils/page-setup"
+import { setupPaths, setupProps } from "@local/utils/page-setup"
 import { defaultLocale } from "../../config-locales"
 
-import HomePageContents from "#components/home-page-contents/home-page-contents"
-import PageProvider from "#context/page-context"
+import HomePageContents from "@local/components/home-page-contents/home-page-contents"
+import PageProvider from "@local/context/page-context"
 
 const LOCALE_FOLDER = "home"
 const Home = ({ locale, ...pageProps }) => {

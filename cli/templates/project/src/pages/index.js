@@ -1,7 +1,7 @@
-import { setupProps } from "#utils/page-setup"
+import { setupProps } from "@local/utils/page-setup"
 
-import HomePageContents from "#components/home-page-contents/home-page-contents"
-import PageProvider from "#context/page-context"
+import HomePageContents from "@local/components/home-page-contents/home-page-contents"
+import PageProvider from "@local/context/page-context"
 
 const LOCALE_FOLDER = "home"
 export default function RootRedirect({ ...pageProps }) {

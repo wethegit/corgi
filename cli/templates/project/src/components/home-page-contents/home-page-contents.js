@@ -1,4 +1,4 @@
-import useLocale from "#hooks/use-locale"
+import useLocale from "@local/hooks/use-locale"
 
 const HomePageContents = ({ version }) => {
   const { locale, page, globals, localeMap } = useLocale()

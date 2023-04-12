@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import { useUserPrefs } from "@wethegit/react-hooks";
 
 import { locales } from "../../config-locales";
-import { PAGE_TRANSITION_STATE } from "#context/site-state-context";
-import useSiteState from "#hooks/use-site-state";
+import { PAGE_TRANSITION_STATE } from "@local/context/site-state-context";
+import useSiteState from "@local/hooks/use-site-state";
 
 import * as styles from "./page-transition.module.scss";
 

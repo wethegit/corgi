@@ -15,7 +15,7 @@
  */
 
 import { createContext, useState, useEffect, useContext } from "react"
-import { SiteStateContext } from "#context/site-state-context"
+import { SiteStateContext } from "@local/context/site-state-context"
 
 const LocaleContext = createContext()
 
