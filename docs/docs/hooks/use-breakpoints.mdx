@@ -10,19 +10,20 @@ The `useBreakpoints` hook provides us with the current breakpoint. This value is
 
 ## Return value
 
-`useBreakpoints` returns an integer which corresponds to a breakpoint based on the following mapping:
+`useBreakpoints` returns an object containing two values — the breakpoint name ("small", "medium", etc.), and an integer which corresponds to a breakpoint based on the following mapping:
 
 ```
 1: small
 2: medium
 3: large
-4: x-large
-5: xx-large
+4: xlarge
+5: xxlarge
 ```
 
-| Value      | Type     | Description |
-| ---------- | -------- | ----------- |
-| breakpoint | Number   | An integer representation of the current breakpoint. |
+| Value          | Type     | Description                                          |
+| -------------- | -------- | ---------------------------------------------------- |
+| breakpoint     | Number   | An integer representation of the current breakpoint. |
+| breakpointName | String   | A string representation of the current breakpoint.   |
 
 ## Usage
 
@@ -33,7 +34,9 @@ import MyMobileDeviceComponent from "../somewhere"
 import WildlyDifferentDesktopComponent from "../somewhere"
 
 const MyComponent = () => {
-  const breakpoint = useBreakpoints()
+  const { breakpoint, breakpointName } = useBreakpoints()
+
+  console.log(breakpointName === "small") // => logs true or false
 
   return breakpoint < 3 ? (
     <MyMobileDeviceComponent />
