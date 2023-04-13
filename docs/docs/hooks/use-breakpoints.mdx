@@ -10,7 +10,7 @@ The `useBreakpoints` hook provides us with the current breakpoint. This value is
 
 ## Return value
 
-`useBreakpoints` returns an object containing two values — the breakpoint name ("small", "medium", etc.), and an integer which corresponds to a breakpoint based on the following mapping:
+`useBreakpoints` returns an object containing a handful of helpful values for working with media queries (breakpoints) and conditional rendering, among other uses. The mapping of breakpoints is as follows (see table below for details):
 
 ```
 1: small
@@ -20,10 +20,15 @@ The `useBreakpoints` hook provides us with the current breakpoint. This value is
 5: xxlarge
 ```
 
-| Value          | Type     | Description                                          |
-| -------------- | -------- | ---------------------------------------------------- |
-| breakpoint     | Number   | An integer representation of the current breakpoint. |
-| breakpointName | String   | A string representation of the current breakpoint.   |
+| Value           | Type     | Description                                          |
+| --------------  | -------- | ---------------------------------------------------- |
+| BREAKPOINTS     | Object   | Mapping of breakpoint keys to their string values.   |
+| breakpointIndex | Number   | An integer representation of the current breakpoint. |
+| breakpointName  | String   | A string representation of the current breakpoint.   |
+| mediumUp        | Boolean  | Result of the expression `breakpontIndex > 1`        |
+| mediumDown      | Boolean  | Result of the expression `breakpontIndex < 3`        |
+| largeUp         | Boolean  | Result of the expression `breakpontIndex > 2`        |
+| xlargeUp        | Boolean  | Result of the expression `breakpontIndex > 3`        |
 
 ## Usage
 
@@ -34,11 +39,11 @@ import MyMobileDeviceComponent from "../somewhere"
 import WildlyDifferentDesktopComponent from "../somewhere"
 
 const MyComponent = () => {
-  const { breakpoint, breakpointName } = useBreakpoints()
+  const { breakpointIndex, breakpointName, BREAKPOINTS } = useBreakpoints()
 
-  console.log(breakpointName === "small") // => logs true or false
+  console.log(breakpointName === BREAKPOINTS.small) // => logs true or false
 
-  return breakpoint < 3 ? (
+  return breakpointIndex < 3 ? (
     <MyMobileDeviceComponent />
   ) : (
     <WildlyDifferentDesktopComponent />
