@@ -14,6 +14,7 @@ const nextConfig = {
       "@local/context": resolve("src/context"),
       "@local/hooks": resolve("src/hooks"),
       "@local/utils": resolve("src/utils"),
+      "@local/styles": resolve("src/styles"),
     }
     return config
   },
