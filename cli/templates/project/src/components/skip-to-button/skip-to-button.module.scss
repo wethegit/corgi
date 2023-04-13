@@ -1,5 +1,5 @@
-@use "../../styles/helpers/helpers-a11y" as *;
-@use "../../styles/helpers/helpers-layout" as *;
+@use "@local/styles/helpers/helpers-a11y" as *;
+@use "@local/styles/helpers/helpers-layout" as *;
 
 .skipTo {
   display: block;

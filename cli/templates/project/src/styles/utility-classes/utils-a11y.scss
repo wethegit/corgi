@@ -1,4 +1,4 @@
-@use "../helpers/helpers-a11y" as *;
+@use "@local/styles/helpers/helpers-a11y" as *;
 
 .focus-reverse:focus {
   @include focus-style-reverse;

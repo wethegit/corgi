@@ -1,6 +1,6 @@
 /* stylelint-disable property-no-unknown */
-@import "./settings/settings-breakpoints";
-@import "./settings/settings-layout";
+@import "@local/styles/settings/settings-breakpoints";
+@import "@local/styles/settings/settings-layout";
 
 :export {
   breakpoint-large: $large;

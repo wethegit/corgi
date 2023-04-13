@@ -1,26 +1,26 @@
 // Mixins/helpers specific to this file:
-@use "./helpers/helpers-a11y" as *;
+@use "@local/styles/helpers/helpers-a11y" as *;
 
 // Global settings and variables
-@import "./settings/settings-animation";
-@import "./settings/settings-breakpoints";
-@import "./settings/settings-color";
-@import "./settings/settings-layout";
-@import "./settings/settings-reduced-motion";
+@import "@local/styles/settings/settings-animation";
+@import "@local/styles/settings/settings-breakpoints";
+@import "@local/styles/settings/settings-color";
+@import "@local/styles/settings/settings-layout";
+@import "@local/styles/settings/settings-reduced-motion";
 
 // Global style declarations:
-@import "./base/resets.scss";
-@import "./base/layout.scss";
-@import "./base/typography.scss";
+@import "@local/styles/base/resets.scss";
+@import "@local/styles/base/layout.scss";
+@import "@local/styles/base/typography.scss";
 
 // Global utility classes:
-@import "./utility-classes/utils-a11y.scss";
-@import "./utility-classes/utils-breakpoints.scss";
-@import "./utility-classes/utils-color.scss";
-@import "./utility-classes/utils-image.scss";
-@import "./utility-classes/utils-in-view.scss";
-@import "./utility-classes/utils-layout.scss";
-@import "./utility-classes/utils-typography.scss";
+@import "@local/styles/utility-classes/utils-a11y.scss";
+@import "@local/styles/utility-classes/utils-breakpoints.scss";
+@import "@local/styles/utility-classes/utils-color.scss";
+@import "@local/styles/utility-classes/utils-image.scss";
+@import "@local/styles/utility-classes/utils-in-view.scss";
+@import "@local/styles/utility-classes/utils-layout.scss";
+@import "@local/styles/utility-classes/utils-typography.scss";
 
 *:focus {
   @include focus-style;
