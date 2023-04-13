@@ -28,6 +28,12 @@ const BREAKPOINT_MAP = new Map([
   ["XXL", [5, "xxlarge"]],
 ])
 
+const BREAKPOINTS = [...BREAKPOINT_MAP].reduce((acc, curr) => {
+  const name = curr[1][1]
+  acc[name] = name
+  return acc
+}, {})
+
 const useBreakpoints = () => {
   const [currentBP, setCurrentBP] = useState([null, null])
   const [breakpointIndex, breakpointName] = currentBP
@@ -61,11 +67,7 @@ const useBreakpoints = () => {
     mediumDown: breakpointIndex < 3,
     largeUp: breakpointIndex > 2,
     xlargeUp: breakpointIndex > 3,
-    BREAKPOINTS: [...BREAKPOINT_MAP].reduce((acc, curr) => {
-      const name = curr[1][1]
-      acc[name] = name
-      return acc
-    }, {}),
+    BREAKPOINTS,
   }
 }
 
