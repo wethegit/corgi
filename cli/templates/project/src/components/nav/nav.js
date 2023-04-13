@@ -18,7 +18,7 @@ const duration = 400
 const Nav = ({}) => {
   const { globals, page } = useLocale()
   const [open, setOpen] = useState(false)
-  const { breakpoint } = useBreakpoints()
+  const { breakpointIndex } = useBreakpoints()
 
   // This ref is just to avoid the "findDOMNode in strictMode" error:
   // https://github.com/reactjs/react-transition-group/issues/668
@@ -27,8 +27,8 @@ const Nav = ({}) => {
   const toggle = () => setOpen(!open)
 
   useEffect(() => {
-    if (breakpoint > 2) setOpen(false)
-  }, [breakpoint])
+    if (breakpointIndex > 2) setOpen(false)
+  }, [breakpointIndex])
 
   return (
     <div
@@ -47,7 +47,7 @@ const Nav = ({}) => {
         </li>
       </menu>
 
-      {breakpoint < 3 && (
+      {breakpointIndex < 3 && (
         <button
           className={classnames([styles.toggler, open && styles.togglerPressed])}
           aria-live="polite"
@@ -63,15 +63,13 @@ const Nav = ({}) => {
       <div className={styles.overlay} onClick={() => toggle()}></div>
 
       {(() => {
-        {
-          /* This is just some logic to wrap our navigation in either a <CSSTransition>
+        {/* This is just some logic to wrap our navigation in either a <CSSTransition>
         or a React Fragment. The reason being that we don't want any transitions on it
-        for the desktop experience (i.e. breakpoint is greater than 2) */
-        }
+        for the desktop experience (i.e. breakpointIndex > 2) */}
 
-        const WrapperTag = breakpoint > 2 ? Fragment : CSSTransition
+        const WrapperTag = breakpointIndex > 2 ? Fragment : CSSTransition
         const wrapperProps =
-          breakpoint > 2
+          breakpointIndex > 2
             ? {}
             : {
                 classNames: navTransition,
