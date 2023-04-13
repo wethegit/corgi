@@ -1,5 +1,5 @@
-@use "../helpers/helpers-images" as *;
-@use "../helpers/helpers-math" as *;
+@use "@local/styles/helpers/helpers-images" as *;
+@use "@local/styles/helpers/helpers-math" as *;
 
 .image-group {
   --parent-width: 0;

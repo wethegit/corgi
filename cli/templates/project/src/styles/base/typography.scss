@@ -2,7 +2,7 @@
 // `styles/utility-classes/utils-typography.scss` file, alongside the typography
 // utility classes.
 
-@use "../helpers/helpers-typography" as *;
+@use "@local/styles/helpers/helpers-typography" as *;
 
 :root {
   --font-body: "Open Sans", sans-serif;

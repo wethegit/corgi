@@ -1,6 +1,6 @@
 import { useEffect, useRef, forwardRef, useState } from "react"
-import classnames from "#utils/classnames"
-import { breakpointMap, breakpointOrder } from "#utils/layout"
+import classnames from "@local/utils/classnames"
+import { breakpointMap, breakpointOrder } from "@local/utils/layout"
 import register from "../../images_register.json"
 
 /**

@@ -1,17 +1,17 @@
 import { Fragment, useEffect, useRef, useState } from "react"
 import { CSSTransition } from "react-transition-group"
 
-import Link from "#components/link"
-import ReducedMotionButton from "#components/reduced-motion-button/reduced-motion-button"
-import SkipToButton from "#components/skip-to-button/skip-to-button"
+import Link from "@local/components/link"
+import ReducedMotionButton from "@local/components/reduced-motion-button/reduced-motion-button"
+import SkipToButton from "@local/components/skip-to-button/skip-to-button"
 
-import classnames from "#utils/classnames"
+import classnames from "@local/utils/classnames"
 
 import * as styles from "./nav.module.scss"
 import navTransition from "./nav-transition.module.scss"
 
-import useLocale from "#hooks/use-locale"
-import useBreakpoints from "#hooks/use-breakpoints"
+import useLocale from "@local/hooks/use-locale"
+import useBreakpoints from "@local/hooks/use-breakpoints"
 
 const duration = 400
 

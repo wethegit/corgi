@@ -1,7 +1,7 @@
 import { skipTo } from "./skip-to-button.module.scss"
-import useLocale from "#hooks/use-locale"
+import useLocale from "@local/hooks/use-locale"
 
-import classnames from "#utils/classnames"
+import classnames from "@local/utils/classnames"
 
 const SkipToButton = ({ anchor, text, className }) => {
   if (anchor.indexOf("#") !== 0) {

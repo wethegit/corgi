@@ -1,4 +1,4 @@
-@use "../helpers/helpers-layout" as *;
+@use "@local/styles/helpers/helpers-layout" as *;
 
 // Generates "row" class names (for flex layout) for the given breakpoint
 @mixin add-grid-row($size: null) {

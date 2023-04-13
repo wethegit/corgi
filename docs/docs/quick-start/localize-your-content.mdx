@@ -97,7 +97,7 @@ The `useLocale` hook will allow you to retrieve locale information from within a
 ### Global data example:
 
 ```jsx title=/src/components/footer/footer.js
-import useLocale from "#hooks/use-locale";
+import useLocale from "@local/hooks/use-locale";
 
 const Footer = ({ children }) => {
   const { globals } = useLocale();
@@ -115,7 +115,7 @@ export default Footer;
 ### Page and global data example:
 
 ```jsx title=/src/components/home-page-contents/home-page-contents.js
-import useLocale from "#hooks/use-locale";
+import useLocale from "@local/hooks/use-locale";
 
 const HomePageContents = ({}) => {
   const { locale, page, globals } = useLocale()

@@ -1,5 +1,5 @@
-@use "../helpers/helpers-a11y" as *;
-@use "../helpers/helpers-in-view" as *;
+@use "@local/styles/helpers/helpers-a11y" as *;
+@use "@local/styles/helpers/helpers-in-view" as *;
 
 // All in-view animations are based around a handful of CSS
 // custom properties, so you can easily create your own custom

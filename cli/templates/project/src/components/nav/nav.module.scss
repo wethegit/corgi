@@ -1,7 +1,7 @@
-@use "../../styles/helpers/helpers-layout" as *;
-@use "../../styles/helpers/helpers-animation" as *;
-@use "../../styles/settings/settings-breakpoints" as *;
-@use "../../styles/settings/settings-layout" as *;
+@use "@local/styles/helpers/helpers-layout" as *;
+@use "@local/styles/helpers/helpers-animation" as *;
+@use "@local/styles/settings/settings-breakpoints" as *;
+@use "@local/styles/settings/settings-layout" as *;
 
 .a11yBar {
   align-items: center;

@@ -1,4 +1,4 @@
-import { setupProps } from "#utils/page-setup"
+import { setupProps } from "@local/utils/page-setup"
 
 const Four0hFour = ({ locale, globals }) => {
   return (

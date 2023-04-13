@@ -1,6 +1,6 @@
-import AppContextProviders from "#components/app-context-providers";
-import Page from "#components/page/page";
-import PageTransition from "#components/page-transition/page-transition";
+import AppContextProviders from "@local/components/app-context-providers";
+import Page from "@local/components/page/page";
+import PageTransition from "@local/components/page-transition/page-transition";
 import { useRouter } from "next/router";
 
 import "../styles/globals.scss";

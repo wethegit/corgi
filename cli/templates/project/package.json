@@ -12,12 +12,6 @@
     "preflight": "npm run mash-build-all && next build",
     "start": "npm run mash-watch & next dev -p 8080"
   },
-  "imports": {
-    "#components/*": "./src/components/*.js",
-    "#context/*": "./src/context/*.js",
-    "#hooks/*": "./src/hooks/*.js",
-    "#utils/*": "./src/utils/*.js"
-  },
   "dependencies": {
     "@wethegit/react-hooks": "~0.0.8",
     "next": "~12.1.0",
