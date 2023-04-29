@@ -10,6 +10,7 @@
 
 import { Html, Head, Main, NextScript } from "next/document"
 import { defaultLocale } from "../config-locales"
+import { TLDN } from '../consts'
 
 export default function Document() {
   return (
@@ -17,11 +18,11 @@ export default function Document() {
       <Head>
         <meta content="website" property="og:type" />
         <meta
-          content={`${process.env.NEXT_PUBLIC_URL}/images/share-fb.jpg`}
+          content={`${TLDN}/images/share-fb.jpg`}
           property="og:image"
         />
         <meta
-          content={`${process.env.NEXT_PUBLIC_URL}/images/share-tw.jpg`}
+          content={`${TLDN}/images/share-tw.jpg`}
           name="twitter:image"
         />
 

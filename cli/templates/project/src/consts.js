@@ -1,0 +1,1 @@
+export const TLDN = process.env.NEXT_PUBLIC_URL

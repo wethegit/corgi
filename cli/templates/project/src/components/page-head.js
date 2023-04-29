@@ -13,6 +13,7 @@ import Head from "next/head"
 import { useRouter } from "next/router"
 import useLocale from "@local/hooks/use-locale"
 import localeConfig, { defaultLocale } from "../config-locales"
+import { TLDN } from '../consts'
 
 const fallbackTitle = "DON'T FORGET TO ADD A TITLE!"
 const fallbackDesc = "DON'T FORGET TO ADD A DESCRIPTION!"
@@ -22,7 +23,7 @@ const PageHead = ({}) => {
   const router = useRouter()
 
   const getPageUrl = () => {
-    return process.env.NEXT_PUBLIC_URL + router.asPath
+    return TLDN + router.asPath
   }
 
   const getTitle = () => {
@@ -87,7 +88,7 @@ const PageHead = ({}) => {
         if (path.length > 1) path = path + "/"
 
         // replace the [locale] in the path with the actual altLocale
-        let href = process.env.NEXT_PUBLIC_URL + path.replace("[locale]", altLocale)
+        let href = TLDN + path.replace("[locale]", altLocale)
 
         // return the tag
         return <link key={altLocale} rel="alternate" hrefLang={lang} href={href} />
