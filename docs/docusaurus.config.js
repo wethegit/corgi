@@ -96,7 +96,7 @@ const config = {
               },
               {
                 label: "Twitter",
-                href: "https://twitter.com/wethegit",
+                href: "https://twitter.com/wethetweet",
               },
               {
                 label: "NPM",
