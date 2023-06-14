@@ -18,17 +18,21 @@ const duration = 400
 const Nav = ({}) => {
   const { globals, page } = useLocale()
   const [open, setOpen] = useState(false)
-  const { breakpointIndex } = useBreakpoints()
-
+  const { breakpointName, mediumDown } = useBreakpoints()
+  const focusLoopEnd = useRef()
+  const menuToggler = useRef()
+  const isToggleableMenu = mediumDown
+  
   // This ref is just to avoid the "findDOMNode in strictMode" error:
   // https://github.com/reactjs/react-transition-group/issues/668
   const transitionRef = useRef()
 
   const toggle = () => setOpen(!open)
 
+  // close the menu when the breakpoint changes.
   useEffect(() => {
-    if (breakpointIndex > 2) setOpen(false)
-  }, [breakpointIndex])
+    if (!isToggleableMenu) setOpen(false)
+  }, [breakpointName])
 
   return (
     <div
@@ -47,10 +51,11 @@ const Nav = ({}) => {
         </li>
       </menu>
 
-      {breakpointIndex < 3 && (
+      {isToggleableMenu && (
         <button
           className={classnames([styles.toggler, open && styles.togglerPressed])}
           aria-live="polite"
+          ref={menuToggler}
           onClick={() => toggle()}
         >
           <span className={styles.togglerIcon}></span>
@@ -65,19 +70,19 @@ const Nav = ({}) => {
       {(() => {
         {/* This is just some logic to wrap our navigation in either a <CSSTransition>
         or a React Fragment. The reason being that we don't want any transitions on it
-        for the desktop experience (i.e. breakpointIndex > 2) */}
+        for the desktop experience (i.e. `!isToggleableMenu`) */}
 
-        const WrapperTag = breakpointIndex > 2 ? Fragment : CSSTransition
-        const wrapperProps =
-          breakpointIndex > 2
-            ? {}
-            : {
+        const WrapperTag = isToggleableMenu ? CSSTransition : Fragment
+        const wrapperProps = 
+          isToggleableMenu
+            ? {
                 classNames: navTransition,
                 in: open,
                 timeout: duration,
                 unmountOnExit: true,
                 nodeRef: transitionRef,
               }
+            : {}
 
         return (
           <WrapperTag {...wrapperProps}>
@@ -102,6 +107,16 @@ const Nav = ({}) => {
                   )
                 })}
               </menu>
+
+              {/* Focus loop trigger -> takes us back to the menu toggler when tabbing */}
+              {isToggleableMenu && (
+                <span
+                  className="visually-hidden"
+                  ref={focusLoopEnd}
+                  tabIndex={0}
+                  onFocus={() => menuToggler.current.focus()}
+                />
+              )}
             </nav>
           </WrapperTag>
         )
