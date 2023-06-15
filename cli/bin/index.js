@@ -10,7 +10,7 @@ const program = new Command();
 
 program
   .name("corgi")
-  .description("Welcome to the corgi CLI. Here's the description.");
+  .description("Welcome to the corgi CLI. Please enter a valid command, like `corgi project`, `corgi page`, or `corgi component`.");
 
 program
   .command("project")
