@@ -77,10 +77,28 @@
 }
 
 .mainNav {
+  // customize your nav animation with these variables!
+  --initial-alpha: 0;
+  --initial-scale: 1;
+  --initial-x: 0;
+  --initial-y: 0;
+  
+  --animation-duration: 0.4s;
+
   left: 0;
+  opacity: var(--initial-alpha);
+  pointer-events: none;
   position: fixed;
   top: 160px;
+  transform: translate(var(--initial-x), var(--initial-y)) scale(var(--initial-scale));
+  transition-property: opacity, transform;
+  transition: duration(var(--animation-duration));
   width: 100%;
+  
+  .navActive & {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
 }
 
 .overlay {
@@ -98,12 +116,6 @@
   }
 }
 
-.enterActive {
-  .overlay {
-    opacity: 0.95;
-  }
-}
-
 .navList {
   display: flex;
   flex-direction: column;
@@ -114,6 +126,7 @@
   a {
     display: inline-block;
     padding: space-by(2) space-by(4);
+    pointer-events: all;
     text-underline-offset: 2px;
   }
 
@@ -142,10 +155,17 @@
 
 @media #{$large-up} {
   .mainNav {
+    --initial-alpha: 1;
+    --initial-scale: 1;
+    --initial-x: 0;
+    --initial-y: 0;
+
     border-bottom: 1px solid var(--color-grey-200);
     height: auto;
     position: relative;
     top: 0;
+    transform: none;
+    transition: none;
   }
 
   .overlay {

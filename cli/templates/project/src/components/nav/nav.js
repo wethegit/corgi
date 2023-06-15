@@ -1,5 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from "react"
-import { CSSTransition } from "react-transition-group"
+import { useEffect, useRef, useState } from "react"
 
 import Link from "@local/components/link"
 import ReducedMotionButton from "@local/components/reduced-motion-button/reduced-motion-button"
@@ -8,7 +7,6 @@ import SkipToButton from "@local/components/skip-to-button/skip-to-button"
 import classnames from "@local/utils/classnames"
 
 import * as styles from "./nav.module.scss"
-import navTransition from "./nav-transition.module.scss"
 
 import useLocale from "@local/hooks/use-locale"
 import useBreakpoints from "@local/hooks/use-breakpoints"
@@ -19,10 +17,6 @@ const Nav = ({}) => {
   const { globals, page } = useLocale()
   const [open, setOpen] = useState(false)
   const { breakpointIndex } = useBreakpoints()
-
-  // This ref is just to avoid the "findDOMNode in strictMode" error:
-  // https://github.com/reactjs/react-transition-group/issues/668
-  const transitionRef = useRef()
 
   const toggle = () => setOpen(!open)
 
@@ -62,50 +56,27 @@ const Nav = ({}) => {
 
       <div className={styles.overlay} onClick={() => toggle()}></div>
 
-      {(() => {
-        {/* This is just some logic to wrap our navigation in either a <CSSTransition>
-        or a React Fragment. The reason being that we don't want any transitions on it
-        for the desktop experience (i.e. breakpointIndex > 2) */}
-
-        const WrapperTag = breakpointIndex > 2 ? Fragment : CSSTransition
-        const wrapperProps =
-          breakpointIndex > 2
-            ? {}
-            : {
-                classNames: navTransition,
-                in: open,
-                timeout: duration,
-                unmountOnExit: true,
-                nodeRef: transitionRef,
-              }
-
-        return (
-          <WrapperTag {...wrapperProps}>
-            <nav
-              className={styles.mainNav}
-              aria-label={globals.nav.label}
-              ref={transitionRef}
-            >
-              <menu className={styles.navList} aria-expanded={open}>
-                {globals.nav.items.map((item, i) => {
-                  const { label, path } = item
-                  return (
-                    <li
-                      key={`navitem${i}`}
-                      className={styles.navItem}
-                      aria-current={item.id === page?.selectedNav ? "page" : null}
-                    >
-                      <Link href={path} passHref>
-                        <a onClick={() => setOpen(false)}>{label}</a>
-                      </Link>
-                    </li>
-                  )
-                })}
-              </menu>
-            </nav>
-          </WrapperTag>
-        )
-      })()}
+      <nav
+        className={styles.mainNav}
+        aria-label={globals.nav.label}
+      >
+        <menu className={styles.navList} aria-expanded={open}>
+          {globals.nav.items.map((item, i) => {
+            const { label, path } = item
+            return (
+              <li
+                key={`navitem${i}`}
+                className={styles.navItem}
+                aria-current={item.id === page?.selectedNav ? "page" : null}
+              >
+                <Link href={path} passHref>
+                  <a onClick={() => setOpen(false)}>{label}</a>
+                </Link>
+              </li>
+            )
+          })}
+        </menu>
+      </nav>
     </div>
   )
 }
