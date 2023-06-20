@@ -1,0 +1,185 @@
+@use "@local/styles/helpers/helpers-layout" as *;
+@use "@local/styles/helpers/helpers-animation" as *;
+@use "@local/styles/settings/settings-breakpoints" as *;
+@use "@local/styles/settings/settings-layout" as *;
+
+.enter {
+  opacity: 0;
+}
+
+.enterActive {
+  opacity: 1;
+  transition: opacity duration(var(--duration)) ease-in-out;
+}
+
+.enterDone,
+.exit {
+  opacity: 1;
+}
+
+.exitActive {
+  opacity: 0;
+  transition: opacity duration(var(--duration)) ease-in-out;
+}
+
+.a11yBar {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.a11yOption {
+  padding: space-by(2) space-by(3);
+}
+
+.navBar {
+  position: sticky;
+  text-align: center;
+  top: 0;
+  z-index: 10;
+}
+
+.toggler {
+  --toggler-size: 54px;
+
+  background-color: var(--color-black);
+  border-radius: 50%;
+  color: var(--color-white);
+  display: grid;
+  height: var(--toggler-size);
+  left: $gutter-width * 1px;
+  place-content: center;
+  position: absolute;
+  top: 60px;
+  width: var(--toggler-size);
+  z-index: 5;
+}
+
+.togglerIcon {
+  --line-w: 27px;
+  --line-h: 3px;
+
+  background-color: var(--color-white);
+  display: block;
+  height: var(--line-h);
+  position: relative;
+  width: var(--line-w);
+
+  &::before,
+  &::after {
+    --line-y: calc(var(--line-h) * -3);
+
+    @include full-absolute;
+
+    background-color: var(--color-white);
+    content: "";
+    transform: translateY(var(--line-y)) rotate(var(--line-rotation, 0deg));
+  }
+
+  &::after {
+    --line-y: calc(var(--line-h) * 3);
+  }
+
+  .togglerPressed & {
+    background-color: transparent;
+
+    &::before {
+      --line-y: 0;
+      --line-rotation: 45deg;
+    }
+
+    &::after {
+      --line-y: 0;
+      --line-rotation: -45deg;
+    }
+  }
+}
+
+.mainNav {
+  left: 0;
+  position: fixed;
+  top: 160px;
+  width: 100%;
+}
+
+.overlay {
+  @include full-absolute;
+
+  background-color: var(--color-grey-300);
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  transition: opacity duration(var(--duration));
+
+  .navActive & {
+    opacity: 0.95;
+    pointer-events: auto;
+  }
+}
+
+.enterActive {
+  .overlay {
+    opacity: 0.95;
+  }
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.navItem {
+  a {
+    display: inline-block;
+    padding: space-by(2) space-by(4);
+    text-underline-offset: 2px;
+  }
+
+  &[aria-current] {
+    a {
+      background-color: var(--color-grey-100);
+      color: var(--color-black);
+    }
+  }
+}
+
+@media (hover: hover) {
+  .navItem {
+    a:hover {
+      background-color: var(--color-grey-400);
+      color: var(--color-white);
+    }
+  }
+}
+
+@media #{$medium-up} {
+  .toggler {
+    left: $gutter-width-medium-up * 1px;
+  }
+}
+
+@media #{$large-up} {
+  .mainNav {
+    border-bottom: 1px solid var(--color-grey-200);
+    height: auto;
+    position: relative;
+    top: 0;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .navList {
+    flex-direction: row;
+    justify-content: center;
+    top: 0;
+  }
+
+  .navItem {
+    a {
+      display: block;
+    }
+  }
+}
