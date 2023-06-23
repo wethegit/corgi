@@ -31,6 +31,13 @@
     "next-sitemap": "~2.5.19",
     "node-watch": "^0.7.3",
     "sass": "~1.49.7",
-    "yamljs": "~0.3.0"
+    "yamljs": "~0.3.0",
+    "eslint": "8.8.0",
+    "eslint-config-next": "12.0.10",
+    "eslint-config-prettier": "~8.3.0",
+    "stylelint": "~14.5.1",
+    "stylelint-config-standard-scss": "~3.0.0",
+    "stylelint-order": "~5.0.0",
+    "eslint-plugin-import": "~2.27.5"
   }
 }
