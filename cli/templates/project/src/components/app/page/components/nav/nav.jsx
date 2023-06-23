@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useRef, useState } from "react"
 import { CSSTransition } from "react-transition-group"
 
-import { Link } from "@local/components"
+import { Link } from "@local/components/common"
 import { classnames } from "@local/utils"
 import { useLocale, useBreakpoints } from "@local/hooks"
 

@@ -7,6 +7,7 @@ const resolve = (dirPath) => path.resolve(__dirname, dirPath)
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
+  webpack5: true,
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
@@ -16,6 +17,7 @@ const nextConfig = {
       "@local/utils": resolve("src/utils"),
       "@local/styles": resolve("src/styles"),
     }
+    config.resolve.fallback = { fs: false }
     return config
   },
 }

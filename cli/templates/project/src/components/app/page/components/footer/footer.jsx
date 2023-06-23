@@ -1,4 +1,4 @@
-import useLocale from "@local/hooks/use-locale"
+import { useLocale } from "@local/hooks"
 
 import styles from "./footer.module.scss"
 

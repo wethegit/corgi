@@ -1,6 +1,6 @@
 import { useLocale } from "@local/hooks"
 
-export function HomeBody() {
+export function HomeBody({ version }) {
   const { locale, localeMap } = useLocale()
 
   return (
