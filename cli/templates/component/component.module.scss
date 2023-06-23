@@ -1,3 +1,12 @@
+@use "@local/styles/settings/settings-breakpoints" as *;
+@use "@local/styles/helpers/helpers-layout" as *;
+
 .wrap {
-  
+  margin: space-by(2) auto;
+}
+
+@media #{$medium-up} {
+  .wrap {
+    margin: space-by(4) auto;
+  }
 }

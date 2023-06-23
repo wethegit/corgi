@@ -1,6 +1,4 @@
 import { useContext } from "react"
-import { SiteStateContext } from "@local/context/site-state-context"
+import { SiteStateContext } from "@local/context"
 
-const useSiteState = () => useContext(SiteStateContext)
-
-export default useSiteState
+export const useSiteState = () => useContext(SiteStateContext)

@@ -1,4 +1,4 @@
-const classnames = (classes = []) => {
+export function classnames(classes = []) {
   if (!classes || !Array.isArray(classes) || !classes.length) return null
 
   let output = []
@@ -9,5 +9,3 @@ const classnames = (classes = []) => {
 
   return output.join(" ")
 }
-
-export default classnames
