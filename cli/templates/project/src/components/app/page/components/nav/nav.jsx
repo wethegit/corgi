@@ -73,7 +73,7 @@ export function Nav() {
         const wrapperProps = 
           isToggleableMenu
             ? {
-                classNames: navTransition,
+                classNames: transitionStyles,
                 in: open,
                 timeout: DURATION,
                 unmountOnExit: true,
