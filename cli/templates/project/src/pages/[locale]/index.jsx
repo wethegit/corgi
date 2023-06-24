@@ -9,7 +9,7 @@ import { defaultLocale } from "../../config-locales"
 
 const LOCALE_FOLDER = "home"
 
-export default function Home ({ locale, ...pageProps }) {
+export default function Home({ locale, ...pageProps }) {
   const router = useRouter()
 
   /*
