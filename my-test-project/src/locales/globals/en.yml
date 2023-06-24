@@ -1,0 +1,27 @@
+meta:
+  title: Global fallback title
+  description: Global fallback description.
+  og_alt: Description of the alt image.
+
+nav:
+  a11yOptions:
+    label: Accessibility options
+    reducedMotion: Reduced motion
+    skipToContent: Skip to main content
+  title: Main site navigation
+  menu:
+    label: Menu
+    open: Open navigation
+    close: Close navigation
+  items:
+    - label: Home
+      id: home
+      path: /
+    - label: Subpage
+      id: subpage
+      path: /subpage
+
+footer:
+  legal:
+    - English footer.
+    - © 2022 We the Collective

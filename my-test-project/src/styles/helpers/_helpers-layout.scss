@@ -1,0 +1,45 @@
+@use "@local/styles/helpers/helpers-math";
+
+// Absolutely positions an element, with an optional inset.
+@mixin full-absolute($inset: 0) {
+  position: absolute;
+
+  @if $inset != 0 {
+    bottom: $inset;
+    left: $inset;
+    right: $inset;
+    top: $inset;
+  } @else {
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+// Creates a value which is a multiple of the --base-space property.
+@function space-by($multiplier: false) {
+  @if not $multiplier {
+    @return var(--base-space, 8px);
+  } @else if $multiplier == 1 {
+    @return var(--base-space, 8px);
+  } @else {
+    @return calc(var(--base-space, 8px) * #{$multiplier});
+  }
+}
+
+// calculates the percentage value of n columns given
+@function grid-calc($colNumber) {
+  @return calc(100 / var(--number-of-columns) * #{$colNumber} * 1%);
+}
+
+// Generates a CSS class name for use in flex layout helpers below
+@function get-grid-class($base, $size: null) {
+  $klass: $base;
+
+  @if $size != null {
+    $klass: $klass + "-" + $size;
+  }
+
+  @return $klass;
+}

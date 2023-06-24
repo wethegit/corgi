@@ -1,0 +1,13 @@
+:root {
+  --total-width: #{$total-width}px;
+  --number-of-columns: #{$columns};
+  --gutter-width: #{$gutter-width}px;
+  --row-width: calc(var(--total-width) + var(--gutter-width) * 2);
+  --base-space: #{$base-space}px;
+}
+
+@media #{$medium-up} {
+  :root {
+    --gutter-width: #{$gutter-width-medium-up}px;
+  }
+}

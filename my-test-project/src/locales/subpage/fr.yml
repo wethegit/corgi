@@ -1,0 +1,9 @@
+# selectedNav should match the appropriate nav item's ID:
+selectedNav: subpage
+
+meta:
+  title: Subpage
+  description: Subpage-specific meta description.
+
+title: Pas la page d'accueil
+subtitle: En français !
