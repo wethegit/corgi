@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useRouter } from "next/router"
 
 import { setupPaths, setupProps } from "@local/utils"
-import { HomePageContents } from "@local/components"
+import { HomeLayout } from "@local/components/layouts"
 import { PageProvider } from "@local/context"
 
 import { defaultLocale } from "../../config-locales"
@@ -39,7 +39,7 @@ export default function Home({ locale, ...pageProps }) {
 
   return (
     <PageProvider page={LOCALE_FOLDER}>
-      {locale != defaultLocale && <HomePageContents {...pageProps} />}
+      {locale != defaultLocale && <HomeLayout {...pageProps} />}
     </PageProvider>
   )
 }
