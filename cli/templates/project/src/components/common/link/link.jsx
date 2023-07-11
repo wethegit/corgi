@@ -2,8 +2,7 @@ import PropTypes from "prop-types"
 import NextLink from "next/link"
 
 import { useLocale } from "@local/hooks"
-
-import { defaultLocale } from "../../../config-locales"
+import { defaultLocale } from "@local/config-locales"
 
 /**
  * Creates a link using client-side navigation.

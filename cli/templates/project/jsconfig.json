@@ -3,11 +3,7 @@
     "jsx": "react",
     "baseUrl": ".",
     "paths": {
-      "@local/components/*": ["./src/components/*"],
-      "@local/context/*": ["./src/context/*"],
-      "@local/hooks/*": ["./src/hooks/*"],
-      "@local/utils/*": ["./src/utils/*"],
-      "@local/styles/*": ["./src/styles/*"]
+      "@local/*": ["./src/*"]
     }
   }
 }

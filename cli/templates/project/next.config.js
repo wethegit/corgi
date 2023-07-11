@@ -11,11 +11,7 @@ const nextConfig = {
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@local/components": resolve("src/components"),
-      "@local/context": resolve("src/context"),
-      "@local/hooks": resolve("src/hooks"),
-      "@local/utils": resolve("src/utils"),
-      "@local/styles": resolve("src/styles"),
+      "@local/*": resolve("src/*"),
     }
     config.resolve.fallback = { fs: false }
     return config

@@ -3,5 +3,6 @@
     "stylelint.vscode-stylelint",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
+    "mikestead.dotenv"
   ]
 }

@@ -5,8 +5,7 @@ import { useUserPrefs } from "@wethegit/react-hooks"
 
 import { PAGE_TRANSITION_STATE } from "@local/context"
 import { useSiteState } from "@local/hooks"
-
-import { locales } from "../../../config-locales"
+import { locales } from "@local/config-locales"
 
 import styles from "./page-transition.module.scss"
 

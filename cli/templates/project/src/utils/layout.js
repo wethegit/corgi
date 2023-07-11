@@ -1,4 +1,4 @@
-import variables from "../styles/js-exports.module.scss"
+import variables from "@local/styles/js-exports.module.scss"
 
 /*
   Creates an object like this:

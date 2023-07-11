@@ -6,3 +6,16 @@ rules:
   react-hooks/rules-of-hooks: error
   react-hooks/exhaustive-deps: warn
   "@next/next/no-img-element": off
+settings:
+  "import/resolver":
+    alias:
+      map:
+        - ["@local", "./src"]
+      extensions:
+        - ".ts"
+        - ".js"
+        - ".jsx"
+        - ".json"
+    node:
+      paths:
+        - "./src"

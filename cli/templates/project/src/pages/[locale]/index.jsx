@@ -4,8 +4,7 @@ import { useRouter } from "next/router"
 import { setupPaths, setupProps } from "@local/utils"
 import { HomeLayout } from "@local/components/layouts"
 import { PageProvider } from "@local/context"
-
-import { defaultLocale } from "../../config-locales"
+import { defaultLocale } from "@local/config-locales"
 
 const LOCALE_FOLDER = "home"
 

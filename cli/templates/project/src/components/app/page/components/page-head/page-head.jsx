@@ -2,8 +2,7 @@ import Head from "next/head"
 import { useRouter } from "next/router"
 
 import { useLocale } from "@local/hooks"
-
-import localeConfig, { defaultLocale } from "../../../../../config-locales"
+import localeConfig, { defaultLocale } from "@local/config-locales"
 
 const fallbackTitle = "DON'T FORGET TO ADD A TITLE!"
 const fallbackDesc = "DON'T FORGET TO ADD A DESCRIPTION!"

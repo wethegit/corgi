@@ -1,6 +1,6 @@
 import { Html, Head, Main, NextScript } from "next/document"
 
-import { defaultLocale } from "../config-locales"
+import { defaultLocale } from "@local/config-locales"
 
 /**
  * Use this component to add app-wide meta tags, add class names to the body, etc.

@@ -2,8 +2,7 @@ import { useEffect } from "react"
 
 import { useLocale } from "@local/hooks"
 import { classnames } from "@local/utils"
-
-import localesConfig from "../../../config-locales"
+import localesConfig from "@local/config-locales"
 
 import { BodyScripts, Footer, Nav, PageHead } from "./components"
 

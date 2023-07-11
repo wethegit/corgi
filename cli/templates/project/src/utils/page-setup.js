@@ -1,4 +1,4 @@
-import localeConfig from "../config-locales"
+import localeConfig from "@local/config-locales"
 
 const { defaultLocale } = localeConfig
 
