@@ -6,11 +6,18 @@ rules:
   react-hooks/rules-of-hooks: error
   react-hooks/exhaustive-deps: warn
   "@next/next/no-img-element": off
+  import/order:
+    - error
+    - newlines-between: always
+      pathGroups:
+        - pattern: "@local/**"
+          group: internal
 settings:
-  "import/resolver":
+  import/resolver:
     alias:
       map:
-        - ["@local", "./src"]
+        - - "@local"
+          - "./src"
       extensions:
         - ".ts"
         - ".js"
