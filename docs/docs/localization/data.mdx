@@ -59,8 +59,8 @@ footer: © Company Name.
 
 As mentioned, that data gets compiled into a page-level prop called `globals`, for the current page and locale. Here's an example that uses that data (via [`useLocale`](./use-locale-hook)) from within an imaginary `<Navigation />` component:
 
-```jsx title=/src/components/navigation.js
-import useLocale from "@local/hooks/use-locale"
+```jsx title=/src/components/navigation/navigation.jsx
+import { useLocale } from "@local/hooks"
 
 const Navigation = () => {
   const { globals } = useLocale()
@@ -106,8 +106,8 @@ features:
 
 This data gets compiled into a page-level prop called `page`, for the current page and locale. Here's an example that uses that data (via [`useLocale`](./use-locale-hook)) from within an imaginary `<FeatureList>` component:
 
-```jsx title=/src/components/feature-list.js
-import useLocale from "@local/hooks/use-locale";
+```jsx title=/src/components/feature-list.jsx
+import { useLocale } from "@local/hooks";
 
 const FeatureList = ({}) => {
   const { page } = useLocale();
@@ -124,5 +124,5 @@ const FeatureList = ({}) => {
   );
 };
 
-export default FeatureCard;
+export default FeatureList;
 ```

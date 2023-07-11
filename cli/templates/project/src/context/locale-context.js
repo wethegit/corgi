@@ -2,7 +2,6 @@ import { createContext, useState, useEffect, useContext } from "react"
 
 import { SiteStateContext } from "@local/context"
 
-
 /**
  * Maintains a globally-available data store for the current locale.
  *

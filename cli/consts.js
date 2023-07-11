@@ -1,10 +1,12 @@
 const CONSTS = {
   CONFIG_FILENAME: "corgi-project.config.json",
   CONFIG_DEFAULTS: {
-    name: "corgi-project",
-    dependencies: {},
-    devDependencies: {},
-    scripts: {},
+    package: {
+      name: "corgi-project",
+      dependencies: {},
+      devDependencies: {},
+      scripts: {},
+    }
   },
   QUESTIONS: [
     {

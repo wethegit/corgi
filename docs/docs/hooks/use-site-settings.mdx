@@ -36,7 +36,7 @@ The following is just an example of the many things you _could_ do with this hoo
 
 ```jsx
 import { useEffect } from "react"
-import useSiteState from "@local/hooks/use-site-state";
+import { useSiteState } from "@local/hooks";
 
 const MyComponent = () => {
   const { setBackground } = useSiteState();
@@ -50,8 +50,8 @@ const MyComponent = () => {
 };
 ```
 
-```jsx title=/src/containers/page.js
-import useSiteState from "@local/hooks/use-site-state";
+```jsx title=/src/components/app/page/page.jsx
+import { useSiteState } from "@local/hooks";
 
 const Page = ({ children, className, version }) => {
   const { background } = useSiteState();
@@ -72,7 +72,7 @@ export default Page;
 
 The CSS module for the `<Page>` component above might then look something like:
 
-```scss title=/src/containers/page.module.scss
+```scss title=/src/components/app/page/page.module.scss
 .mainContent {
   background: var(--bg);
 }

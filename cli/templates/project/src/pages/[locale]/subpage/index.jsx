@@ -1,11 +1,11 @@
-import { setupPaths, setupProps } from "@local/utils";
-import { PageProvider } from "@local/context";
-import { useLocale } from "@local/hooks";
+import { setupPaths, setupProps } from "@local/utils"
+import { PageProvider } from "@local/context"
+import { useLocale } from "@local/hooks"
 
-const LOCALE_FOLDER = "subpage";
+const LOCALE_FOLDER = "subpage"
 
-export default function Subpage ({}) {
-  const { page, globals } = useLocale(LOCALE_FOLDER);
+export default function Subpage({}) {
+  const { page, globals } = useLocale(LOCALE_FOLDER)
 
   return (
     <PageProvider page={LOCALE_FOLDER}>
@@ -14,8 +14,8 @@ export default function Subpage ({}) {
         <p>{page.subtitle}</p>
       </header>
     </PageProvider>
-  );
-};
+  )
+}
 
-export const getStaticPaths = () => setupPaths(LOCALE_FOLDER);
-export const getStaticProps = async (ctx) => setupProps(ctx, LOCALE_FOLDER);
+export const getStaticPaths = () => setupPaths(LOCALE_FOLDER)
+export const getStaticProps = async (ctx) => setupProps(ctx, LOCALE_FOLDER)

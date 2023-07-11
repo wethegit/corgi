@@ -1,13 +1,13 @@
-import { useUserPrefs } from "@wethegit/react-hooks";
+import { useUserPrefs } from "@wethegit/react-hooks"
 
-import { useLocale } from "@local/hooks";
-import { classnames, castToBool } from "@local/utils";
+import { useLocale } from "@local/hooks"
+import { classnames, castToBool } from "@local/utils"
 
-import styles from "./reduced-motion-button.module.scss";
+import styles from "./reduced-motion-button.module.scss"
 
 export function ReducedMotionButton() {
-  const { globals } = useLocale();
-  const { prefersReducedMotion, togglePrefersReducedMotion } = useUserPrefs();
+  const { globals } = useLocale()
+  const { prefersReducedMotion, togglePrefersReducedMotion } = useUserPrefs()
 
   return (
     <button
@@ -22,5 +22,5 @@ export function ReducedMotionButton() {
         {globals.nav.a11yOptions.reducedMotion}
       </span>
     </button>
-  );
+  )
 }

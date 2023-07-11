@@ -14,7 +14,6 @@ const BREAKPOINTS = [...BREAKPOINT_MAP].reduce((acc, curr) => {
   return acc
 }, {})
 
-
 /**
  * Access the current media query (breakpoint) as defined in your project's layout settings.
  * This hook depends on the "breakpoint snipe" being present on the <body> tag's `::after`

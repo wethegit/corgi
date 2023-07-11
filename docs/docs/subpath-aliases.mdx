@@ -4,26 +4,26 @@ sidebar_position: 9
 
 # Subpath aliases
 
-By default, corgi sets up a few subpath aliases to help you manage your imports. This becomes especially useful when importing modules from within deeply-nested components or pages.  
+By default, corgi sets up a subpath aliasing to help you manage your imports. This becomes especially useful when importing modules from within deeply-nested components or pages.  
 
 The following aliases are available:  
 
 
 | alias               | location       |
 | ------------------- | -------------- |
-| `@local/components` | src/components |
-| `@local/context`    | src/context    |
-| `@local/hooks`      | src/hooks      |
-| `@local/utils`      | src/utils      |
-| `@local/styles`     | src/styles     |
+| `@local`            | src/           |
 
 ## Usage
 
 ### JavaScript imports
-```jsx title=src/pages/[locale]/about/index.js
-import Button from "@local/components/button/button"
-import useBreakpoints from "@local/hooks/use-breakpoints"
+```jsx title=src/pages/[locale]/about/index.jsx
+import { Button } from "@local/components"
+import { useBreakpoints } from "@local/hooks"
 ```
+
+:::info Component indexing
+Notice the above Button component is imported from `"@local/components"`. This assumes that you are exporting your Button component from `/src/components/index.jsx`. Otherwise, you still need to write the path to your component (i.e. `@local/components/button/button`).
+:::
 
 ### SCSS imports
 ```scss title=src/components/your-component/your-component.module.scss
