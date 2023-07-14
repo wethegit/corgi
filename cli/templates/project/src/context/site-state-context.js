@@ -10,9 +10,8 @@ export const PAGE_TRANSITION_STATE = {
 export const SiteStateContext = createContext()
 
 export function SiteStateProvider({ children, version }) {
-  // The `useModal` hook is responsible for setting this value.
-  // The reaosn this exists outside of that hook, is so that we can manage
-  // unrelated content while a modal window is open (pausing videos, for example):
+  // Use this to manage content unrelated to a modal while it's open
+  // (pausing other videos, for example):
   const [modalOpen, setModalOpen] = useState(false)
 
   // Just an example here, of how you might adjust global elements
