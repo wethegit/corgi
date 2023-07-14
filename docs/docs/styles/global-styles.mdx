@@ -6,9 +6,9 @@ sidebar_position: 1
 
 By default, corgi contains a collection of global styles, which are seperated into **four direcories**. These consist of generic resets, CSS custom properties, SASS helper functions, and CSS utility classes. These pre-defined global styles provide you with a foundation to build upon, and many of them are intended to be edited to fit your project's needs.
 
-All globals styles are imported at the App level, within `/src/pages/_app.js`:
+All global styles are imported at the App level, within `/src/pages/_app.js`. Any external stylesheets must be added here as well (third-party package css files, for example).  
 
-```jsx title=/src/pages/_app.js
+```jsx title=/src/pages/_app.jsx
 ...
 import "../styles/globals.scss";
 

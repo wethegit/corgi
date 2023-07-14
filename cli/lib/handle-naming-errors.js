@@ -14,6 +14,9 @@ export const NAME_TYPES = {
   },
 };
 
+// If the user passes a path to a nested component, we just want the component name:
+const isolateComponentName = name => name.split("/").pop()
+
 const handleNamingErrors = async (names, type) => {
   const invalidNameError = (name) => {
     const pieces = name.split("-");
@@ -36,7 +39,7 @@ const handleNamingErrors = async (names, type) => {
   try {
     if (names.length) {
       names.forEach((name) => {
-        if (name.includes("-")) throw invalidNameError(name);
+        if (isolateComponentName(name).includes("-")) throw invalidNameError(name);
       });
     }
   } catch (err) {
@@ -48,9 +51,10 @@ const handleNamingErrors = async (names, type) => {
   if (!names.length) {
     try {
       const input = await prompt(getQuestion(type.id));
-      if (input.includes("-") || input.includes(" "))
-        throw invalidNameError(input);
-      names.push(input);
+      const name = isolateComponentName(input)
+      if (name.includes("-") || name.includes(" "))
+        throw invalidNameError(name);
+      names.push(name);
     } catch (err) {
       log("err", err);
       process.exit();

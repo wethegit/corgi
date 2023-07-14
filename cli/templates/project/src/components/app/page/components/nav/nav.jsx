@@ -19,7 +19,7 @@ export function Nav() {
   const focusLoopEnd = useRef()
   const menuToggler = useRef()
   const isToggleableMenu = mediumDown
-  
+
   // This ref is just to avoid the "findDOMNode in strictMode" error:
   // https://github.com/reactjs/react-transition-group/issues/668
   const transitionRef = useRef()
@@ -65,21 +65,22 @@ export function Nav() {
       <div className={styles.overlay} onClick={() => toggle()}></div>
 
       {(() => {
-        {/* This is just some logic to wrap our navigation in either a <CSSTransition>
+        {
+          /* This is just some logic to wrap our navigation in either a <CSSTransition>
         or a React Fragment. The reason being that we don't want any transitions on it
-        for the desktop experience (i.e. `!isToggleableMenu`) */}
+        for the desktop experience (i.e. `!isToggleableMenu`) */
+        }
 
         const WrapperTag = isToggleableMenu ? CSSTransition : Fragment
-        const wrapperProps = 
-          isToggleableMenu
-            ? {
-                classNames: transitionStyles,
-                in: open,
-                timeout: DURATION,
-                unmountOnExit: true,
-                nodeRef: transitionRef,
-              }
-            : {}
+        const wrapperProps = isToggleableMenu
+          ? {
+              classNames: transitionStyles,
+              in: open,
+              timeout: DURATION,
+              unmountOnExit: true,
+              nodeRef: transitionRef,
+            }
+          : {}
 
         return (
           <WrapperTag {...wrapperProps}>

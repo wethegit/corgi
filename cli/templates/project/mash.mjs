@@ -451,7 +451,7 @@ checkAll()
 if (watching) {
   watch(FOLDERS.input, { recursive: true }, function (evt, name) {
     if (queue && !queue.length) {
-      /* 
+      /*
         if we're not currently processing anything in the
         queue we should load a fresh version of the cache.
         This helps in scenarios like if the masher is running

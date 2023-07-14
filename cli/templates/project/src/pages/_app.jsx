@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 
 import { AppContextProviders, Page, PageTransition } from "@local/components/app"
 
-import "../styles/globals.scss"
+import "@local/styles/globals.scss"
 
 export default function App({ Component, pageProps }) {
   const router = useRouter()

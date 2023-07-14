@@ -7,4 +7,3 @@ export {
   layoutSettings,
 } from "./layout.js"
 export { setupPaths, setupProps } from "./page-setup.js"
-
