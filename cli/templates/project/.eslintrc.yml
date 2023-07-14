@@ -11,7 +11,8 @@ rules:
     - newlines-between: always
       pathGroups:
         - pattern: "@local/**"
-          group: internal
+          group: external
+          position: after
 settings:
   import/resolver:
     alias:
