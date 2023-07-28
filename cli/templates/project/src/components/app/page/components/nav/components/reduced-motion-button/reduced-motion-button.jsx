@@ -16,6 +16,7 @@ export function ReducedMotionButton() {
         castToBool(prefersReducedMotion) && styles.rmButtonSelected,
       ])}
       onClick={() => togglePrefersReducedMotion()}
+      aria-pressed={prefersReducedMotion}
     >
       <span className={styles.rmButtonIcon}></span>
       <span className={styles.rmButtonLabel}>
