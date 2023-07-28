@@ -3,8 +3,11 @@ import localeConfig from "@local/config-locales"
 const { defaultLocale } = localeConfig
 
 const getAvailableLocales = (pageName) => {
+  if (!pageName) return []
   const glob = require("glob")
-  const yamls = glob.sync(`./src/locales/${pageName}/*.{yml, yaml}`)
+  const yamls = Array.from(localeConfig.localeMap.entries())
+    .map(([locale]) => glob.sync(`./src/locales/${pageName}/${locale}.{yml, yaml}`))
+    .flat()
   return yamls.map((path) => path.split("/").pop().split(".").shift())
 }
 
