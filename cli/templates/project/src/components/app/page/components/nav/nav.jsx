@@ -11,6 +11,7 @@ import styles from "./nav.module.scss"
 import transitionStyles from "./nav-transition.module.scss"
 
 const DURATION = 400
+const MAIN_NAV_ID = "main-site-nav"
 
 export function Nav() {
   const { globals, page } = useLocale()
@@ -36,7 +37,7 @@ export function Nav() {
       className={classnames(["bg-white", styles.navBar, open && styles.navActive])}
       style={{ "--duration": `${DURATION}ms` }}
     >
-      <menu className={styles.a11yBar} aria-label={globals.nav.a11yOptions.label}>
+      <ul className={styles.a11yBar} aria-label={globals.nav.a11yOptions.label}>
         <li>
           <ReducedMotionButton />
         </li>
@@ -46,12 +47,14 @@ export function Nav() {
             text={globals.nav.a11yOptions.skipToContent}
           />
         </li>
-      </menu>
+      </ul>
 
       {isToggleableMenu && (
         <button
           className={classnames([styles.toggler, open && styles.togglerPressed])}
           aria-live="polite"
+          aria-expanded={open}
+          aria-controls={MAIN_NAV_ID}
           ref={menuToggler}
           onClick={() => toggle()}
         >
@@ -87,9 +90,10 @@ export function Nav() {
             <nav
               className={styles.mainNav}
               aria-label={globals.nav.label}
+              id={MAIN_NAV_ID}
               ref={transitionRef}
             >
-              <menu className={styles.navList} aria-expanded={open}>
+              <ul className={styles.navList} aria-expanded={open}>
                 {globals.nav.items.map((item, i) => {
                   const { label, path } = item
                   return (
@@ -104,7 +108,7 @@ export function Nav() {
                     </li>
                   )
                 })}
-              </menu>
+              </ul>
 
               {/* Focus loop trigger -> takes us back to the menu toggler when tabbing */}
               {isToggleableMenu && (
