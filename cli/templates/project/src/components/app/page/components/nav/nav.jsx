@@ -93,7 +93,7 @@ export function Nav() {
               id={MAIN_NAV_ID}
               ref={transitionRef}
             >
-              <ul className={styles.navList} aria-expanded={open}>
+              <ul className={styles.navList}>
                 {globals.nav.items.map((item, i) => {
                   const { label, path } = item
                   return (
