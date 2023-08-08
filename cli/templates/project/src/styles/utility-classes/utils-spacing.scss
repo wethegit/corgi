@@ -1,0 +1,83 @@
+/**
+  * @file Utility classes for margin and padding.
+  * Classes are generated for each size based on the --base-space property.
+  *
+  * Format for class names is:
+  * {margin/padding}-{x/y/top/right/bottom/left[optional]}{-breakpoint[optional]}-{size}
+  *
+  * Examples:
+  * margin-0, padding-x-2, margin-x-auto, margin-bottom-medium-3, padding-x-large-4
+  */
+  @use "@local/styles/helpers/helpers-layout" as *;
+
+  /**
+    * Generates a set of utility classes for margin and padding.
+    * @param {Number} $total - The total number of classes to generate (0 through $total). Sizes are based on the --base-space property.
+    * @param {String} $suffix - An optional suffix to append to the class name.
+    */
+  @mixin generate-spacer-classes($total, $suffix: "") {
+    @for $i from 0 through $total {
+      $directions: "left-", "right-", "top-", "bottom-", "x-", "y-", "";
+
+      @each $dir in $directions {
+        $props: "margin", "padding";
+
+        @each $prop in $props {
+          .#{$prop}-#{$dir}#{$suffix}#{$i} {
+            @if $dir == "left-" {
+              #{$prop}-inline-start: space-by($i);
+            } @else if $dir == "right-" {
+              #{$prop}-inline-end: space-by($i);
+            } @else if $dir == "top-" {
+              #{$prop}-block-start: space-by($i);
+            } @else if $dir == "bottom-" {
+              #{$prop}-block-end: space-by($i);
+            } @else if $dir == "x-" {
+              #{$prop}-inline: space-by($i);
+            } @else if $dir == "y-" {
+              #{$prop}-block: space-by($i);
+            } @else if $dir == "" {
+              #{$prop}: space-by($i);
+            }
+          }
+        }
+      }
+    }
+
+    $directions: "left-", "right-", "x-", "";
+
+    @each $dir in $directions {
+      .margin-#{$dir}#{$suffix}auto {
+        @if $dir == "left-" {
+          margin-inline-start: auto;
+        } @else if $dir == "right-" {
+          margin-inline-end: auto;
+        } @else if $dir == "x-" {
+          margin-inline: auto;
+        } @else if $dir == "" {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+  }
+
+  $total-space-classes: 10;
+
+  @include generate-spacer-classes($total-space-classes);
+
+  @media #{$medium-up} {
+    @include generate-spacer-classes($total-space-classes, "medium-");
+  }
+
+  @media #{$large-up} {
+    @include generate-spacer-classes($total-space-classes, "large-");
+  }
+
+  @media #{$xlarge-up} {
+    @include generate-spacer-classes($total-space-classes, "xlarge-");
+  }
+
+  @media #{$xxlarge-up} {
+    @include generate-spacer-classes($total-space-classes, "xxlarge-");
+  }
