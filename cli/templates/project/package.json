@@ -10,7 +10,8 @@
     "mash-watch": "node mash.mjs --watch",
     "postbuild": "next-sitemap && next export",
     "preflight": "npm run mash-build-all && next build",
-    "start": "npm run mash-watch & next dev -p 8080"
+    "dev": "npm run mash-watch & next dev -p 8080",
+    "start": "next start -p 8080",
   },
   "dependencies": {
     "@wethegit/react-hooks": "~0.0.8",
