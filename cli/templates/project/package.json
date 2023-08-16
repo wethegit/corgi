@@ -11,7 +11,7 @@
     "postbuild": "next-sitemap && next export",
     "preflight": "npm run mash-build-all && next build",
     "dev": "npm run mash-watch & next dev -p 8080",
-    "start": "next start -p 8080",
+    "start": "serve ./out -p 8080"
   },
   "dependencies": {
     "@wethegit/react-hooks": "~0.0.8",
@@ -38,6 +38,7 @@
     "eslint-config-prettier": "~8.3.0",
     "eslint-plugin-import": "~2.27.5",
     "eslint-import-resolver-alias": "^1.1.2",
+    "serve": "~14.2.0",
     "stylelint": "~14.5.1",
     "stylelint-config-standard-scss": "~3.0.0",
     "stylelint-order": "~5.0.0"
