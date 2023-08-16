@@ -20,6 +20,7 @@
 @import "@local/styles/utility-classes/utils-image.scss";
 @import "@local/styles/utility-classes/utils-in-view.scss";
 @import "@local/styles/utility-classes/utils-layout.scss";
+@import "@local/styles/utility-classes/utils-child-spacing.scss";
 @import "@local/styles/utility-classes/utils-spacing.scss";
 @import "@local/styles/utility-classes/utils-typography.scss";
 
@@ -30,6 +31,26 @@
 
   &:not(:focus-visible) {
     box-shadow: none;
+  }
+}
+
+// Breakpoint corner tag.
+// This is necessary for the useBreakpoints React hook — please do not remove it.
+body {
+  &::after {
+    background: #fff;
+    bottom: 0;
+    content: "S";
+    display: none;
+    font-size: 1.6rem;
+    padding: 10px;
+    position: fixed;
+    right: 0;
+    z-index: 1;
+  }
+
+  &[data-env="development"]::after {
+    display: block;
   }
 }
 
