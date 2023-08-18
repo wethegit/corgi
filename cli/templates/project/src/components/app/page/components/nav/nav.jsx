@@ -2,29 +2,26 @@ import { useEffect, useRef, useState } from "react"
 
 import { Link } from "@local/components/common"
 import { classnames } from "@local/utils"
-import { useLocale, useBreakpoints } from "@local/hooks"
+import { useLocale } from "@local/hooks"
 
 import { SkipToButton, ReducedMotionButton } from "./components"
-
 import styles from "./nav.module.scss"
 
 const DURATION = 400
 const MAIN_NAV_ID = "main-site-nav"
 
-export function Nav() {
+export function Nav({ toggleable = false }) {
   const { globals, page } = useLocale()
   const [open, setOpen] = useState(false)
-  const { breakpointName, mediumDown } = useBreakpoints()
   const focusLoopEnd = useRef()
   const menuToggler = useRef()
-  const isToggleableMenu = mediumDown
 
   const toggle = () => setOpen(!open)
 
-  // close the menu when the breakpoint changes.
+  // Close the menu when the togglablility changes
   useEffect(() => {
-    if (!isToggleableMenu) setOpen(false)
-  }, [breakpointName])
+    if (!toggleable) setOpen(false)
+  }, [toggleable])
 
   return (
     <div
@@ -43,7 +40,7 @@ export function Nav() {
         </li>
       </ul>
 
-      {isToggleableMenu && (
+      {toggleable && (
         <button
           className={classnames([styles.toggler, open && styles.togglerPressed])}
           aria-live="polite"
@@ -61,12 +58,7 @@ export function Nav() {
 
       <div className={styles.overlay} onClick={() => toggle()}></div>
 
-      <nav
-        className={styles.mainNav}
-        aria-label={globals.nav.label}
-        id={MAIN_NAV_ID}
-        ref={transitionRef}
-      >
+      <nav className={styles.mainNav} aria-label={globals.nav.label} id={MAIN_NAV_ID}>
         <ul className={styles.navList}>
           {globals.nav.items.map((item, i) => {
             const { label, path } = item
@@ -85,7 +77,7 @@ export function Nav() {
         </ul>
 
         {/* Focus loop trigger -> takes us back to the menu toggler when tabbing */}
-        {isToggleableMenu && (
+        {toggleable && (
           <span
             className="visually-hidden"
             ref={focusLoopEnd}
