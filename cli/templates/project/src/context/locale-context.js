@@ -5,15 +5,6 @@ import { SiteStateContext } from "@local/context"
 /**
  * Maintains a globally-available data store for the current locale.
  *
- * The three main properties this keeps track of are:
- * - locale   (slugs, such as "en", "fr", "es", etc.)
- * - globals  (project-level data as specified in the locales YAML)
- * - page     (page-level data as specified in the locales YAML)
- *
- * This also exposes a dispatcher to update any of the above values,
- * and a `pageReady` flag, which just lets us know whether the page-level
- * YAML data has been successfully added to the Context.
- *
  * For the most part, you should use the `useLocale` interface
  * to work with this context (see `/hooks/use-locale.js`)
  */
