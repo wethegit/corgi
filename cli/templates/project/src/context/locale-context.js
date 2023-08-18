@@ -1,3 +1,7 @@
+import { createContext, useState, useEffect, useContext } from "react"
+
+import { SiteStateContext } from "@local/context"
+
 /**
  * Maintains a globally-available data store for the current locale.
  *
@@ -13,13 +17,9 @@
  * For the most part, you should use the `useLocale` interface
  * to work with this context (see `/hooks/use-locale.js`)
  */
+export const LocaleContext = createContext()
 
-import { createContext, useState, useEffect, useContext } from "react"
-import { SiteStateContext } from "@local/context/site-state-context"
-
-const LocaleContext = createContext()
-
-const LocaleProvider = ({ children, locale, pageSlug }) => {
+export function LocaleProvider({ children, locale, pageSlug }) {
   const [localeCache, setCache] = useState()
   const { addPage } = useContext(SiteStateContext)
 
@@ -39,5 +39,3 @@ const LocaleProvider = ({ children, locale, pageSlug }) => {
     </LocaleContext.Provider>
   )
 }
-
-export { LocaleProvider as default, LocaleContext }

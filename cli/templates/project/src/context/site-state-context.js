@@ -1,18 +1,17 @@
 import { createContext, useState, useReducer } from "react"
 
-const PAGE_TRANSITION_STATE = {
+export const PAGE_TRANSITION_STATE = {
   ready: "ready",
   out: "out",
   in: "in",
   complete: "complete",
 }
 
-const SiteStateContext = createContext()
+export const SiteStateContext = createContext()
 
-const SiteStateProvider = ({ children, version }) => {
-  // The `useModal` hook is responsible for setting this value.
-  // The reaosn this exists outside of that hook, is so that we can manage
-  // unrelated content while a modal window is open (pausing videos, for example):
+export function SiteStateProvider({ children, version }) {
+  // Use this to manage content unrelated to a modal while it's open
+  // (pausing other videos, for example):
   const [modalOpen, setModalOpen] = useState(false)
 
   // Just an example here, of how you might adjust global elements
@@ -55,5 +54,3 @@ const SiteStateProvider = ({ children, version }) => {
     </SiteStateContext.Provider>
   )
 }
-
-export { SiteStateProvider as default, SiteStateContext, PAGE_TRANSITION_STATE }

@@ -1,17 +1,20 @@
-import localeConfig from "../config-locales"
+import localeConfig from "@local/config-locales"
 
 const { defaultLocale } = localeConfig
 
 const getAvailableLocales = (pageName) => {
+  if (!pageName) return []
   const glob = require("glob")
-  const yamls = glob.sync(`./src/locales/${pageName}/*.{yml, yaml}`)
+  const yamls = Array.from(localeConfig.localeMap.entries())
+    .map(([locale]) => glob.sync(`./src/locales/${pageName}/${locale}.{yml, yaml}`))
+    .flat()
   return yamls.map((path) => path.split("/").pop().split(".").shift())
 }
 
 /**
  * Generate localized paths for the current page. This is required for SSG.
  */
-export const setupPaths = (pageName) => {
+export function setupPaths(pageName) {
   if (!pageName) return { fallback: false, paths: [] }
 
   const locales = getAvailableLocales(pageName)
@@ -32,7 +35,7 @@ export const setupPaths = (pageName) => {
  * Generate page props for the current page
  * @param {Object} ctx - the page context as passed by Next.js
  */
-export const setupProps = async (ctx, pageName) => {
+export async function setupProps(ctx, pageName) {
   const locale = ctx?.params?.locale || defaultLocale
 
   const YAML = require("yamljs")

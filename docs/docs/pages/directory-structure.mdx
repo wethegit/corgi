@@ -19,21 +19,21 @@ Here is an example file tree for the pages directory in a corgi project. We'll c
 └── src/
     └── pages/
         ├── [locale]/
-        │   ├── index.js
+        │   ├── index.jsx
         │   ├── about/
-        │   │   └── index.js
+        │   │   └── index.jsx
         │   └── contact/
-        │       └── index.js
-        ├── _app.js
-        ├── _document.js
-        ├── 404.js
-        ├── 500.js
-        └── index.js
+        │       └── index.jsx
+        ├── _app.jsx
+        ├── _document.jsx
+        ├── 404.jsx
+        ├── 500.jsx
+        └── index.jsx
 ```
 
 The directory structure above will result in the following routes, assuming [locales](../category/localization) are defined for "en", "es", and "fr":
 
-```js title="Page routes"
+```
 /
 /es
 /fr
@@ -55,18 +55,18 @@ In other words, corgi makes it so that you don't have to share your website as `
 
 ## Other files in the `pages` directory
 
-### `/src/pages/index.js`
+### `/src/pages/index.jsx`
 
 This is the root/homepage component, for the **default** locale only. It ensures that you can navigate to `/` on your project, and see the default locale's content.
 
 :::caution Homepage content
-All homepage _content_ must be edited in the `/src/components/home-page-contents` component, becuase this particular index page is not the only place the homepage content needs to live. A homepage index file must also live in the dynamic [locale] path (for localized pages, of course!) — thus the abstracted component for the homepage. More on this in the [page components](./page-components#homepage-specifics) section.
+All homepage _content_ must be edited in the `/src/components/layouts/home/home-layout.jsx` component, becuase this particular index page is not the only place the homepage content needs to live. A homepage index file must also live in the dynamic [locale] path (for localized pages, of course!) — thus the abstracted component for the homepage. More on this in the [page components](./page-components#homepage-specifics) section.
 :::
 
-### `_app_.js`, `_document.js`
+### `_app_.jsx`, `_document.jsx`
 
-These are no different than the typical custom Next.js 12 setup, and handle things like global context providers, the HTML `<head>` element, `<body>` tag, and so on. More info in the Next docs, for [`_app.js`](https://nextjs.org/docs/advanced-features/custom-app) and [`_document.js`](https://nextjs.org/docs/advanced-features/custom-document).
+These are no different than the typical custom Next.js 12 setup, and handle things like global context providers, the HTML `<head>` element, `<body>` tag, and so on. More info in the Next docs, for [`_app.jsx`](https://nextjs.org/docs/advanced-features/custom-app) and [`_document.jsx`](https://nextjs.org/docs/advanced-features/custom-document).
 
-### `404.js`, `500.js`
+### `404.jsx`, `500.jsx`
 
 These are resource-not-found and server-error files, which are required for Next.js builds. Since corgi generates a static site, these files are not actually _used_ in a deployment build, but since Next.js requires them, we must keep them here.

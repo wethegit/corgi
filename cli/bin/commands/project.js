@@ -48,7 +48,7 @@ const project = async (directory, options) => {
   const boilerplate = path.join(__dirname, "../../templates/project");
   await copySync(boilerplate, directory);
 
-  // Grab optional custom template
+  // Grab optional custom template from GitHub
   if (template) {
     const repoSpinner = log("msg", "Retrieving template repo…", true);
 
@@ -65,21 +65,27 @@ const project = async (directory, options) => {
     projectConfig = { ...CONSTS.CONFIG_DEFAULTS, ...customConfig };
   }
 
-  // Append config-specific NPM scripts and dependencies
+  // Allow for custom project config (custom package.json, etc.)
   if (usedCustomConfig) {
     const configSpinner = log("msg", "Adding custom config…", true);
-    const pkgFilePath = `${directory}/package.json`;
-    try {
-      const pkgFileParsed = JSON.parse(await readFile(pkgFilePath));
-      const pkgContentsMerged = await mergePkgProperties({
-        existing: pkgFileParsed,
-        custom: projectConfig,
-      });
-      await writeFile(pkgFilePath, JSON.stringify(pkgContentsMerged, null, 2));
-    } catch (err) {
-      killSpinner(configSpinner);
-      log("err", err);
+
+    // Merge config-specific package.json data:
+    if (projectConfig.package) {
+      const pkgFilePath = `${directory}/package.json`;
+      
+      try {
+        const pkgFileParsed = JSON.parse(await readFile(pkgFilePath));
+        const pkgContentsMerged = await mergePkgProperties({
+          existing: pkgFileParsed,
+          custom: projectConfig.package,
+        });
+        await writeFile(pkgFilePath, JSON.stringify(pkgContentsMerged, null, 2));
+      } catch (err) {
+        killSpinner(configSpinner);
+        log("err", err);
+      }
     }
+
     killSpinner(configSpinner);
     log("ok", "Added!");
   }

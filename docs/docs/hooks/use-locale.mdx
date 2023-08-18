@@ -32,7 +32,7 @@ The `useLocale` hook allows you to easily retrieve various pieces of locale-spec
 General, component-level usage of the `useLocale` hook is straightforward—just call the function and you're done. In this example, we're destructuring a few properties from the hook's return value, and logging them out:
 
 ```jsx
-import useLocale from "@local/hooks/use-locale";
+import { useLocale } from "@local/hooks";
 
 const MyComponent = () => {
   const { globals, page, pageName, locale } = useLocale();
@@ -51,7 +51,7 @@ const MyComponent = () => {
 When used within a [**page component**](../pages/page-components), the `pageDirectoryName` is a required argument. In this scenario, we'll bind that value to `LOCALE_FOLDER` and pass _it_ in, as this value gets used in a few other places throughout the page component.
 
 ```jsx
-import useLocale from "@local/hooks/use-locale";
+import { useLocale } from "@local/hooks";
 
 const LOCALE_FOLDER = "about";
 // for nested pages, this might look more like "work/advertising"

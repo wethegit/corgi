@@ -10,7 +10,8 @@
     "mash-watch": "node mash.mjs --watch",
     "postbuild": "next-sitemap && next export",
     "preflight": "npm run mash-build-all && next build",
-    "start": "npm run mash-watch & next dev -p 8080"
+    "dev": "npm run mash-watch & next dev -p 8080",
+    "start": "serve ./out -p 8080"
   },
   "dependencies": {
     "@wethegit/react-hooks": "~0.0.8",
@@ -30,6 +31,15 @@
     "next-sitemap": "~2.5.19",
     "node-watch": "^0.7.3",
     "sass": "~1.49.7",
-    "yamljs": "~0.3.0"
+    "yamljs": "~0.3.0",
+    "eslint": "8.8.0",
+    "eslint-config-next": "12.0.10",
+    "eslint-config-prettier": "~8.3.0",
+    "eslint-plugin-import": "~2.27.5",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "serve": "~14.2.0",
+    "stylelint": "~14.5.1",
+    "stylelint-config-standard-scss": "~3.0.0",
+    "stylelint-order": "~5.0.0"
   }
 }

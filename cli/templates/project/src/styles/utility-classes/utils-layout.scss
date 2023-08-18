@@ -43,26 +43,6 @@
   }
 }
 
-// Breakpoint corner tag.
-// This is necessary for the useBreakpoints React hook — please do not remove it.
-body {
-  &::after {
-    background: #fff;
-    bottom: 0;
-    content: "S";
-    display: none;
-    font-size: 1.6rem;
-    padding: 10px;
-    position: fixed;
-    right: 0;
-    z-index: 1;
-  }
-
-  &[data-env="development"]::after {
-    display: block;
-  }
-}
-
 .wrapper,
 .row {
   margin-left: auto;

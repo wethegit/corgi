@@ -56,31 +56,27 @@ npx @wethegit/corgi project . --template https://github.com/<user>/<repo>/tree/<
 
 If a custom template is specified, the `project` command will look for an optional JSON file located the root of the template repo, called `corgi-project.config.json`.
 
-This config file can include overrides for the project, such as NPM dependencies, scripts, and a project name. The default corgi config settings look like this:
+This config file can include overrides for the project _at the time of initial scaffolding_. Currently, the "package" property is the only supported config, but this allows you to add fields and values to your project's `package.json`. Some examples include extra dependencies, scripts, and a project name. The default corgi config settings look like this:
 
 ```js
 {
-  name: "corgi-project",
-  dependencies: {},
-  devDependencies: {},
-  scripts: {},
+  package: {
+    name: "corgi-project",
+    dependencies: {},
+    devDependencies: {},
+    scripts: {},
+  }
 }
 ```
 
-You can overwrite any of these properties from within your template's `corgi-project.config.json`, like so:
+You can overwrite any of these properties from within your **template's** `corgi-project.config.json`, like so:
 
 ```json title=corgi-project-config.json
 {
   "name": "andrews-corgi-project",
-  "dependencies": {},
-  "devDependencies": {
-    "eslint": "8.8.0",
-    "eslint-config-next": "12.0.10",
-    "eslint-config-prettier": "~8.3.0",
-    "sass": "~1.49.7",
-    "stylelint": "~14.5.1",
-    "stylelint-config-standard-scss": "~3.0.0",
-    "stylelint-order": "~5.0.0"
+  "dependencies": {
+    "gsap": "~3.12.2",
+    "three": "~0.154.0"
   },
   "scripts": {
     "serve-https": "node https-server.js"

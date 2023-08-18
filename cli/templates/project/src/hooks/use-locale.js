@@ -1,3 +1,7 @@
+import { useContext } from "react"
+
+import { SiteStateContext, PageContext, LocaleContext } from "@local/context"
+
 /**
  * Retrieve locale data for the currently visible page.
  *
@@ -10,24 +14,15 @@
  * data, page-level locale data, any values defined in config-locales.js
  * localesMap, and alternativeLocales available for the current page.
  */
+export function useLocale(setPage) {
+  const localeCache = useContext(LocaleContext)
+  const pageContext = useContext(PageContext)
+  const { pageHistory } = useContext(SiteStateContext)
 
-import { useContext } from "react";
-import { LocaleContext } from "@local/context/locale-context";
-import { PageContext } from "@local/context/page-context";
-import { SiteStateContext } from "@local/context/site-state-context";
-
-const useLocale = (setPage) => {
-  const localeCache = useContext(LocaleContext);
-  const pageContext = useContext(PageContext);
-  const { pageHistory } = useContext(SiteStateContext);
-
-  if (setPage && localeCache.get(setPage))
-    return { ...localeCache.get(setPage) };
+  if (setPage && localeCache.get(setPage)) return { ...localeCache.get(setPage) }
   if (pageContext && pageContext.page && localeCache.get(pageContext.page))
-    return { ...localeCache.get(pageContext.page) };
+    return { ...localeCache.get(pageContext.page) }
   if (pageHistory && pageHistory.length && localeCache.get(pageHistory[0]))
-    return { ...localeCache.get(pageHistory[0]) };
-  return { ...Array.from(localeCache.values()).pop() };
-};
-
-export default useLocale;
+    return { ...localeCache.get(pageHistory[0]) }
+  return { ...Array.from(localeCache.values()).pop() }
+}

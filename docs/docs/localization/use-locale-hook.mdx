@@ -12,7 +12,7 @@ corgi's built-in React hook, `useLocale` allows you to easily pull in various pi
 For the most part, you can use the `useLocale` hook as shown here. This example destructures the returned object, into just the `globals` and `page` objects.
 
 ```jsx
-import useLocale from "@local/hooks/use-locale";
+import { useLocale } from "@local/hooks";
 
 const MyComponent = () => {
   const { globals, page } = useLocale();
@@ -28,8 +28,8 @@ const MyComponent = () => {
 
 If using this hook at the page-level—i.e. from a component defined as a page within the `/src/pages/` directory—you _must_ pass the **locale folder name** to the hook. This acts a sort of "initialization" step for the hook. All lower-level uses of the hook do not require this step. In this example, we're looking at an imaginary About page component. The locale folder name is declared at the top of the file, and is then passed into the `useLocale` hook:
 
-```jsx title=/src/pages/[locale]/about/index.js
-import useLocale from "@local/hooks/use-locale";
+```jsx title=/src/pages/[locale]/about/index.jsx
+import { useLocale } from "@local/hooks";
 
 const LOCALE_FOLDER = "about";
 // for nested pages, this might look more like "work/advertising"
