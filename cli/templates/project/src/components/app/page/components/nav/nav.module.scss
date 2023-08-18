@@ -3,25 +3,6 @@
 @use "@local/styles/settings/settings-breakpoints" as *;
 @use "@local/styles/settings/settings-layout" as *;
 
-.enter {
-  opacity: 0;
-}
-
-.enterActive {
-  opacity: 1;
-  transition: opacity duration(var(--duration)) ease-in-out;
-}
-
-.enterDone,
-.exit {
-  opacity: 1;
-}
-
-.exitActive {
-  opacity: 0;
-  transition: opacity duration(var(--duration)) ease-in-out;
-}
-
 .a11yBar {
   align-items: center;
   display: flex;
