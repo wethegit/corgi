@@ -66,7 +66,7 @@ The `useLocale` hook is explained in detail in the [useLocale hook documentation
 
 ### The `<PageProvider>` component
 
-The PageProvider component is a wrapper around all page content. It expects a `page` prop, set to the string bound to `LOCALE_FOLDER`. This allows corgi to maintain a cache of sorts, of the page-level content, which is useful when creating page transition animations. Rather than instantly changing the `page` locale data during a page transition of, say, 500 miliseconds, the PageProvider knows to _not_ change the locale data to that of the incoming page until the transition is complete.
+The PageProvider component is a wrapper around all page content. It expects a `page` prop, set to the string bound to `LOCALE_FOLDER`. This allows corgi to maintain a cache of your locale data, which allows for conveniences such as the use of the `useLocale` hook on any component within a page.
 
 ## Homepage specifics
 
