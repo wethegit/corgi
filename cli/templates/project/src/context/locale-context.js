@@ -10,7 +10,7 @@ import { SiteStateContext } from "@local/context"
  */
 export const LocaleContext = createContext()
 
-export function LocaleProvider({ children, locale, pageSlug }) {
+export function LocaleProvider({ children, locale }) {
   const [localeCache, setCache] = useState()
   const { addPage } = useContext(SiteStateContext)
 

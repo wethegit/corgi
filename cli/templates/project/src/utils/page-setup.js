@@ -73,17 +73,9 @@ export async function setupProps(ctx, pageName) {
     console.error(`Error getting alternative locales for ${pageName}`)
   }
 
-  // Plucking out a "slug" for omniture tracking
-  const pageNameParts = pageName ? pageName.split("/") : ["home"]
-  const pageSlug = pageNameParts[pageNameParts.length - 1]
-  const packageJson = await import(/* webpackMode: "eager" */ `../../package.json`).then(
-    (m) => m.default
-  )
-
   return {
     props: {
-      version: packageJson?.version || 0,
-      pageSlug,
+      version: require("../../package.json")?.version || 0,
       localeData: {
         pageName: pageName || null,
         locale,
