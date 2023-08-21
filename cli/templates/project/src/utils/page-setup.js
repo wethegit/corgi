@@ -64,14 +64,9 @@ export async function setupProps(ctx, pageName) {
 
   alternativeLocales = getAvailableLocales(pageName).filter((d) => d !== locale) || []
 
-  // Plucking out a "slug" for omniture tracking
-  const pageNameParts = pageName ? pageName.split("/") : ["home"]
-  const pageSlug = pageNameParts[pageNameParts.length - 1]
-
   return {
     props: {
       version: require("../../package.json")?.version || 0,
-      pageSlug,
       localeData: {
         pageName: pageName || null,
         locale,
