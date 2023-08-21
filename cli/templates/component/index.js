@@ -1,0 +1,1 @@
+export { COMPONENT_NAME } from "./COMPONENT_SLUG"
