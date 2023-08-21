@@ -2,22 +2,25 @@ import localeConfig from "@local/config-locales"
 
 const { defaultLocale } = localeConfig
 
-const getAvailableLocales = (pageName) => {
+async function getAvailableLocales(pageName) {
   if (!pageName) return []
+
   const glob = require("glob")
+
   const yamls = Array.from(localeConfig.localeMap.entries())
-    .map(([locale]) => glob.sync(`./src/locales/${pageName}/${locale}.{yml, yaml}`))
+    .map(([locale]) => glob.sync(`./src/locales/${pageName}/${locale}.yml`))
     .flat()
+
   return yamls.map((path) => path.split("/").pop().split(".").shift())
 }
 
 /**
  * Generate localized paths for the current page. This is required for SSG.
  */
-export function setupPaths(pageName) {
+export async function setupPaths(pageName) {
   if (!pageName) return { fallback: false, paths: [] }
 
-  const locales = getAvailableLocales(pageName)
+  const locales = await getAvailableLocales(pageName)
 
   const paths = locales.map((locale) => {
     return {
@@ -36,9 +39,8 @@ export function setupPaths(pageName) {
  * @param {Object} ctx - the page context as passed by Next.js
  */
 export async function setupProps(ctx, pageName) {
-  const locale = ctx?.params?.locale || defaultLocale
-
-  const YAML = require("yamljs")
+  const locale =
+    ctx.locale || ctx?.params?.locale || ctx.defaultLocale || defaultLocale || "en-us"
 
   let pageLocales = {}
   let globalLocales = {}
@@ -47,22 +49,29 @@ export async function setupProps(ctx, pageName) {
 
   if (pageName)
     try {
-      const file = `./src/locales/${pageName}/${locale}.yml`
-      pageLocales = YAML.load(file)
+      pageLocales = await import(
+        /* webpackMode: "eager" */ `../locales/${pageName}/${locale}.yml`
+      ).then((m) => m.default)
     } catch (err) {
       console.error(` ${locale} locales file for ${pageName} not found.`)
     }
 
   try {
-    const file = `./src/locales/globals/${locale}.yml`
-    globalLocales = YAML.load(file)
+    globalLocales = await import(
+      /* webpackMode: "eager" */ `../locales/globals/${locale}.yml`
+    ).then((m) => m.default)
   } catch (err) {
     console.error(`Global locales file for ${locale} not found.`)
   }
 
   if (localeConfig.localeMap) localeMap = localeConfig.localeMap.get(locale) || {}
 
-  alternativeLocales = getAvailableLocales(pageName).filter((d) => d !== locale) || []
+  try {
+    const availableLocales = await getAvailableLocales(pageName)
+    alternativeLocales = availableLocales?.filter((d) => d !== locale) || []
+  } catch (err) {
+    console.error(`Error getting alternative locales for ${pageName}`)
+  }
 
   return {
     props: {
