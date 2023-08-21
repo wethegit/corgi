@@ -67,10 +67,9 @@ export async function setupProps(ctx, pageName) {
   if (localeConfig.localeMap) localeMap = localeConfig.localeMap.get(locale) || {}
 
   try {
-    alternativeLocales = await getAvailableLocales(pageName)
-    alternativeLocales = alternativeLocales.filter((d) => d !== locale) || []
+    const availableLocales = await getAvailableLocales(pageName)
+    alternativeLocales = availableLocales?.filter((d) => d !== locale) || []
   } catch (err) {
-    console.log(err)
     console.error(`Error getting alternative locales for ${pageName}`)
   }
 
