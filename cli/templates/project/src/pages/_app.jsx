@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 
-import { AppContextProviders, Page, PageTransition } from "@local/components/app"
+import { AppContextProviders, Page } from "@local/components/app"
 
 import "@local/styles/globals.scss"
 
@@ -11,9 +11,7 @@ export default function App({ Component, pageProps }) {
     <AppContextProviders {...pageProps}>
       <Page {...pageProps}>
         {/* The page component, as exported by an index.js file inside /src/pages: */}
-        <PageTransition location={router.pathname} options={pageProps.transition}>
-          <Component {...pageProps} />
-        </PageTransition>
+        <Component {...pageProps} />
       </Page>
     </AppContextProviders>
   )

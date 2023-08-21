@@ -52,6 +52,30 @@ body {
   &[data-env="development"]::after {
     display: block;
   }
+
+  @media #{$medium-up} {
+    &::after {
+      content: "M";
+    }
+  }
+
+  @media #{$large-up} {
+    &::after {
+      content: "L";
+    }
+  }
+
+  @media #{$xlarge-up} {
+    &::after {
+      content: "XL";
+    }
+  }
+
+  @media #{$xxlarge-up} {
+    &::after {
+      content: "XXL";
+    }
+  }
 }
 
 main {
