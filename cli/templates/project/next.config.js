@@ -26,7 +26,15 @@ const nextConfig = {
       ...config.resolve.alias,
       "@local/*": resolve("src/*"),
     }
+
     config.resolve.fallback = { fs: false }
+
+    // insert js-yaml-loader
+    config.module.rules.push({
+      test: /\.ya?ml$/,
+      use: 'js-yaml-loader',
+    })
+
     return config
   },
 }

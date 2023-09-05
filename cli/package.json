@@ -34,6 +34,6 @@
     "cli-spinner": "~0.2.10",
     "commander": "~9.4.0",
     "fs-extra": "~10.1.0",
-    "merge-dirs": "~0.1.0"
+    "merge-dirs": "~0.2.1"
   }
 }
