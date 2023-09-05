@@ -3,8 +3,12 @@ import CONSTS from "../consts.js";
 export const getQuestion = (id) =>
   CONSTS.QUESTIONS.find((q) => q.id === id).text;
 
-export const pascalToKebab = (str) =>
-  str.replace(/([a-z0–9])([A-Z])/g, "$1-$2").toLowerCase();
+// Very thorough kebab-casing regex replacer from StackOverflow user ABabin:
+// https://stackoverflow.com/a/67243723
+export const makeKebabCase = (str) => str.replace(
+  /[A-Z]+(?![a-z])|[A-Z]/g,
+  (match, offset) => (offset ? "-" : "") + match.toLowerCase()
+)
 
 const throwDirectoryPathError = (arg, example) => {
   throw new Error(
@@ -18,7 +22,7 @@ export const assembleDirectoryPath = ({ pathToDir, inputName } = {}) => {
 
   const parts = inputName.split("/");
   const name = parts.pop();
-  const slug = pascalToKebab(name);
+  const slug = makeKebabCase(name);
   const subDirectory = parts.join("/");
 
   const directory = `${pathToDir}/${subDirectory ? subDirectory + "/" : ""}${slug}`

@@ -2,12 +2,12 @@ import { existsSync } from "fs";
 
 import log from "./log.js"
 import prompt from "./prompt.js";
-import { getQuestion, pascalToKebab } from "./utils.js";
+import { getQuestion, makeKebabCase } from "./utils.js";
 
 // Async iterator lets us wait for the user's input on each question
 async function* askQuestions(dirNames, type) {
   for (const name of dirNames) {
-    const slug = pascalToKebab(name);
+    const slug = makeKebabCase(name);
 
     if (existsSync(`${type.location}/${slug}`)) {
       const input = await prompt(
