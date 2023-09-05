@@ -14,15 +14,19 @@ const component = async (names) => {
 
   // Bootstrap all necessary component files, based on the corgi templates
   const template = await readFile(
-    path.join(__dirname, "../../templates/component/component.js"),
+    path.join(__dirname, "../../templates/component/component.jsx"),
     { encoding: "utf8" }
   );
   const stylesheet = await readFile(
     path.join(__dirname, "../../templates/component/component.module.scss"),
     { encoding: "utf8" }
   );
+  const indexFile = await readFile(
+    path.join(__dirname, "../../templates/component/index.js"),
+    { encoding: "utf8" }
+  );
 
-  await createComponents(names, template, stylesheet);
+  await createComponents(names, template, stylesheet, indexFile);
 };
 
 export default component;

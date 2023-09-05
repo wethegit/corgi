@@ -15,7 +15,7 @@ async function* makePages(pageNames, pageTemplateUTF8) {
       .replaceAll("PAGE_NAME", name);
 
     await mkdir(directory, { recursive: true });
-    writeFile(`${directory}/index.js`, pageContent);
+    writeFile(`${directory}/index.jsx`, pageContent);
     yield name;
   }
 }

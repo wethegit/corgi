@@ -1,12 +1,5 @@
 import { createContext, useState, useReducer } from "react"
 
-export const PAGE_TRANSITION_STATE = {
-  ready: "ready",
-  out: "out",
-  in: "in",
-  complete: "complete",
-}
-
 export const SiteStateContext = createContext()
 
 export function SiteStateProvider({ children, version }) {
@@ -22,20 +15,6 @@ export function SiteStateProvider({ children, version }) {
     return [newPage, ...history]
   }, [])
 
-  const [transitionState, transitionEvent] = useReducer((_, event) => {
-    switch (event) {
-      case "reset":
-      case "onExit":
-        return PAGE_TRANSITION_STATE.ready
-      case "onExiting":
-        return PAGE_TRANSITION_STATE.out
-      case "onEntering":
-        return PAGE_TRANSITION_STATE.in
-      case "onEntered":
-        return PAGE_TRANSITION_STATE.complete
-    }
-  }, PAGE_TRANSITION_STATE.complete)
-
   return (
     <SiteStateContext.Provider
       value={{
@@ -45,8 +24,6 @@ export function SiteStateProvider({ children, version }) {
         setBackground,
         pageHistory,
         addPage,
-        transitionState,
-        transitionEvent,
         version,
       }}
     >

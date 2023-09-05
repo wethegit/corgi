@@ -43,5 +43,5 @@ export default function Home({ locale, ...pageProps }) {
   )
 }
 
-export const getStaticPaths = () => setupPaths(LOCALE_FOLDER)
+export const getStaticPaths = async () => setupPaths(LOCALE_FOLDER)
 export const getStaticProps = async (ctx) => setupProps(ctx, LOCALE_FOLDER)
