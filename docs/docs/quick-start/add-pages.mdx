@@ -10,7 +10,7 @@ By default, an index page ("home page") and a sub-page will be created for you w
 
 ## Home page
 
-Your homepage layout lives in `/src/components/home-page-contents`. Any content on the homepage must be built within this component.
+Your homepage layout lives in `/src/components/layouts/home/home-layout.jsx`. Any content on the homepage must be built within this component.
 
 ## Sub-pages
 
@@ -21,7 +21,7 @@ All sub-pages live within the `/src/pages/[locale]/<sub-page-name>` directory, a
 The easiest way to create new pages is by using the [**corgi CLI**](../corgi-cli/commands/page):
 
 ```sh
-npx @wethegit/corgi page MySubPage
+npx @wethegit/corgi@latest page MySubPage
 ```
 
-This will scaffold all the necessary files for authoring a new page: the page component itself, an SCSS module file, and all the appropriate locale data files.
+This will scaffold all the necessary files for authoring a new page: the page component itself, an SCSS module file, an index file which exports the page component, and all the appropriate locale data files.
