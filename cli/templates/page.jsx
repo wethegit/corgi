@@ -1,6 +1,6 @@
-import { setupPaths, setupProps } from "@local/utils"
 import { PageProvider } from "@local/context"
 import { useLocale } from "@local/hooks"
+import { setupPaths, setupProps } from "@local/utils"
 
 const LOCALE_FOLDER = "PAGE_SLUG"
 
