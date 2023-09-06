@@ -35,7 +35,7 @@ const BREAKPOINTS = [...BREAKPOINT_MAP].reduce((acc, curr) => {
  * {largeUp && <p>This only renders at Large+</p>}
  * {breakpointName === BREAKPOINTS.small && <p>This only renders at small</p>}
  */
-export function useBreakpoints() {
+export default function useBreakpoints() {
   const [currentBP, setCurrentBP] = useState(BREAKPOINT_MAP.get("S"))
   const [breakpointIndex, breakpointName] = currentBP
 
