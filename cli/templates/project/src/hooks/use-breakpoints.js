@@ -48,7 +48,7 @@ export function useBreakpoints() {
 
     if (!styles?.content) return
 
-    const breakpointSnipeContent = styles.content.replace(/'|"/gi, "")
+    let breakpointSnipeContent = styles.content.replace(/'|"/gi, "")
 
     if (![...BREAKPOINT_MAP.keys()].includes(breakpointSnipeContent)) breakpointSnipeContent = "S"
 
