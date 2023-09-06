@@ -31,8 +31,9 @@ If you prefer not to use CSS Modules, you're free to use the CSS workflow of you
 ```
 
 ```jsx title="/src/components/button/button.jsx"
-import * as styles from "./button.module.scss";
 import { Icon } from "@local/components";
+
+import * as styles from "./button.module.scss";
 
 const Button = ({ children }) => {
   return (

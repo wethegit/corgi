@@ -26,8 +26,6 @@ Any change of state within a Context Provider _will_ cause a re-render of all of
 | setBackground   | Function | An updater function for the `background` state.                                                                                                                                                                                                   |
 | pageHistory     | Array    | A reverse-chronological list of page directory names that have been visited, for use under the hood in the `useLocale` hook.                                                                                                                      |
 | addPage         | Function | Adds the provided value to the beginning of the `pageHistory` array.                                                                                                                                                                              |
-| transitionState | String   | The current Page Transition state. One of: `"ready"`, `"out"`, `"in"`, or `"complete"`.                                                                                                                                                           |
-| transitionEvent | Function | Dispatches a Page Transition event, based on the provided value. One of: `"onExit"`, `"onExiting"`, `"onEntering"`, `"onEntered"`. See [React Transition Group](https://reactcommunity.org/react-transition-group/) for more information on this. |
 | version         | String   | The app version, as specified in `package.json`.                                                                                                                                                                                                  |
 
 ## Usage
