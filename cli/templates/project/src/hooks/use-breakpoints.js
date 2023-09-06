@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 
 const BREAKPOINT_MAP = new Map([
+  ["none", [1, "small"]],
   ["S", [1, "small"]],
   ["M", [2, "medium"]],
   ["L", [3, "large"]],
@@ -35,19 +36,21 @@ const BREAKPOINTS = [...BREAKPOINT_MAP].reduce((acc, curr) => {
  * {breakpointName === BREAKPOINTS.small && <p>This only renders at small</p>}
  */
 export function useBreakpoints() {
-  const [currentBP, setCurrentBP] = useState([null, null])
+  const [currentBP, setCurrentBP] = useState(BREAKPOINT_MAP.get("S"))
   const [breakpointIndex, breakpointName] = currentBP
 
-  const handleResize = useCallback((e) => {
+  const handleResize = useCallback((_) => {
     if (typeof window === "undefined") return
 
-    setCurrentBP(
-      BREAKPOINT_MAP.get(
-        window
-          .getComputedStyle(document.querySelector("body"), "::after")
-          .content.replace(/'|"/gi, "")
-      )
-    )
+    const body = document.querySelector("body")
+
+    if (!body) return
+
+    const styles = window.getComputedStyle(body, "::after")
+
+    if (!styles?.content) return
+
+    setCurrentBP(BREAKPOINT_MAP.get(styles.content.replace(/'|"/gi, "")))
   }, [])
 
   useEffect(() => {
@@ -58,7 +61,7 @@ export function useBreakpoints() {
     return () => {
       window.removeEventListener("resize", handleResize)
     }
-  }, [])
+  }, [handleResize])
 
   return {
     breakpointIndex,
