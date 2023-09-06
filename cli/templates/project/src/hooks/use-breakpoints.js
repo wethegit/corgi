@@ -44,15 +44,15 @@ export function useBreakpoints() {
     const body = document.querySelector("body")
     if (!body) return
 
-    const styles = window.getComputedStyle(body, "::after")
+    const stylesContent = window.getComputedStyle(body, "::after")?.content
+    if (!stylesContent) return
 
-    if (!styles?.content) return
+    const breakpointLabel = stylesContent.replace(/'|"/gi, "")
 
-    let breakpointSnipeContent = styles.content.replace(/'|"/gi, "")
+    const breakpoint = BREAKPOINT_MAP.get(breakpointLabel)
+    if (!breakpoint) return
 
-    if (![...BREAKPOINT_MAP.keys()].includes(breakpointSnipeContent)) breakpointSnipeContent = "S"
-
-    setCurrentBP(BREAKPOINT_MAP.get(breakpointSnipeContent))
+    setCurrentBP(breakpoint)
   }, [])
 
   useEffect(() => {
