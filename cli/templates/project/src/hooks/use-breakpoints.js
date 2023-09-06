@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 
 const BREAKPOINT_MAP = new Map([
-  ["none", [1, "small"]],
   ["S", [1, "small"]],
   ["M", [2, "medium"]],
   ["L", [3, "large"]],
@@ -43,14 +42,17 @@ export function useBreakpoints() {
     if (typeof window === "undefined") return
 
     const body = document.querySelector("body")
-
     if (!body) return
 
     const styles = window.getComputedStyle(body, "::after")
 
     if (!styles?.content) return
 
-    setCurrentBP(BREAKPOINT_MAP.get(styles.content.replace(/'|"/gi, "")))
+    const breakpointSnipeContent = styles.content.replace(/'|"/gi, "")
+
+    if (![...BREAKPOINT_MAP.keys()].includes(breakpointSnipeContent)) breakpointSnipeContent = "S"
+
+    setCurrentBP(BREAKPOINT_MAP.get(breakpointSnipeContent))
   }, [])
 
   useEffect(() => {
