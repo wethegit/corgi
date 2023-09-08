@@ -9,7 +9,7 @@ const printNextSteps = (dir) => {
     "msg",
     `\nTo get started, run: \n${cdInstruction}\nnvm use ${chalk.dim(
       "(if using nvm)"
-    )} \nnpm install \nnpm start`
+    )} \nnpm install \nnpm run dev`
   );
 };
 
