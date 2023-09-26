@@ -3,9 +3,7 @@
  * strings. For example, if your locale string differs from the ISO standard
  * abbreviation, you can add that here.
  *   
- * The mapped object value will be available to both the Page's pageProps and the
- * useLocales hook as `localeMap`. If the locale is missing from the map then
- * localeMaps will be an empty object.
+ * The mapped object value will be available from the useLocale hook as `localeMap`.
  */
 const localeMap = new Map([
   [
