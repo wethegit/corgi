@@ -1,5 +1,7 @@
 import localeConfig from "@local/config-locales"
 
+import Package from '../../package.json';
+
 const { defaultLocale } = localeConfig
 
 async function getAvailableLocales(pageName) {
@@ -75,7 +77,7 @@ export async function setupProps(ctx, pageName) {
 
   return {
     props: {
-      version: require("../../package.json")?.version || 0,
+      version: Package.version || 0,
       localeData: {
         pageName: pageName || null,
         locale,
