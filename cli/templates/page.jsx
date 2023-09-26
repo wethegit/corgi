@@ -1,21 +1,22 @@
-import { PageProvider } from "@local/context"
 import { useLocale } from "@local/hooks"
 import { setupPaths, setupProps } from "@local/utils"
 
 const LOCALE_FOLDER = "PAGE_SLUG"
 
-const PAGE_NAME = ({}) => {
+const PAGE_NAME = () => {
+  // useLocale _must_ be called in this component, passing the LOCALE_FOLDER.
+  // Whether you need to destructure anything from its return value is up to you.
   const { page, globals } = useLocale(LOCALE_FOLDER)
 
   return (
-    <PageProvider page={LOCALE_FOLDER}>
+    <>
       <header>
         <h1>{page.header.title}</h1>
         <p>{page.header.body}</p>
       </header>
 
       <main></main>
-    </PageProvider>
+    </>
   )
 }
 
