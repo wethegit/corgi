@@ -12,6 +12,11 @@ rules:
   declaration-colon-newline-after: null
   length-zero-no-unit: null
   max-line-length: null
+  max-nesting-depth:
+    - 2
+    - ignore:
+      - blockless-at-rules
+      - pseudo-classes
   no-descending-specificity: null
   no-eol-whitespace: null
   no-invalid-position-at-import-rule: null
