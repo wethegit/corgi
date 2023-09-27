@@ -4,7 +4,7 @@ import { setupPaths, setupProps } from "@local/utils"
 const LOCALE_FOLDER = "subpage"
 
 export default function Subpage({}) {
-  const { page, globals } = useLocale(LOCALE_FOLDER)
+  const { page, globals } = useLocale()
 
   return (
     <header>

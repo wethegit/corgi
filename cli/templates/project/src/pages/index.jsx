@@ -17,7 +17,7 @@ export default function RootRedirect() {
 
   */
 
-  return <HomeLayout localeFolder={LOCALE_FOLDER} />
+  return <HomeLayout />
 }
 
 export const getStaticProps = async (ctx) => setupProps(ctx, LOCALE_FOLDER)
