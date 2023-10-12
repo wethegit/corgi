@@ -3,13 +3,14 @@ import { useRouter } from "next/router"
 
 import { setupPaths, setupProps } from "@local/utils"
 import { HomeLayout } from "@local/components/layouts"
-import { PageProvider } from "@local/context"
 import { defaultLocale } from "@local/config-locales"
+import { useLocale } from "@local/hooks"
 
 const LOCALE_FOLDER = "home"
 
-export default function Home({ locale, ...pageProps }) {
+export default function Home() {
   const router = useRouter()
+  const { locale } = useLocale()
 
   /*
     We need to check the locale, if its
@@ -36,11 +37,7 @@ export default function Home({ locale, ...pageProps }) {
 
   */
 
-  return (
-    <PageProvider page={LOCALE_FOLDER}>
-      {locale != defaultLocale && <HomeLayout {...pageProps} />}
-    </PageProvider>
-  )
+  return <HomeLayout />
 }
 
 export const getStaticPaths = async () => setupPaths(LOCALE_FOLDER)

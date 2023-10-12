@@ -1,10 +1,10 @@
 import { HomeBody, HomeHeader } from "./components"
 
-export function HomeLayout({ version }) {
+export function HomeLayout() {
   return (
     <>
       <HomeHeader />
-      <HomeBody version={version} />
+      <HomeBody />
     </>
   )
 }

@@ -1,6 +1,6 @@
-import { useContext } from "react"
+import { useContext } from 'react'
 
-import { SiteStateContext, PageContext, LocaleContext } from "@local/context"
+import { SiteStateContext, LocaleContext } from '@local/context'
 
 /**
  * Retrieve locale data for the currently visible page.
@@ -16,12 +16,9 @@ import { SiteStateContext, PageContext, LocaleContext } from "@local/context"
  */
 export function useLocale(setPage) {
   const localeCache = useContext(LocaleContext)
-  const pageContext = useContext(PageContext)
   const { pageHistory } = useContext(SiteStateContext)
 
   if (setPage && localeCache.get(setPage)) return { ...localeCache.get(setPage) }
-  if (pageContext && pageContext.page && localeCache.get(pageContext.page))
-    return { ...localeCache.get(pageContext.page) }
   if (pageHistory && pageHistory.length && localeCache.get(pageHistory[0]))
     return { ...localeCache.get(pageHistory[0]) }
   return { ...Array.from(localeCache.values()).pop() }

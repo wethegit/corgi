@@ -1,4 +1,4 @@
-import { createContext, useState, useReducer } from "react"
+import { createContext, useEffect, useState, useReducer } from "react"
 
 export const SiteStateContext = createContext()
 
@@ -13,6 +13,10 @@ export function SiteStateProvider({ children, version }) {
 
   const [pageHistory, addPage] = useReducer((history, newPage) => {
     return [newPage, ...history]
+  }, [])
+
+  useEffect(() => {
+    console.log(`v${version}`)
   }, [])
 
   return (
