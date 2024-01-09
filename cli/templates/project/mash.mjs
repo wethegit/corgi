@@ -1,13 +1,14 @@
-import glob from "glob"
+import { join } from "node:path"
+
+import { glob } from "glob"
 import fs from "fs-extra"
 import sizeOf from "image-size"
-import config from "./mash.config.js"
 import chalk from "chalk"
 import md5File from "md5-file"
 import watch from "node-watch"
+import sharp from "sharp"
 
-import { ImagePool } from "@squoosh/lib"
-import { cpus } from "os"
+import config from "./mash.config.js"
 
 const MASH_NAME = "masher"
 const CACHE_NAME = "MashCache"
@@ -17,8 +18,8 @@ const IMAGES_REGISTER_FILE = "./images_register.json"
 const BREAKPOINTS = ["xxlarge-up", "xlarge-up", "large-up", "medium-up"]
 
 const FOLDERS = {
-  output: "./public/_images/",
-  input: "./src/images/",
+  output: "public/_images/",
+  input: "src/images/",
 }
 
 const PROCESS_TYPE = {
@@ -48,7 +49,6 @@ const prettyRegister = args.includes("--pretty-register")
 let cache = {}
 let queue = []
 let isProcessingQueue = false
-let imagePool = null
 
 const log = (type, message, extra) => {
   const colorMap = {
@@ -159,7 +159,6 @@ const removeFromQueue = (path) => {
 
 const startQueue = () => {
   isProcessingQueue = true
-  imagePool = new ImagePool(cpus().length)
   processQueue()
   log(LOG_TYPE.message, "Queue started")
 }
@@ -167,53 +166,52 @@ const startQueue = () => {
 const processQueue = async () => {
   if (queue.length > 0) {
     const item = queue.shift()
-    const preprocessOptions = {
-      resize: {
-        enabled: true,
-        width: item.width,
-      },
+
+    if (!fs.existsSync(item.output)) {
+      fs.mkdirSync(item.output, { recursive: true })
     }
 
-    const image = imagePool.ingestImage(item.path)
-    await image.decoded
-    await image.preprocess(preprocessOptions)
+    const outputs = []
+    const image = sharp(item.path).resize({ width: item.width, failOn: "none" })
 
-    const encodeOptions = {}
     item.outputTypes.forEach((type) => {
+      const newImagePath = `${item.output}${item.filename}.`
+
       switch (type) {
         case "png":
-          encodeOptions.oxipng = {}
+          // png options
+          // https://sharp.pixelplumbing.com/api-output#png
+          image.clone().png()
           break
         case "jpg":
         case "jpeg":
-          encodeOptions.mozjpeg = {}
+          // jpeg options
+          // https://sharp.pixelplumbing.com/api-output#jpeg
+          image.clone().jpeg()
           break
         case "webp":
-          encodeOptions.webp = {}
+          // webp options
+          // https://sharp.pixelplumbing.com/api-output#webp
+          image.clone().webp({ nearLossless: true })
           break
         case "avif":
-          encodeOptions.avif = {}
+          // avif options
+          // https://sharp.pixelplumbing.com/api-output#avif
+          image.clone().avif({ nearLossless: true })
           break
       }
+
+      const path = newImagePath + type
+
+      outputs.push(image.toFile(path))
+      cache[item.path].generatedFiles.push(path)
+
+      log(LOG_TYPE.write, path)
     })
 
-    await image.encode(encodeOptions)
-    const newImagePath = `${item.output}${item.filename}.`
+    await Promise.all(outputs)
 
-    for (const encodedImage of Object.values(image.encodedWith)) {
-      if (!fs.existsSync(item.output)) {
-        fs.mkdirSync(item.output, { recursive: true })
-      }
-
-      const path = newImagePath + (await encodedImage).extension
-
-      cache[item.path].generatedFiles.push(path)
-      saveCache()
-      log(LOG_TYPE.write, path)
-
-      fs.writeFileSync(path, (await encodedImage).binary)
-    }
-
+    saveCache()
     processQueue()
   } else {
     endQueue()
@@ -221,8 +219,6 @@ const processQueue = async () => {
 }
 
 const endQueue = () => {
-  if (imagePool) imagePool.close()
-  imagePool = null
   isProcessingQueue = false
   log(LOG_TYPE.message, "Queue complete")
 }
@@ -279,7 +275,7 @@ const processDefinedImage = (path, hash, fileInfo) => {
 
   cache[path] = {
     hash,
-    filename: fileInfo.path + fileInfo.filename + "." + outputTypes[0],
+    filename: join(fileInfo.path, fileInfo.filename + "." + outputTypes[0]),
     size: { width: fileInfo.width, height: fileInfo.height },
     count: 0,
     is2x: fileInfo.is2x,
@@ -293,7 +289,7 @@ const processDefinedImage = (path, hash, fileInfo) => {
 
     addToQueue({
       path,
-      output: FOLDERS.output + fileInfo.path,
+      output: join(FOLDERS.output, fileInfo.path),
       filename,
       width,
       height,
@@ -314,7 +310,7 @@ const processAutoImage = (path, hash, fileInfo) => {
 
   cache[path] = {
     hash,
-    filename: fileInfo.path + fileInfo.filename + "." + outputTypes[0],
+    filename: join(fileInfo.path, fileInfo.filename + "." + outputTypes[0]),
     size: { width: fileInfo.width, height: fileInfo.height },
     count: 0,
     process: PROCESS_TYPE.auto,
@@ -341,7 +337,7 @@ const processAutoImage = (path, hash, fileInfo) => {
 
     addToQueue({
       path,
-      output: FOLDERS.output + fileInfo.path,
+      output: join(FOLDERS.output, fileInfo.path),
       filename: fileInfo.filename + stepName,
       width: size,
       outputTypes,
@@ -355,6 +351,7 @@ const processPath = (path, action) => {
   const processType = path.replace(FOLDERS.input, "").split("/").shift().trim()
 
   const validProcessTypes = Object.keys(PROCESS_TYPE)
+
   if (validProcessTypes.indexOf(processType) === -1) {
     log(
       LOG_TYPE.error,
@@ -412,7 +409,7 @@ const processPath = (path, action) => {
 }
 
 const checkAll = () => {
-  const files = glob.sync(FOLDERS.input + "**/*.*")
+  const files = glob.sync(join(FOLDERS.input, "**/*.*"))
 
   // check for files deleted while masher wasn't running
 

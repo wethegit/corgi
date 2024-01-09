@@ -1,4 +1,5 @@
 const path = require("path")
+
 const withPlugins = require("next-compose-plugins")
 const yaml = require("next-plugin-yaml")
 
@@ -20,7 +21,6 @@ if (process.env.NODE_ENV === "production" && !process.env.NEXT_PUBLIC_URL) {
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
-  webpack5: true,
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
@@ -32,7 +32,7 @@ const nextConfig = {
     // insert js-yaml-loader
     config.module.rules.push({
       test: /\.ya?ml$/,
-      use: 'js-yaml-loader',
+      use: "js-yaml-loader",
     })
 
     return config

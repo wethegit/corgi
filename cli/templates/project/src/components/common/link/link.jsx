@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import NextLink from "next/link"
 
 import { useLocale } from "@local/hooks"
@@ -22,14 +21,4 @@ export function Link({ children, href, ignoreLocale, ...props }) {
       {children}
     </NextLink>
   )
-}
-
-Link.defaultProps = {
-  ignoreLocale: false,
-}
-
-Link.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
-  href: PropTypes.string.isRequired,
-  ignoreLocale: PropTypes.bool,
 }
