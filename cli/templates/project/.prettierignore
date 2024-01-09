@@ -1,6 +1,7 @@
-.next
-.vscode
+.next/
+.vscode/
 README.md
 amplify.yml
-node_modules
-out
+node_modules/
+out/
+public/

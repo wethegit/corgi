@@ -197,7 +197,7 @@ const processQueue = async () => {
         case "avif":
           // avif options
           // https://sharp.pixelplumbing.com/api-output#avif
-          image.clone().avif({ nearLossless: true })
+          image.clone().avif()
           break
       }
 
