@@ -68,8 +68,8 @@ export function Nav({ toggleable = false }) {
                 className={styles.navItem}
                 aria-current={item.id === page?.selectedNav ? "page" : null}
               >
-                <Link href={path} passHref>
-                  <a onClick={() => setOpen(false)}>{label}</a>
+                <Link href={path} onClick={() => setOpen(false)}>
+                  {label}
                 </Link>
               </li>
             )
