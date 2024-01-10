@@ -7,7 +7,7 @@ import localesConfig from "@local/config-locales"
 import { BodyScripts, Footer, Nav, PageHead } from "./components"
 import styles from "./page.module.scss"
 
-export function Page({ children, className, version }) {
+export function Page({ children, className }) {
   const { mediumDown } = useBreakpoints()
   const { locale, localeMap } = useLocale()
 
@@ -18,10 +18,6 @@ export function Page({ children, className, version }) {
       lang = localeMap[localesConfig.langValue] || locale
     if (docLang !== lang) document.documentElement.lang = lang
   }, [locale, localeMap])
-
-  useEffect(() => {
-    console.log("VERSION:", version)
-  }, [version])
 
   return (
     <>

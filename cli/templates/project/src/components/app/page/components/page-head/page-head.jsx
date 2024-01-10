@@ -2,7 +2,7 @@ import Head from "next/head"
 import { useRouter } from "next/router"
 
 import { useLocale } from "@local/hooks"
-import localeConfig, { defaultLocale } from "@local/config-locales"
+import { localeMap, langValue, defaultLocale } from "@local/config-locales"
 
 const fallbackTitle = "DON'T FORGET TO ADD A TITLE!"
 const fallbackDesc = "DON'T FORGET TO ADD A DESCRIPTION!"
@@ -62,14 +62,12 @@ export function PageHead() {
 
         // Now we check the localeMap in config for the
         // alternative locale
-        const mappedAltLocale = localeConfig.localeMap
-          ? localeConfig.localeMap.get(altLocale)
-          : {}
+        const mappedAltLocale = localeMap ? localeMap[altLocale] : {}
 
         // If the mapped object and the regionValue exists
         // we replace the lang with that rather than the default
-        if (localeConfig.langValue && mappedAltLocale) {
-          lang = mappedAltLocale[localeConfig.langValue] || altLocale
+        if (langValue && mappedAltLocale) {
+          lang = mappedAltLocale[langValue] || altLocale
         }
 
         // We grab the pathname
