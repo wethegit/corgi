@@ -8,7 +8,7 @@ Static site data for each locale is grouped into two general categories: the "gl
 
 All static locale data lives within the `/src/locales/` directory, and is grouped into these two categories. You can treat the `globals` directory as a reserved directory name, as all global (site-wide) data is compiled from within it. All other directories here, however, are page-level data directories which should match each page's filename as it exists in the `/src/pages/` directory.
 
-Within both `/src/locales/globals/` and `/src/locales/<page-name>/`, should live YAML files containing the actual locale data. Each YAML file's name should be the locale string as specified in the [locale config](./configuration#locales), with a `.yml` extension.
+Within both `/src/locales/globals/` and `/src/locales/<page-name>/`, should live YAML files containing the actual locale data. Each YAML file's name should be the locale string as specified in the [locale config](./configuration#locales), with a `.yml` extension, except for the `index.yml` file, which is a special case for each directory.
 
 Here is an example file tree, containing global data as well as data for two pages—all containing content for three locales:
 
@@ -19,11 +19,13 @@ Here is an example file tree, containing global data as well as data for two pag
         ├── globals/
         │   ├── en.yml
         │   ├── es.yml
-        │   └── fr.yml
+        │   ├── fr.yml
+        │   └── index.yml
         ├── home/
         │   ├── en.yml
         │   ├── es.yml
-        │   └── fr.yml
+        │   ├── fr.yml
+        │   └── index.yml
         └── features/
             ├── en.yml
             ├── es.yml
@@ -125,4 +127,49 @@ const FeatureList = ({}) => {
 };
 
 export default FeatureList;
+```
+
+
+## `index.yml` example
+
+Each directory within `/src/locales/` can contain an `index.yml`. If inside `global/` its data will be available as part of the `globals` scope mentioned above, otherwise it will be part of the `page` scope.
+
+If inside a page locale directory, the data will be available for all locales, but those can still overwrite that data.
+
+Let's say you have a list of downlodable PDFs that you want to display on the footer of your site. These PDFs are in english for all locales except for `fr`. You can define the list in the `index.yml` file and then overwrite it for the `fr` locale instead of having to define it for each locale.
+
+```yml title=/src/locales/globals/index.yml
+downloads:
+  - path-to-pdf-1.pdf
+  - path-to-pdf-2.pdf
+  - path-to-pdf-3.pdf
+```
+
+```yml title=/src/locales/globals/fr.yml
+downloads:
+  - fr/path-to-pdf-1.pdf
+  - fr/path-to-pdf-2.pdf
+  - fr/path-to-pdf-3.pdf
+```
+
+The data is then merged and is available in the `globals` scope.
+
+```jsx title=/src/components/footer.jsx
+import { useLocale } from "@local/hooks";
+
+const Footer = ({}) => {
+  const { globals: { downloads } } = useLocale();
+
+  return (
+    <ul>
+      {downloads.map((path, i) => (
+        <li key={i}>
+          <a href={path} download><Icon id="download" /></a>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+export default Footer;
 ```
