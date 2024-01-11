@@ -1,6 +1,5 @@
 {
   "name": "corgi-project",
-  "version": "0.0.0",
   "private": true,
   "scripts": {
     "build": "npm run mash-build && next build",
