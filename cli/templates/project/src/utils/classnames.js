@@ -7,4 +7,5 @@ export function classnames(classes) {
     .flat()
     .filter((c) => typeof c === "string")
     .join(" ")
+    .trim()
 }

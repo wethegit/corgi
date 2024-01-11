@@ -16,7 +16,7 @@ export function SiteStateProvider({ children, version }) {
   }, [])
 
   useEffect(() => {
-    console.log(`v${version}`)
+    console.log(`Version: ${version}`)
   }, [])
 
   return (

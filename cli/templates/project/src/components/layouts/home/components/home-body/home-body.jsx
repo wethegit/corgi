@@ -1,7 +1,14 @@
 import { useLocale } from "@local/hooks"
 
-export function HomeBody({ version }) {
-  const { locale, localeMap } = useLocale()
+export function HomeBody() {
+  const {
+    locale,
+    localeMap,
+    globals: { version, coolSetting },
+    page: { pageCoolSetting },
+  } = useLocale()
+
+  console.log(localeMap)
 
   return (
     <main className="content-spacing">
@@ -9,15 +16,17 @@ export function HomeBody({ version }) {
         locale: <code>{locale}</code>
       </h2>
       <ul>
-        {Object.keys(localeMap).map((key) => (
+        {Object.entries(localeMap).map(([key, value]) => (
           <li key={key}>
-            <b>{key}:</b> <span>{localeMap[key]}</span>
+            <b>{key}:</b> <span>{JSON.stringify(value, null, 2)}</span>
           </li>
         ))}
       </ul>
       <h2>
         Version: <code>{version}</code>
       </h2>
+      <p>{coolSetting}</p>
+      <p>{pageCoolSetting}</p>
     </main>
   )
 }

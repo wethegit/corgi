@@ -26,35 +26,26 @@ module.exports = {
 
 ## localeMap
 
-The localeMap is where you'll enter all of the supported locales for your project. This map contains a map of locale strings to various bits of relevant data you might need. For example, if your locale is `"en"`, but you want your HTML's `lang` attribute to be `"en-US"`, you could put that data here. `language` is the only required field here. All of this mapped data is conveniently available via the [`useLocale`](./use-locale-hook) hook.
+The localeMap is where you'll enter all of the supported locales for your project. This object contains a map of locale strings to various bits of relevant data you might need. For example, if your locale is `"en"`, but you want your HTML's `lang` attribute to be `"en-US"`, you could put that data here. `language` is the only required field here. All of this mapped data is conveniently available via the [`useLocale`](./use-locale-hook) hook.
 
 All pages of the project in these locales (with the exception of the [defaultLocale](#defaultLocale), see above) will live at `/<locale string>/<page name>`.
 
 ```js src/config-locales.js
 module.exports = {
-  localeMap: new Map([
-    [
-      "en",
-      {
-        language: "en-US",
-        someAPIEndpointLocale: "en_US",
-      },
-    ],
-    [
-      "es",
-      {
-        language: "es-ES",
-        someAPIEndpointLocale: "es_ES",
-      },
-    ],
-    [
-      "fr",
-      {
-        language: "fr-FR",
-        someAPIEndpointLocale: "fr_FR",
-      },
-    ],
-  ]),
+  localeMap: {
+    en: {
+      language: "en-US",
+      someAPIEndpointLocale: "en_US",
+    },
+    es: {
+      language: "es-ES",
+      someAPIEndpointLocale: "es_ES",
+    },
+    fr: {
+      language: "fr-FR",
+      someAPIEndpointLocale: "fr_FR",
+    },
+  },
 
   // other properties omitted for brevity
 };

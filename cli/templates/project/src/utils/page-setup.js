@@ -1,16 +1,14 @@
 import localeConfig from "@local/config-locales"
 
-import Package from '../../package.json';
-
-const { defaultLocale } = localeConfig
+const { defaultLocale, localeMap } = localeConfig
 
 async function getAvailableLocales(pageName) {
   if (!pageName) return []
 
   const glob = require("glob")
 
-  const yamls = Array.from(localeConfig.localeMap.entries())
-    .map(([locale]) => glob.sync(`./src/locales/${pageName}/${locale}.yml`))
+  const yamls = Object.keys(localeMap)
+    .map((locale) => glob.sync(`./src/locales/${pageName}/${locale}.yml`))
     .flat()
 
   return yamls.map((path) => path.split("/").pop().split(".").shift())
@@ -45,11 +43,12 @@ export async function setupProps(ctx, pageName) {
     ctx.locale || ctx?.params?.locale || ctx.defaultLocale || defaultLocale || "en-us"
 
   let pageLocales = {}
+  let pageIndexLocales = {}
+  let globalIndexLocale = {}
   let globalLocales = {}
-  let localeMap = {}
   let alternativeLocales = []
 
-  if (pageName)
+  if (pageName) {
     try {
       pageLocales = await import(
         /* webpackMode: "eager" */ `../locales/${pageName}/${locale}.yml`
@@ -57,6 +56,15 @@ export async function setupProps(ctx, pageName) {
     } catch (err) {
       console.error(` ${locale} locales file for ${pageName} not found.`)
     }
+
+    try {
+      pageIndexLocales = await import(
+        /* webpackMode: "eager" */ `../locales/${pageName}/index.yml`
+      ).then((m) => m.default)
+    } catch (err) {
+      // no problem if there isn't an index file
+    }
+  }
 
   try {
     globalLocales = await import(
@@ -66,7 +74,13 @@ export async function setupProps(ctx, pageName) {
     console.error(`Global locales file for ${locale} not found.`)
   }
 
-  if (localeConfig.localeMap) localeMap = localeConfig.localeMap.get(locale) || {}
+  try {
+    globalIndexLocale = await import(
+      /* webpackMode: "eager" */ `../locales/globals/index.yml`
+    ).then((m) => m.default)
+  } catch (_) {
+    // no problem if there isn't an index file
+  }
 
   try {
     const availableLocales = await getAvailableLocales(pageName)
@@ -77,13 +91,21 @@ export async function setupProps(ctx, pageName) {
 
   return {
     props: {
-      version: Package.version || 0,
+      version: globalIndexLocale.version || 0,
       localeData: {
         pageName: pageName || null,
         locale,
         localeMap,
-        page: pageLocales || {},
-        globals: globalLocales || {},
+        page: {
+          ...(pageIndexLocales || {}),
+          // overwrite page index
+          ...(pageLocales || {}),
+        },
+        globals: {
+          ...(globalIndexLocale || {}),
+          // overwrite global index
+          ...(globalLocales || {}),
+        },
         alternativeLocales,
       },
     },
