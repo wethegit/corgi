@@ -8,13 +8,12 @@ export function HomeBody() {
     page: { pageCoolSetting },
   } = useLocale()
 
-  console.log(localeMap)
-
   return (
-    <main className="content-spacing">
+    <main>
       <h2>
         locale: <code>{locale}</code>
       </h2>
+
       <ul>
         {Object.entries(localeMap).map(([key, value]) => (
           <li key={key}>
@@ -22,10 +21,13 @@ export function HomeBody() {
           </li>
         ))}
       </ul>
+
       <h2>
         Version: <code>{version}</code>
       </h2>
+
       <p>{coolSetting}</p>
+
       <p>{pageCoolSetting}</p>
     </main>
   )

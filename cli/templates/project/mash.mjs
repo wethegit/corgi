@@ -174,6 +174,8 @@ const processQueue = async () => {
     const outputs = []
     const image = sharp(item.path).resize({ width: item.width, failOn: "none" })
 
+    console.log({ item })
+
     item.outputTypes.forEach((type) => {
       const newImagePath = `${item.output}${item.filename}.`
 
@@ -197,7 +199,7 @@ const processQueue = async () => {
         case "avif":
           // avif options
           // https://sharp.pixelplumbing.com/api-output#avif
-          image.clone().avif()
+          image.clone().avif({ nearLossless: true })
           break
       }
 
@@ -351,7 +353,7 @@ const processPath = (path, action) => {
   const processType = path.replace(FOLDERS.input, "").split("/").shift().trim()
 
   const validProcessTypes = Object.keys(PROCESS_TYPE)
-
+  console.log({ validProcessTypes, processType })
   if (validProcessTypes.indexOf(processType) === -1) {
     log(
       LOG_TYPE.error,
@@ -423,6 +425,7 @@ const checkAll = () => {
 
   for (let i = 0; i < files.length; i++) {
     const path = files[i]
+    console.log({ path })
     processPath(path, ACTION_TYPE.compress)
   }
 

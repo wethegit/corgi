@@ -1,6 +1,6 @@
 import { useEffect, useRef, forwardRef, useState } from "react"
 
-import { classnames, breakpointMap, breakpointOrder } from "@local/utils"
+import { breakpointMap, breakpointOrder } from "@local/utils"
 
 import register from "../../../../images_register.json"
 
@@ -72,7 +72,7 @@ function Picture(
   if (!src) return null
 
   return (
-    <picture className={classnames([pictureClassName])}>
+    <picture className={pictureClassName}>
       {sortedBPs &&
         sortedBPs.map((bp, i) => {
           return extensions.map((extension, j) => {
@@ -111,7 +111,7 @@ function Picture(
         )
       })}
       <img
-        className={classnames([className])}
+        className={className}
         {...{ alt, src }}
         loading={lazy && "lazy"}
         ref={ref || fallbackRef}
