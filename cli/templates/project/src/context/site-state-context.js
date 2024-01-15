@@ -17,7 +17,7 @@ export function SiteStateProvider({ children, version }) {
 
   useEffect(() => {
     console.log(`Version: ${version}`)
-  }, [])
+  }, [version])
 
   return (
     <SiteStateContext.Provider

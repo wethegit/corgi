@@ -9,8 +9,8 @@
     "mash-watch": "node mash.mjs --watch",
     "postbuild": "next-sitemap && next export",
     "preflight": "npm run mash-build-all && next build",
-    "dev": "npm run mash-watch & next dev -p 8080",
-    "start": "serve ./out -p 8080"
+    "start": "npm run mash-watch & next dev -p 8080",
+    "preview": "serve ./out -p 8080"
   },
   "devDependencies": {
     "chalk": "~5.3.0",

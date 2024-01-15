@@ -1,12 +1,10 @@
-import { setupProps } from "@local/utils/page-setup"
+import { setupProps } from "@local/utilities"
 
-export default function Four0hFour({ locale, globals }) {
+export default function Four0hFour() {
   return (
-    <>
-      <header className="content-spacing">
-        <h1>Page not found</h1>
-      </header>
-    </>
+    <header>
+      <h1>Page not found</h1>
+    </header>
   )
 }
 

@@ -197,7 +197,7 @@ const processQueue = async () => {
         case "avif":
           // avif options
           // https://sharp.pixelplumbing.com/api-output#avif
-          image.clone().avif()
+          image.clone().avif({ nearLossless: true })
           break
       }
 
@@ -423,6 +423,7 @@ const checkAll = () => {
 
   for (let i = 0; i < files.length; i++) {
     const path = files[i]
+
     processPath(path, ACTION_TYPE.compress)
   }
 

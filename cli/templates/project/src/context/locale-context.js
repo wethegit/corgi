@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from "react"
+import { createContext, useState, useEffect, useContext, useMemo } from "react"
 
 import { SiteStateContext } from "@local/context"
 
@@ -13,16 +13,21 @@ export const LocaleContext = createContext()
 export function LocaleProvider({ children, locale }) {
   const [localeCache, setCache] = useState()
   const { addPage } = useContext(SiteStateContext)
+  const initLocale = useMemo(() => {
+    const init = new Map()
+    init.set(locale.pageName, { ...locale })
+    return init
+  }, [locale])
 
   useEffect(() => {
     addPage(locale.pageName)
-    let newCache = new Map(localeCache)
-    newCache.set(locale.pageName, { ...locale })
-    setCache(newCache)
-  }, [locale])
 
-  const initLocale = new Map()
-  initLocale.set(locale.pageName, { ...locale })
+    setCache((cur) => {
+      let newCache = new Map(cur)
+      newCache.set(locale.pageName, { ...locale })
+      return newCache
+    })
+  }, [locale, addPage])
 
   return (
     <LocaleContext.Provider value={localeCache ? localeCache : initLocale}>

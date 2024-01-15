@@ -1,12 +1,10 @@
-import { setupProps } from "@local/utils/page-setup"
+import { setupProps } from "@local/utilities"
 
-export default function FiveHundred({ locale, globals }) {
+export default function FiveHundred() {
   return (
-    <>
-      <header className="content-spacing">
-        <h1>Error</h1>
-      </header>
-    </>
+    <header>
+      <h1>Error</h1>
+    </header>
   )
 }
 
