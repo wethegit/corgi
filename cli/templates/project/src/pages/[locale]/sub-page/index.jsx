@@ -1,5 +1,5 @@
 import { SubPageLayout } from "@local/components/layouts"
-import { setupPaths, setupProps } from "@local/utils"
+import { setupPaths, setupProps } from "@local/utilities"
 
 const LOCALE_FOLDER = "subpage"
 

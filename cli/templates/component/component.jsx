@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 import { useLocale } from "@local/hooks"
-import { classnames } from "@local/utils"
+import { classnames } from "@local/utilities"
 
 import styles from "./COMPONENT_SLUG.module.scss"
 

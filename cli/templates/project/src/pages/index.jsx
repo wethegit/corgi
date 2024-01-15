@@ -1,4 +1,4 @@
-import { setupProps } from "@local/utils"
+import { setupProps } from "@local/utilities"
 
 import { HomeLayout } from "@local/components/layouts"
 

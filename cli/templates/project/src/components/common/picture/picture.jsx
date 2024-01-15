@@ -1,6 +1,6 @@
 import { useEffect, useRef, forwardRef, useState } from "react"
 
-import { breakpointMap, breakpointOrder } from "@local/utils"
+import { breakpointMap, breakpointOrder } from "@local/utilities"
 
 import register from "../../../../images_register.json"
 
