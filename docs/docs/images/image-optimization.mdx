@@ -3,59 +3,34 @@
 
 # Image optimization
 
-corgi can optimize and compresses images for you; allowing you to only have to worry about uploading a single, high-res ("2x" pixel density) image. This optimization process generates compressed versions of these `2x` images, their `1x` counterparts, and `.webp` versions if applicable.
+We recommend using [@wethegit/masher](https://github.com/wethegit/masher), it was designed with corgi in mind.
 
-## Image source file location
+1 - Install
+`npm install --save-dev @wethegit/masher`
 
-To take advantage of corgi's image optimization, save your image _source_ files in the `/src/images/defined/` directory. You're welcome to make subdirectories within `defined/`. The images you add here must have the `-2x` suffix on their filenames. For example, `/src/images/defined/banner-logo-2x.png`. Note that the `-2x` suffix implies that the image is twice the size of its intended CSS dimensions. Don't worry about adding the single-pixel-density images ("1x"), as they will be automatically generated for use with devices/browsers that request them. If files are removed from this directory, corgi will pick up on that, and update the generated output accordingly.
+2 - Add the cache file to your `.gitignore` file:
+`echo "mash.cache.json" >> .gitignore`
 
-## Image optimization output location
+3 - Update your `package.json` scripts with helpful commands:
 
-Once the source images are in place, running any of the following Node scripts (per the `package.json` scripts) will optimize your source images. The **output** files will be saved to `/public/_images/`. This directory is reserved for images optimized by corgi, so do not edit any of this directory's contents directly. Any changes to your images should _always_ be made from the source directory: `/src/images/defined/`.
-
-```bash
-# When developing, all images in the `/src/images/defined/` directory will be watched for changes,
-# and generated and optimized on-the-fly:
-npm start
-
-# When building for production, files will be generated and optimized based on the existing cache:
-npm run build
-
-# Manually run the file generation and optimization, based on the existing cache file:
-npm run mash-build
-
-# Manually run the file generation and optimization, creating a new cache file:
-npm run mash-build-all
+```json
+{
+  "scripts": {
+    "build": "npm run mash-build && next build",
+    "mash-build": "@wethegit/masher",
+    "mash-build-all": "@wethegit/masher --force --clean",
+    "mash-watch": "@wethegit/masher --watch",
+    "preflight": "npm run mash-build-all && next build",
+    "start": "npm run mash-watch & next dev -p 8080",
+  }
+}
 ```
 
-Here's an example source file tree, and the output file tree below it:
-
-```txt title="Source image location"
-.
-└── src/
-    └── images/
-        └── defined/
-            ├── banner-2x.jpg
-            └── logo-2x.png
-```
-
-```txt title="Output image location"
-.
-└── public/
-    └── _images/
-        ├── banner-2x.jpg
-        ├── banner.jpg
-        ├── logo-2x.png
-        ├── logo.png
-        ├── logo-2x.webp
-        └── logo.webp
-```
-
-As you can see in the example output above, not only are the 1x versions of the source files generated, but any `.png` images get `.webp` versions by default. And of course, all output files are compressed.
+For more information on the masher, check out the [masher docs](https://github.com/wethegit/masher).
 
 ## Image formats
 
-corgi's image compression is intended for `.jpg` and `.png` files.
+The masher's image compression is intended for `.jpg` and `.png` files.
 
 If you need static `.svg`, `.mp4`, or assets of other formats, add them to the default Next.js `/public/` directory. Just remember not to tamper with the generated `/public/_images/` directory within. More on this in the [other static assets](./static-assets) section.
 
