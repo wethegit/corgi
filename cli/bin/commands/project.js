@@ -21,6 +21,7 @@ let usedCustomConfig = false;
 const project = async (directory, options) => {
   let { template } = options;
   let customConfig = {};
+  let installComponents = false;
 
   // Prompt the user to specify arguments if they haven't
   if (!directory) {
@@ -68,29 +69,61 @@ const project = async (directory, options) => {
   // Allow for custom project config (custom package.json, etc.)
   if (usedCustomConfig) {
     const configSpinner = log("msg", "Adding custom config…", true);
+    const pkgFilePath = `${directory}/package.json`;
+    let pkgFileParsed;
+
+    try {
+      pkgFileParsed = JSON.parse(await readFile(pkgFilePath));
+    } catch (err) {
+      killSpinner(configSpinner);
+      log("err", err);
+    }
 
     // Merge config-specific package.json data:
     if (projectConfig.package) {
-      const pkgFilePath = `${directory}/package.json`;
-      
       try {
-        const pkgFileParsed = JSON.parse(await readFile(pkgFilePath));
-        const pkgContentsMerged = await mergePkgProperties({
+        pkgFileParsed = await mergePkgProperties({
           existing: pkgFileParsed,
           custom: projectConfig.package,
         });
-        await writeFile(pkgFilePath, JSON.stringify(pkgContentsMerged, null, 2));
+        await writeFile(pkgFilePath, JSON.stringify(pkgFileParsed, null, 2));
       } catch (err) {
         killSpinner(configSpinner);
         log("err", err);
       }
     }
 
+    // if the template requires components, let's make sure the components-cli is a dependency
+    if (projectConfig.components) {
+      const dependencyName = '@wethegit/components-cli'
+
+      const isComponentDependency = !!(pkgFileParsed.devDependencies && dependencyName in pkgFileParsed.devDependencies);
+
+      if (!isComponentDependency)  {
+        try {
+          const packageData = await fetch(`https://registry.npmjs.org/${dependencyName}/latest`)
+
+          const {version} = await packageData.json();
+
+          if (!pkgFileParsed.devDependencies) pkgFileParsed.devDependencies = {};
+
+          pkgFileParsed.devDependencies[dependencyName] = `^${version}`;
+
+          await writeFile(pkgFilePath, JSON.stringify(pkgFileParsed, null, 2));
+        } catch (err) {
+          log("err", err);
+        }
+      }
+
+      // save list of components to install and display on next steps
+      installComponents = projectConfig.components;
+    }
+
     killSpinner(configSpinner);
     log("ok", "Added!");
   }
 
-  printNextSteps(directory);
+  printNextSteps(directory, installComponents);
 };
 
 export default project;
