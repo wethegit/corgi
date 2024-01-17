@@ -11,7 +11,7 @@ const printNextSteps = (dir, componentsList) => {
   )} \nnpm install`
 
   if (componentsList.length) {
-    logMessage += ` \nLooks like this template uses @wethegit/components-cli. \nAfter installing dependencies run: \nnpx @wethegit/components-cli init \nnpx @wethegit/components-cli add ${componentsList.join(' ')}`
+    logMessage += ` \nLooks like this template requires components from @wethegit/component-library. \nAfter installing dependencies run: \nnpx @wethegit/components-cli init \nnpx @wethegit/components-cli add ${componentsList.join(' ')}`
   }
 
   logMessage += `\nnpm run dev`;

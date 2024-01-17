@@ -95,28 +95,30 @@ const project = async (directory, options) => {
 
     // if the template requires components, let's make sure the components-cli is a dependency
     if (projectConfig.components) {
-      const dependencyName = '@wethegit/components-cli'
+      if (Array.isArray(projectConfig.components) && projectConfig.components.length) {
+        const dependencyName = '@wethegit/components-cli'
 
-      const isComponentDependency = !!(pkgFileParsed.devDependencies && dependencyName in pkgFileParsed.devDependencies);
+        const isComponentDependency = !!(pkgFileParsed.devDependencies && dependencyName in pkgFileParsed.devDependencies);
 
-      if (!isComponentDependency)  {
-        try {
-          const packageData = await fetch(`https://registry.npmjs.org/${dependencyName}/latest`)
+        if (!isComponentDependency)  {
+          try {
+            const packageData = await fetch(`https://registry.npmjs.org/${dependencyName}/latest`)
 
-          const {version} = await packageData.json();
+            const { version } = await packageData.json();
 
-          if (!pkgFileParsed.devDependencies) pkgFileParsed.devDependencies = {};
+            if (!pkgFileParsed.devDependencies) pkgFileParsed.devDependencies = {};
 
-          pkgFileParsed.devDependencies[dependencyName] = `^${version}`;
+            pkgFileParsed.devDependencies[dependencyName] = `^${version}`;
 
-          await writeFile(pkgFilePath, JSON.stringify(pkgFileParsed, null, 2));
-        } catch (err) {
-          log("err", err);
+            await writeFile(pkgFilePath, JSON.stringify(pkgFileParsed, null, 2));
+          } catch (err) {
+            log("err", err);
+          }
         }
-      }
 
-      // save list of components to install and display on next steps
-      installComponents = projectConfig.components;
+        // save list of components to install and display on next steps
+        installComponents = projectConfig.components;
+      }
     }
 
     killSpinner(configSpinner);
