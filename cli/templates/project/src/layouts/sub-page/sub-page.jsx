@@ -1,7 +1,7 @@
 import { Page } from "@local/components"
 import { useLocale } from "@local/hooks"
 
-export default function SubPageLayout() {
+export function SubPageLayout() {
   const { page } = useLocale()
 
   return (
