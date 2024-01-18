@@ -1,8 +1,5 @@
 pageCoolSetting: "FR - Page cool setting"
 
-# selectedNav should match the appropriate nav item's ID:
-selectedNav: home
-
 meta:
   title: Accueil
   description: Homepage-specific meta description.

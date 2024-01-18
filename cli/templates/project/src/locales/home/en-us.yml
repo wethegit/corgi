@@ -1,6 +1,3 @@
-# selectedNav should match the appropriate nav item's ID:
-selectedNav: home
-
 meta:
   title: Homepage
   description: Homepage-specific meta description.
