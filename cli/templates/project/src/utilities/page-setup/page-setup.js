@@ -51,7 +51,7 @@ export async function setupProps(ctx, pageName) {
   if (pageName) {
     try {
       pageLocales = await import(
-        /* webpackMode: "eager" */ `../locales/${pageName}/${locale}.yml`
+        /* webpackMode: "eager" */ `../../locales/${pageName}/${locale}.yml`
       ).then((m) => m.default)
     } catch (err) {
       console.error(` ${locale} locales file for ${pageName} not found.`)
@@ -59,7 +59,7 @@ export async function setupProps(ctx, pageName) {
 
     try {
       pageIndexLocales = await import(
-        /* webpackMode: "eager" */ `../locales/${pageName}/index.yml`
+        /* webpackMode: "eager" */ `../../locales/${pageName}/index.yml`
       ).then((m) => m.default)
     } catch (err) {
       // no problem if there isn't an index file
@@ -68,7 +68,7 @@ export async function setupProps(ctx, pageName) {
 
   try {
     globalLocales = await import(
-      /* webpackMode: "eager" */ `../locales/globals/${locale}.yml`
+      /* webpackMode: "eager" */ `../../locales/globals/${locale}.yml`
     ).then((m) => m.default)
   } catch (err) {
     console.error(`Global locales file for ${locale} not found.`)
@@ -76,7 +76,7 @@ export async function setupProps(ctx, pageName) {
 
   try {
     globalIndexLocale = await import(
-      /* webpackMode: "eager" */ `../locales/globals/index.yml`
+      /* webpackMode: "eager" */ `../../locales/globals/index.yml`
     ).then((m) => m.default)
   } catch (_) {
     // no problem if there isn't an index file

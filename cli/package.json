@@ -1,6 +1,6 @@
 {
   "name": "@wethegit/corgi",
-  "version": "3.0.11",
+  "version": "3.0.12",
   "description": "Command line interface for use with the corgi framework.",
   "main": "bin/index.js",
   "bin": {
