@@ -123,7 +123,7 @@ const project = async (directory, options) => {
       }
     }
 
-    console.log({ projectConfig})
+    console.log({ projectConfig, installComponents})
 
     killSpinner(configSpinner);
     log("ok", "Added!");
