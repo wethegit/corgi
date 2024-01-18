@@ -1,1 +1,6 @@
 coolSetting: "FR - This is a cool setting"
+
+meta:
+  title: FR Global fallback title
+  description: FR Global fallback description.
+  og_alt: FR Description of the alt image.
