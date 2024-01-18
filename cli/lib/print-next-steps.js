@@ -6,7 +6,7 @@ const printNextSteps = (dir, componentsList) => {
 
   log("ok", "Project setup complete.");
 
-  const logMessage = `\nTo get started, run: \n${cdInstruction}\nnvm use ${chalk.dim(
+  let logMessage = `\nTo get started, run: \n${cdInstruction}\nnvm use ${chalk.dim(
     "(if using nvm)"
   )} \nnpm install`
 

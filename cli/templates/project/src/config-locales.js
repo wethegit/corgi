@@ -6,19 +6,19 @@
  * The mapped object value will be available from the useLocale hook as `localeMap`.
  */
 const localeMap = {
-  en: {
+  "en-us": {
     language: "en-US",
   },
-  es: {
+  "es-mx": {
     language: "es-ES",
   },
-  fr: {
-    language: "fr-FR",
+  "fr-ca": {
+    language: "fr-CA",
   },
 }
 
 module.exports = {
-  defaultLocale: "en",
+  defaultLocale: "en-us",
   localeMap,
 
   /** Both <html lang=""> and <Link hreflang ... /> tags are auto generated for every
