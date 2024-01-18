@@ -1,6 +1,6 @@
 {
   "name": "corgi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Toolkit for creating statically-generated web apps via Next JS.",
   "workspaces": [
