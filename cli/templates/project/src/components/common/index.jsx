@@ -1,2 +1,2 @@
-export { Link } from "./link"
-export { Page } from "./page"
+export * from "./link"
+export * from "./page"
