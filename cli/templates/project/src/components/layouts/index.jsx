@@ -1,2 +1,2 @@
-export { HomeLayout } from "./home"
-export { SubPageLayout } from "./sub-page"
+export * from "./home"
+export * from "./sub-page"
