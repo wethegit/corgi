@@ -3,11 +3,11 @@ meta:
   description: Global fallback description.
   og_alt: Description of the alt image.
 
-nav:
-  a11yOptions:
-    label: Opciones de accesibilidad
-    reducedMotion: Desactivar la animación
-    skipToContent: Saltar al contenindo
+skipNavigation:
+  - label: Saltar al contenindo
+    id: main-content
+
+navigation:
   title: Navegación del sitio principal
   menu:
     label: Menú

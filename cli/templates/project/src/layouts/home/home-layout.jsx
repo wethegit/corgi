@@ -1,4 +1,4 @@
-import { Page } from "@local/components/common"
+import { Page } from "@local/components"
 
 import { HomeBody, HomeHeader } from "./components"
 

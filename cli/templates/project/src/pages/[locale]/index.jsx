@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useRouter } from "next/router"
 
 import { setupPaths, setupProps } from "@local/utilities"
-import { HomeLayout } from "@local/components/layouts"
+import { HomeLayout } from "@local/layouts"
 import { defaultLocale } from "@local/config-locales"
 import { useLocale } from "@local/hooks"
 
