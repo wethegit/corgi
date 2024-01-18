@@ -9,9 +9,6 @@ const localeMap = {
   "en-us": {
     language: "en-US",
   },
-  "es-mx": {
-    language: "es-ES",
-  },
   "fr-ca": {
     language: "fr-CA",
   },

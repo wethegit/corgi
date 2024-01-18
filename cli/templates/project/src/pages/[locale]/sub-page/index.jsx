@@ -1,7 +1,7 @@
 import { SubPageLayout } from "@local/layouts"
 import { setupPaths, setupProps } from "@local/utilities"
 
-const LOCALE_FOLDER = "subpage"
+const LOCALE_FOLDER = "sub-page"
 
 export default function Subpage({}) {
   return <SubPageLayout />
