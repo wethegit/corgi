@@ -15,6 +15,8 @@ const printNextSteps = (dir, componentsList) => {
   }
 
   logMessage += `\nnpm run dev`;
+
+  log("msg", logMessage)
 };
 
 export default printNextSteps;
