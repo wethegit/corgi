@@ -1,4 +1,5 @@
 import chalk from "chalk";
+
 import log from "./log.js";
 
 const printNextSteps = (dir, componentsList) => {
@@ -6,15 +7,15 @@ const printNextSteps = (dir, componentsList) => {
 
   log("ok", "Project setup complete.");
 
-  let logMessage = `\nTo get started, run: \n${cdInstruction}\nnvm use ${chalk.dim(
+  let logMessage = `\nTo get started, run: \n- ${cdInstruction}\n- nvm use ${chalk.dim(
     "(if using nvm)"
-  )} \nnpm install`
+  )} \n- npm install`
 
   if (componentsList.length) {
-    logMessage += ` \nLooks like this template requires components from @wethegit/component-library. \nAfter installing dependencies run: \nnpx @wethegit/components-cli init \nnpx @wethegit/components-cli add ${componentsList.join(' ')}`
+    logMessage += ` \n\n🧩 Looks like this template requires components from ${chalk.bold("@wethegit/component-library")}. \nAfter installing dependencies run: \n- npx components-cli init \n- npx components-cli add ${componentsList.join(' ')}\n`
   }
 
-  logMessage += `\nnpm run dev`;
+  logMessage += `\n- npm start`;
 
   log("msg", logMessage)
 };
