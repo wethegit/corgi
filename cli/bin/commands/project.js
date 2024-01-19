@@ -66,8 +66,6 @@ const project = async (directory, options) => {
     projectConfig = { ...CONSTS.CONFIG_DEFAULTS, ...customConfig };
   }
 
-
-  console.log({usedCustomConfig, projectConfig})
   // Allow for custom project config (custom package.json, etc.)
   if (usedCustomConfig) {
     const configSpinner = log("msg", "Adding custom config…", true);
@@ -122,8 +120,6 @@ const project = async (directory, options) => {
         installComponents = projectConfig.components;
       }
     }
-
-    console.log({ projectConfig, installComponents})
 
     killSpinner(configSpinner);
     log("ok", "Added!");
