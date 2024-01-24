@@ -3,9 +3,6 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "build-test": "next build",
-    "postbuild": "next-sitemap && next export",
-    "preflight": "next build",
     "start": "next dev -p 8080",
     "preview": "serve ./out -p 8080"
   },
@@ -16,7 +13,6 @@
     "eslint-import-resolver-alias": "~1.1.2",
     "eslint-plugin-import": "~2.29.1",
     "next-plugin-yaml": "~1.0.1",
-    "next-sitemap": "~4.2.3",
     "sass": "~1.69.7",
     "serve": "~14.2.1",
     "stylelint": "~16.1.0",

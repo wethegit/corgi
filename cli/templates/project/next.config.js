@@ -19,6 +19,7 @@ if (process.env.NODE_ENV === "production" && !process.env.NEXT_PUBLIC_URL) {
 }
 
 const nextConfig = {
+  output: "export",
   reactStrictMode: true,
   trailingSlash: true,
   webpack: (config) => {
