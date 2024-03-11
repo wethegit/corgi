@@ -9,7 +9,7 @@ export function HomeBody() {
   } = useLocale()
 
   return (
-    <main>
+    <>
       <h2>
         locale: <code>{locale}</code>
       </h2>
@@ -29,6 +29,6 @@ export function HomeBody() {
       <p>{coolSetting}</p>
 
       <p>{pageCoolSetting}</p>
-    </main>
+    </>
   )
 }
