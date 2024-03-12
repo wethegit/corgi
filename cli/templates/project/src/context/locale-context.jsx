@@ -20,6 +20,8 @@ export function LocaleProvider({ children, locale }) {
   }, [locale])
 
   useEffect(() => {
+    if (!locale) return
+    
     addPage(locale.pageName)
 
     setCache((cur) => {
