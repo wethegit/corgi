@@ -21,13 +21,3 @@ jobs:
         working-directory: "./cli"
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-      # Publish to Github registry
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "16.x"
-          registry-url: https://npm.pkg.github.com/
-      - run: npm publish
-        working-directory: "./cli"
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
