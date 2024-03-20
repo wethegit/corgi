@@ -1,14 +1,12 @@
 import React from "react";
 import clsx from "clsx";
 import CodeIcon from "@mui/icons-material/Code";
-import ConstructionIcon from "@mui/icons-material/Construction";
 import LanguageIcon from "@mui/icons-material/Language";
 
 import styles from "./styles.module.css";
 
 const FEATURES = [
   ["Easy localization within static Next.js projects.", LanguageIcon],
-  ["Full SCSS framework for layout, typography, and more.", ConstructionIcon],
   [
     "Command line interface for quickly and easily setting up projects, pages, and components.",
     CodeIcon,
