@@ -12,7 +12,7 @@ const printNextSteps = (dir, componentsList) => {
   )} \n- npm install`
 
   if (componentsList.length) {
-    logMessage += ` \n\n🧩 Looks like this template requires components from ${chalk.bold("@wethegit/component-library")}. \nAfter installing dependencies run: \n- npx components-cli init \n- npx components-cli add ${componentsList.join(' ')}\n`
+    logMessage += ` \n\n🧩 Looks like this template requires components from ${chalk.bold("@wethegit/component-library")}. \nAfter installing dependencies run: \n- npx @wethegit/components-cli init \n- npx @wethegit/components-cli add ${componentsList.join(' ')}\n`
   }
 
   logMessage += `\n- npm start`;

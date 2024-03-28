@@ -8,7 +8,7 @@ Check out the official [corgi documentation](https://wethegit.github.io/corgi/) 
 ```bash
 nvm use
 npm install
-npm run dev
+npm start
 ```
 
 ## Build for production

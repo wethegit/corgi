@@ -18,7 +18,7 @@ The following aliases are available:
 ### JavaScript imports
 ```jsx title=src/pages/[locale]/about/index.jsx
 import { Button } from "@local/components"
-import { useBreakpoints } from "@local/hooks"
+import { useLocale } from "@local/hooks"
 ```
 
 :::info Component indexing
@@ -26,6 +26,7 @@ Notice the above Button component is imported from `"@local/components"`. This a
 :::
 
 ### SCSS imports
+The following snippet is just an example — the styles directory does not exist out-of-the-box on a corgi project.
 ```scss title=src/components/your-component/your-component.module.scss
 @use "@local/styles/helpers/helpers-animation" as *;
 @use "@local/styles/helpers/helpers-math" as *;
