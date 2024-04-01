@@ -11,9 +11,11 @@ import { defaultLocale } from "@local/config-locales"
  * For importing third-party scripts, see the next/script docs:
  * https://nextjs.org/docs/basic-features/script
  */
-export default function Document() {
+export default function Document({ __NEXT_DATA__ }) {
+  const currentLocale = __NEXT_DATA__?.props?.pageProps?.localeData?.locale
+
   return (
-    <Html lang={defaultLocale}>
+    <Html lang={localeMap[currentLocale || defaultLocale].language}>
       <Head>
         <meta content="website" property="og:type" />
         <meta
