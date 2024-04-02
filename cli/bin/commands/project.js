@@ -1,5 +1,5 @@
 import { existsSync } from "fs";
-import { mkdir, readFile, writeFile } from "fs/promises";
+import { mkdir, readFile, rename, writeFile } from "fs/promises";
 import fse from "fs-extra";
 import path from "path";
 import * as url from "url";
@@ -48,6 +48,14 @@ const project = async (directory, options) => {
   // Any external templates will extend this (not replace it).
   const boilerplate = path.join(__dirname, "../../templates/project");
   await copySync(boilerplate, directory);
+
+  // rename the __.gitignore file
+  // (This should be doable by simply removing .gitignore from .npmignore,
+  // but that solution does not work)
+  rename(
+    `${directory}/__.gitignore`,
+    `${directory}/.gitignore`
+  );
 
   // Grab optional custom template from GitHub
   if (template) {
