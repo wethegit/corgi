@@ -14,7 +14,7 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "@docusaurus/core": "~2.4.1",
+    "@docusaurus/core": "~3.3.2",
     "@docusaurus/preset-classic": "~3.3.2",
     "@emotion/react": "~11.11.4",
     "@emotion/styled": "~11.10.5",
