@@ -17,7 +17,7 @@
     "@docusaurus/core": "~3.3.2",
     "@docusaurus/preset-classic": "~3.3.2",
     "@emotion/react": "~11.11.4",
-    "@emotion/styled": "~11.10.5",
+    "@emotion/styled": "~11.11.5",
     "@mdx-js/react": "^1.6.22",
     "@mui/icons-material": "~5.15.18",
     "clsx": "^2.1.1",
