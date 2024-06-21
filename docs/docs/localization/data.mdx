@@ -8,7 +8,7 @@ Static site data for each locale is grouped into two general categories: the "gl
 
 All static locale data lives within the `/src/locales/` directory, and is grouped into these two categories. You can treat the `globals` directory as a reserved directory name, as all global (site-wide) data is compiled from within it. All other directories here, however, are page-level data directories which should match each page's filename as it exists in the `/src/pages/` directory.
 
-Within both `/src/locales/globals/` and `/src/locales/<page-name>/`, should live YAML files containing the actual locale data. Each YAML file's name should be the locale string as specified in the [locale config](./configuration#locales), with a `.yml` extension, except for the `index.yml` file, which is a special case for each directory.
+Within both `/src/locales/globals/` and `/src/locales/<page-name>/`, should live YAML files containing the actual locale data. Each YAML file's name should be the locale string as specified in the [locale config](./configuration#locales), with a `.yml` extension, except for the `index.yml` file, which is a special case for each directory (more on that below).
 
 Here is an example file tree, containing global data as well as data for two pages—all containing content for three locales:
 
@@ -128,7 +128,6 @@ const FeatureList = ({}) => {
 
 export default FeatureList;
 ```
-
 
 ## `index.yml` example
 
