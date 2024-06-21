@@ -1,5 +1,7 @@
 import localeConfig from "@local/config-locales"
 
+import { deepMerge } from "../deep-merge"
+
 const { defaultLocale, localeMap } = localeConfig
 
 async function getAvailableLocales(pageName) {
@@ -42,15 +44,15 @@ export async function setupProps(ctx, pageName) {
   const locale =
     ctx.locale || ctx?.params?.locale || ctx.defaultLocale || defaultLocale || "en-us"
 
-  let pageLocales = {}
-  let pageIndexLocales = {}
-  let globalIndexLocale = {}
-  let globalLocales = {}
+  let pageLocale = {}
+  let pageIndex = {}
+  let globalsIndex = {}
+  let globalsLocale = {}
   let alternativeLocales = []
 
   if (pageName) {
     try {
-      pageLocales = await import(
+      pageLocale = await import(
         /* webpackMode: "eager" */ `../../locales/${pageName}/${locale}.yml`
       ).then((m) => m.default)
     } catch (err) {
@@ -58,7 +60,7 @@ export async function setupProps(ctx, pageName) {
     }
 
     try {
-      pageIndexLocales = await import(
+      pageIndex = await import(
         /* webpackMode: "eager" */ `../../locales/${pageName}/index.yml`
       ).then((m) => m.default)
     } catch (err) {
@@ -67,7 +69,7 @@ export async function setupProps(ctx, pageName) {
   }
 
   try {
-    globalLocales = await import(
+    globalsLocale = await import(
       /* webpackMode: "eager" */ `../../locales/globals/${locale}.yml`
     ).then((m) => m.default)
   } catch (err) {
@@ -75,7 +77,7 @@ export async function setupProps(ctx, pageName) {
   }
 
   try {
-    globalIndexLocale = await import(
+    globalsIndex = await import(
       /* webpackMode: "eager" */ `../../locales/globals/index.yml`
     ).then((m) => m.default)
   } catch (_) {
@@ -96,16 +98,8 @@ export async function setupProps(ctx, pageName) {
         pageName: pageName || null,
         locale,
         localeMap,
-        page: {
-          ...(pageIndexLocales || {}),
-          // overwrite page index
-          ...(pageLocales || {}),
-        },
-        globals: {
-          ...(globalIndexLocale || {}),
-          // overwrite global index
-          ...(globalLocales || {}),
-        },
+        page: deepMerge(pageIndex || {}, pageLocale || {}),
+        globals: deepMerge(globalsIndex || {}, globalsLocale || {}),
         alternativeLocales,
       },
     },
