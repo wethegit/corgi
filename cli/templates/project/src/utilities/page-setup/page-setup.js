@@ -93,7 +93,7 @@ export async function setupProps(ctx, pageName) {
 
   return {
     props: {
-      version: globalIndexLocale.version || 0,
+      version: globalsIndex.version || 0,
       localeData: {
         pageName: pageName || null,
         locale,
