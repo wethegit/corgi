@@ -12,5 +12,8 @@ updates:
     labels:
       - "dependencies"
       - "security"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     reviewers:
       - "wethegit/developers"
