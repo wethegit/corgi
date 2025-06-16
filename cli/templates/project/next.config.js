@@ -1,5 +1,6 @@
-const path = require("path")
+const path = require("node:path")
 
+const webpack = require("webpack")
 const withPlugins = require("next-compose-plugins")
 const yaml = require("next-plugin-yaml")
 
@@ -25,10 +26,19 @@ const nextConfig = {
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
+      "~/*": resolve("./*"),
       "@local/*": resolve("src/*"),
     }
 
-    config.resolve.fallback = { fs: false }
+    // This fixes and issue with Webpack 5 no longer polyfilling node core modules for the browser.
+    config.resolve.fallback = {
+      fs: false,
+    }
+    config.plugins.push(
+      new webpack.NormalModuleReplacementPlugin(/^node:/, (resource) => {
+        resource.request = resource.request.replace(/^node:/, "")
+      })
+    )
 
     // insert js-yaml-loader
     config.module.rules.push({
