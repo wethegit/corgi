@@ -1,35 +1,40 @@
 {
   "name": "corgi-project",
   "private": true,
+  "version": "0.0.0",
   "scripts": {
     "build": "next build",
-    "start": "next dev -p 8080",
-    "preview": "serve ./out -p 8080",
-    "prepare": "husky"
+    "start": "next dev -p 8000",
+    "preview": "serve ./out -p 8000",
+    "prepare": "husky",
+    "postbuild": "next-sitemap"
   },
   "devDependencies": {
-    "eslint": "~8.56.0",
-    "eslint-config-next": "~14.0.4",
-    "eslint-config-prettier": "~9.1.0",
+    "eslint": "~9.39.2",
+    "eslint-config-next": "16.1.6",
+    "eslint-config-prettier": "~10.1.8",
     "eslint-import-resolver-alias": "~1.1.2",
-    "eslint-plugin-import": "~2.29.1",
+    "eslint-plugin-import-x": "~4.16.1",
+    "husky": "~9.0.11",
+    "lint-staged": "~15.5.2",
     "next-plugin-yaml": "~1.0.1",
+    "next-sitemap": "~4.2.3",
+    "prettier": "~3.8.1",
     "sass": "~1.69.7",
     "serve": "~14.2.1",
     "stylelint": "~16.1.0",
     "stylelint-config-standard-scss": "~13.0.0",
     "stylelint-order": "~6.0.4",
-    "yamljs": "~0.3.0",
-    "husky": "~9.0.11",
-    "lint-staged": "~15.2.2"
+    "yamljs": "~0.3.0"
   },
   "dependencies": {
-    "@wethegit/react-hooks": "~3.0.1",
+    "@wethegit/react-hooks": "~3.1.1",
+    "glob": "~13.0.2",
     "js-yaml-loader": "~1.2.2",
-    "next": "~14.2.3",
+    "next": "16.1.6",
     "next-compose-plugins": "~2.2.1",
-    "react": "~18.2.0",
-    "react-dom": "~18.2.0"
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
   },
   "lint-staged": {
     "*.{jsx,js,ts,tsx}": [

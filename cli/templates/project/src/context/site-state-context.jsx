@@ -7,10 +7,6 @@ export function SiteStateProvider({ children, version }) {
   // (pausing other videos, for example):
   const [modalOpen, setModalOpen] = useState(false)
 
-  // Just an example here, of how you might adjust global elements
-  // (i.e. higher DOM level than the page content), such as backgrounds:
-  const [background, setBackground] = useState()
-
   const [pageHistory, addPage] = useReducer((history, newPage) => {
     return [newPage, ...history]
   }, [])
@@ -24,8 +20,6 @@ export function SiteStateProvider({ children, version }) {
       value={{
         modalOpen,
         setModalOpen,
-        background,
-        setBackground,
         pageHistory,
         addPage,
         version,

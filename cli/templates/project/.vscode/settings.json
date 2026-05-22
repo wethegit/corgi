@@ -5,8 +5,14 @@
     "source.fixAll": "explicit"
   },
   "eslint.format.enable": true,
-  "javascript.updateImportsOnFileMove.enabled": "always",
+  "js/ts.updateImportsOnFileMove.enabled": "always",
   "stylelint.reportNeedlessDisables": true,
   "stylelint.snippet": [""],
-  "stylelint.validate": ["css", "less", "postcss", "scss"]
+  "stylelint.validate": [
+    "css",
+    "less",
+    "postcss",
+    "scss"
+  ],
+  "editor.formatOnSaveMode": "modificationsIfAvailable"
 }
