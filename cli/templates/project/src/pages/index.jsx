@@ -1,6 +1,5 @@
-import { setupProps } from "@local/utilities"
-
 import { HomeLayout } from "@local/layouts"
+import { setupProps } from "@local/utilities"
 
 const LOCALE_FOLDER = "home"
 

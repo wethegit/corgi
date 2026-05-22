@@ -1,0 +1,1 @@
+// Do not remove. This is a fallback for Turbopack to ensure client-side compatibility with core node modules such as "fs".

@@ -37,14 +37,8 @@ export default function Document({ __NEXT_DATA__ }) {
         <meta name="theme-color" content="#fff" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-
-        {/* FONTS */}
-        {/* Next automatically handles any preconnect link tags for Google and Typekit 🔥 */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@700&display=swap"
-          rel="stylesheet"
-        />
       </Head>
+      
       <body data-env={process.env.NODE_ENV}>
         <Main />
         <NextScript />
