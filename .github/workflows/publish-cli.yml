@@ -9,14 +9,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Publish to NPM registry
       # Setup .npmrc file on the fly
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: "16.x"
-          registry-url: "https://registry.npmjs.org"
+          node-version-file: '.nvmrc'
       - run: npm publish --access public
         working-directory: "./cli"
         env:
