@@ -11,3 +11,7 @@ node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+cli/templates/project/.next
+cli/templates/project/node_modules
+cli/templates/project/out
